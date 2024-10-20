@@ -2,16 +2,16 @@
     pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="../../css/signup.css">
     <title>ShopKart | Sign Up</title>
-  </head>
-  <body>
+    <link rel="stylesheet" href="../../css/signup.css">
+</head>
+<body>
     <div class="signup-container">
       <h1>Sign Up</h1>
-      <form action="SignUpServlet" method="post">
+      <form action="" method="post">
         <div class="form-group">
           <input type="text" name="name" placeholder="Name" required />
         </div>
@@ -47,7 +47,8 @@
           <button type="submit" class="btn">Create Account</button>
         </div>
         <div class="extra-links">
-          <a href="login.jsp">Already have an account?</a>
+          <p>Already have an account?</p>
+          <a href="/"><p>Click to login</p></a>
         </div>
       </form>
     </div>

@@ -2,21 +2,33 @@
 const profileBtn = document.getElementById("profile-btn");
 const profileForm = document.getElementById("profile-form");
 const updateBtn = document.getElementById("update-btn");
+const logoutBtn = document.getElementById("log-out-btn");
+const backBtn = document.getElementById("back-btn"); // New back button
 
 // Toggle the profile form when the button is clicked
 profileBtn.addEventListener("click", () => {
-    // Toggle the 'open' class to slide the form in and out
     profileForm.classList.toggle("open");
 });
 
 // Close the profile form when the update button is clicked
 updateBtn.addEventListener("click", () => {
-    // You can add any logic to update profile info here
     console.log("Profile updated!"); // Placeholder for actual update logic
-    // Slide the form out
-    profileForm.classList.toggle("slide-out");
-    // Close the form after a short delay
+    closeProfileForm();
+});
+logoutBtn.addEventListener("click", () => {
+    console.log("Logged out!"); // Placeholder for actual update logic
+    closeProfileForm();
+});
+
+// Close the profile form when the back button is clicked
+backBtn.addEventListener("click", () => {
+    closeProfileForm();
+});
+
+// Function to handle closing the profile form with a smooth slide-out effect
+function closeProfileForm() {
+    profileForm.classList.add("slide-out");
     setTimeout(() => {
         profileForm.classList.remove("open", "slide-out");
-    }, 300); // Match the duration of the CSS transition
-});
+    }, 500); // Adjust the timing to match the CSS transition
+}
