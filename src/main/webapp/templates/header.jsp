@@ -11,7 +11,7 @@
 <body>
 	<nav>
 		<div class="navbar">
-			<div class="logo">ShopKart</div>
+			<div class="logo">Ecommerce-website</div>
 			<form action="">
 				<div class="search-bar">
 					<input type="text" placeholder="search product" />
@@ -50,7 +50,7 @@
 		<div>
 			<b>Phone number :</b> Undefined
 		</div>
-		<button id="update-btn"  onclick="window.location.href='/updateinfo'">Update</button>
+		<button id="update-btn" onclick="window.location.href='/updateinfo'">Update</button>
 		<button id="log-out-btn">Log out</button>
 	</div>
 	<script src="../js/home.js"></script>

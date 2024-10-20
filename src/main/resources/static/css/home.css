@@ -11,7 +11,7 @@
 
 .big-banner {
   margin: 50px auto;
-  max-width: 1200px;
+  max-width: 70vw;
   height: 250px;
   background-color: rgb(203, 203, 203);
   display: flex;

@@ -12,12 +12,13 @@
     <div class="breaker"></div>
     <div class="footer" id="aboutusSection">
       <div class="company-name">
-        <p>ShopKart : Your Shopping Destination</p>
+        <p>ShopKart: Anytime! Anywhere! </p>
         <div>
-          <p class="description">
-          	<b><i>"E-commerce empowered, in a matter of few clicks!"</i></b>
-            ShopKart is an e-commerce platform built by our team of passionate developers, the Spring Spartans. Offering a seamless online shopping experience, we connect you to a vast selection of products and sellers from around the world. Discover more about our team and technology stack.
-          </p>
+          <div class="description">
+          	<h3 style="font-family:'Times New Roman', Times, serif; margin : 10px 0px;">E-commerce empowered, in a matter of few clicks!</h3>
+            <p>ShopKart is an e-commerce platform built by our team of passionate developers, the <b>Spring Spartans</b>
+            Offering a seamless online shopping experience, we connect you to a vast selection of products and sellers from around the world. Discover more about our team and technology stack.</p>
+          </div>
         </div>
       </div>
       <div class="options">

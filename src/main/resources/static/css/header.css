@@ -42,7 +42,11 @@ nav {
 .profile img {
   height: 18px;
 }
-
+.cart {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
 .cart img {
   height: 18px;
 }

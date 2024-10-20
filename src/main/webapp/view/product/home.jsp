@@ -11,30 +11,31 @@
 <body>
     <%@ include file="../../templates/header.jsp" %>
 
-    <div class="welcome-msg">Hello name, welcome to our E-commerce website!</div>
-    <div class="big-banner">
-      <img src="../../images/banner1.jpg" alt="" />
+    <div style="margin-top: 100px">
+    	<div class="welcome-msg">Hello name, welcome to our E-commerce website!</div>
+	    <div class="big-banner">
+	      <img src="../../images/banner1.jpg" alt="" />
+	    </div>
+	
+	    <div class="collection">
+	      <div class="msg">Our Products</div>
+	    </div>
+	    <div class="grid-container">
+	      <% for (int i = 0; i < 15; i++) { %>
+	      <div class="grid-element">
+	        <a href="/product/details">
+	          <img
+	            src="../../images/Shirt_image.jpg"
+	            alt="Item 1"
+	          />
+	        </a>
+	        <p><b>Blue Shirt</b></p>
+	        <p>₹1,200</p>
+	      </div>
+	      <% } %>
+	    </div>
     </div>
-
-    <div class="collection">
-      <div class="msg">Our Products</div>
-    </div>
-    <div class="grid-container">
-      <% for (int i = 0; i < 15; i++) { %>
-      <div class="grid-element">
-        <a href="/product/details">
-          <img
-            src="../../images/Shirt_image.jpg"
-            alt="Item 1"
-          />
-        </a>
-        <p><b>Blue Shirt</b></p>
-        <p>₹1,200</p>
-      </div>
-      <% } %>
-    </div>
-    <%@ include file="../../templates/footer.jsp" %>
-
-    <script src="../../js/home.js"></script>
+	
+	<%@ include file="../../templates/footer.jsp" %>
   </body>
 </html>
