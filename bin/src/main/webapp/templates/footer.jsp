@@ -12,10 +12,10 @@
     <div class="breaker"></div>
     <div class="footer" id="aboutusSection">
       <div class="company-name">
-        <p>ShopKart E-commerce </p>
+        <p>ShopKart: Anytime! Anywhere! </p>
         <div>
           <div class="description">
-          	<h3 style="font-family:'Times New Roman', Times, serif; margin : 10px 0px;">Powered by a few clicks!</h3>
+          	<h3 style="font-family:'Times New Roman', Times, serif; margin : 10px 0px;">E-commerce empowered, in a matter of few clicks!</h3>
             <p>ShopKart is an e-commerce platform built by our team of passionate developers, the <b>Spring Spartans</b>
             Offering a seamless online shopping experience, we connect you to a vast selection of products and sellers from around the world. Discover more about our team and technology stack.</p>
           </div>
@@ -33,7 +33,7 @@
         <p><b>Our Team</b></p>
         <a href="https://github.com/arco02">Arco Das</a>
         <a href="https://github.com/BaibhabKarmakar">Baibhab Karmakar</a>
-        <a href="https://github.com/Sonu04-dev">Sonu Singh Patar</a>
+        <a href="">Sonu Singh Patar</a>
         <a href="https://github.com/Swarnotaj003">Swarnotaj Kundu</a>
         <a href="https://github.com/TARIFUDDIN">Syed Tarifuddin ahmed</a>
       </div>

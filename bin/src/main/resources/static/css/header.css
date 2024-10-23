@@ -83,10 +83,7 @@ nav {
   border: 1px solid grey;
   border-radius: 10px;
 }
-.category {
-  display : flex;
-  gap : 15px;
-}
+
 .profile-form {
   display: flex;
   flex-direction: column;
