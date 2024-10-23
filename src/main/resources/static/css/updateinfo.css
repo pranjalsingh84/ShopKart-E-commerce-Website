@@ -1,0 +1,107 @@
+* {
+    margin : 0;
+    padding : 0;
+    font-family : system-ui;
+}
+
+h1 {
+    text-align : center;
+    margin : 50px 0px;
+}
+
+.container {
+    max-width : 60vw;
+    margin : 10px auto; 
+    display: flex;
+    flex-direction: column;
+    padding : 20px;
+    border-radius : 10px;
+    background : linear-gradient(135deg , rgb(158, 158, 158) , rgb(216, 216, 216));
+}
+.grid {
+    margin : 10px;
+    max-width : 100vw;
+    margin : 0px auto;
+    display : grid;
+    grid-template-columns : repeat(2, 1fr);
+    gap : 20px;
+}
+.element {
+    display: flex;
+    flex-direction : column;
+    width: 29vw;
+    margin: 20px auto;
+    gap: 20px;
+    
+}
+/* .element h3 {
+    text-align : center;
+} */
+.element input {
+    padding : 5px 10px;
+    border : none;
+    outline : none;
+    border-radius : 5px;
+    width : 180px;
+}
+.element input:focus {
+    border : none;
+    outline : none;
+    width : 210px;
+    transition : 0.5s ease;
+}
+.confirm-element {
+    margin-top : 20px;
+    display : flex;
+    flex-direction : column;
+    align-items : center;
+    justify-content : center;
+    gap : 20px;
+}
+.confirm-element input {
+    padding : 5px 10px;
+    border : none;
+    outline : none;
+    border-radius : 5px;
+    width : 180px;
+}
+.confirm-element input:focus {
+    border : none;
+    outline : none;
+    width : 210px;
+    transition : 0.5s ease;
+}
+.buttons {
+    display : flex;
+    margin : 30px auto;
+    gap : 20px;
+}
+.save {
+    margin : 30px 0px;
+    background : linear-gradient(135deg , rgb(0, 140, 255) , rgb(0, 255, 247));
+    width : 120px;
+    padding : 5px 10px;
+    border : none;
+    outline : none;
+    align-self : center;
+    border-radius : 5px;   
+}
+.save:hover {
+    width : 130px;
+    transition : 0.4s ease;
+}
+.log-out {
+    margin : 30px 0px;
+    background-color : rgb(255, 101, 101);
+    width : 120px;
+    padding : 5px 10px;
+    border : none;
+    outline : none;
+    align-self : center;
+    border-radius : 5px;   
+}
+.log-out:hover {
+    background-color : red;
+    width : 130px;
+    transition : 0.4s ease;
+}
