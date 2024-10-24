@@ -9,5 +9,5 @@
 - Repository classes for Product, Customer & CartItem
 
 ## Ongoing stages
-- Service classes for Product, Customer & CartItem
-- Repository classes for Product, Customer & CartItem
+- Service classes for Product, Customer & CartItem 
+- Repository classes for Product, Customer & CartItem 
