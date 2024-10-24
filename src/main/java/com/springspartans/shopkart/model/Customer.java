@@ -8,30 +8,29 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="customer")
+@Table(name = "customer")
 public class Customer {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id; 
 	
-	@Column(nullable = false)
+	@Column(nullable = false, length = 50)
 	private String name;
 	
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false, unique = true, length = 50)
 	private String email;
 	
-	@Column(nullable = false)
+	@Column(nullable = false, length = 15)
 	private String password;
 	
 	@Column(nullable = false)
 	private String address;
 	
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false)
 	private Long phone;
 	
 	public Customer() {
-	
 	}
 	
 	public Customer(int id, String name, String email, String password, String address, Long phone) {

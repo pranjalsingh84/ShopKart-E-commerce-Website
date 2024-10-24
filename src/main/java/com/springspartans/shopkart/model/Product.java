@@ -15,19 +15,19 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
-    @Column(nullable = false)
+    @Column(nullable = false, length = 100)
     private String name;
     
-    @Column(nullable = false)
+    @Column(nullable = false, length = 50)
     private String category;
     
-    @Column(nullable = false, columnDefinition = "VARCHAR(100) DEFAULT 'Local Vendor'")
-    private String brand = "Local Vendor";
+    @Column(nullable = false, length = 100)
+    private String brand;
     
     @Column(nullable = false)
     private double price;
     
-    @Column(nullable = false)
+    @Column
     private String image;
 
     public Product() {
@@ -94,4 +94,5 @@ public class Product {
     public String toString() {
         return "Product [id=" + id + ", name=" + name + ", category=" + category + ", brand=" + brand + ", price=" + price + ", image=" + image + "]";
     }
+    
 }

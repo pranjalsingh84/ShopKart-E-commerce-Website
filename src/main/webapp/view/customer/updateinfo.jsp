@@ -40,12 +40,10 @@ pageEncoding="UTF-8"%>
         </div>
         <div class="buttons">
           <button class="save">Save Changes</button>
-          <button class="log-out" onclick="window.location.href='/product/home'">Go back</button>
+          <button class="go-back" onclick="window.location.href='/product/home'">Go back</button>
         </div>
       </div>
     </div>
     <%@ include file="../../templates/footer.jsp" %>
-
-    <script src="../../js/home.js"></script>
   </body>
 </html>
