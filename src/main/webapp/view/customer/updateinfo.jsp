@@ -40,7 +40,7 @@ pageEncoding="UTF-8"%>
         </div>
         <div class="buttons">
           <button class="save">Save Changes</button>
-          <button class="go-back" onclick="window.location.href='/product/home'">Go back</button>
+          <button class="go-back" onclick="window.location.href='/product'">Go back</button>
         </div>
       </div>
     </div>

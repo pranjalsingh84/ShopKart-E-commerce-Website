@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
       pageEncoding="UTF-8"%>
+<%@ page import="com.springspartans.shopkart.model.Product" %>      
+<%@ page import="java.util.List" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,22 +21,34 @@
 	    </div>
 	
 	    <div class="collection">
-	      <div class="msg">Our Products</div>
-	    </div>
-	    <div class="grid-container">
-	      <% for (int i = 0; i < 15; i++) { %>
-	      <div class="grid-element">
-	        <a href="/product/details">
-	          <img
-	            src="../../images/Shirt_image.jpg"
-	            alt="Item 1"
-	          />
-	        </a>
-	        <p><b>Blue Shirt</b></p>
-	        <p>₹1,200</p>
-	      </div>
+	      <% String category = (String)request.getAttribute("category"); %>
+	      <% if (category != null && !category.equals("All")) { %>
+	      	<div class="msg">Shop for <%= category %></div>
+	      <% } else { %>
+	      	<div class="msg">Our Products</div>
 	      <% } %>
 	    </div>
+	    
+	    <% List<Product> productList = (List<Product>)request.getAttribute("productList"); %>
+	    <% if (productList == null || productList.size() == 0) { %>
+	    	<h2>Looks like we haven't got anything for you right now!</h2>
+	    	<h2>Try removing the search filters if any or please visit us later</h2>
+	    <% } else { %>
+	    	<div class="grid-container">
+		      <% for (Product product : productList) { %>
+			      <div class="grid-element">
+			        <a href="/product/<%= product.getId() %>">
+			          <img
+			            src="../../images/product/<%= product.getImage() %>"
+			            alt=<%= product.getImage() %>
+			          />
+			        </a>
+			        <p><b><%= product.getName() %></b></p>
+			        <p>₹<%= product.getPrice() %></p>
+			      </div>
+		      <% } %>
+	    </div>
+	    <% } %>	    
     </div>
 	
 	<%@ include file="../../templates/footer.jsp" %>

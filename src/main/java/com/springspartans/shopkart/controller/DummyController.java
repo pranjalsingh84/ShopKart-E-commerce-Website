@@ -23,16 +23,6 @@ public class DummyController {
 		return "customer/updateinfo";
 	}
 	
-	@GetMapping("product/home")
-	public String home() {
-		return "product/home";
-	}
-	
-	@GetMapping("product/details")
-	public String details() {
-		return "product/details";
-	}
-	
 	@GetMapping("cartitem/cart")
 	public String cart() {
 		return "cartitem/cart";

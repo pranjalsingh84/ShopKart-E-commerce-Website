@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.springspartans.shopkart.model.Product" %>    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,40 +14,43 @@
     
     <%@ include file="../../templates/header.jsp" %>
 
-    <div style="margin-top: 100px">
-    	<h2 class="heading">Product Details</h2>
-	    <div class="product-container">
-	      <div class="container-product-image">
-	        <div class="image-container">
-	          <img src="../../images/Shirt_image.jpg" />
-	        </div>
-	      </div>
-	
-	      <div class="container-product-details">
-	        <h2>Product Info :</h2>
-	        <br>
-	        <div class="name">
-	          <div><b>Name : </b></div>
-	          <div>Shirt</div>
-	        </div>
-	        <div class="category">
-	          <div><b>Category : </b></div>
-	          <div>Wears</div>
-	        </div>
-	        <div class="price">
-	          <div><b>Price : </b></div>
-	          <div>₹1,200</div>
-	        </div>
-	        <div class="brand-name">
-	          <div><b>Brand : </b></div>
-	          <div>ZARA</div>
-	        </div>
-	        
-	      </div>
+    <div style="margin-top: 100px">	      
+	      	<% Product product = (Product)request.getAttribute("product"); %>
+	        <% if (product == null) { %>
+	        	<h2> Sorry, we're unable to fetch the product you're looking for </h2>
+	        <% } else { %>
+	        	<h2 class="heading">Product Details</h2>
+			    <div class="product-container">
+			      <div class="container-product-image">
+			        <div class="image-container">
+			          <img src="../../images/product/<%= product.getImage() %>" />
+			        </div>
+			    </div>
+	        	<div class="container-product-details">
+		        	<h2>Product Info :</h2>
+			        <br>
+			        <div class="name">
+			          <div><b>Name : </b></div>
+			          <div><%= product.getName() %></div>
+			        </div>
+			        <div class="category">
+			          <div><b>Category : </b></div>
+			          <div><%= product.getCategory() %></div>
+			        </div>
+			        <div class="price">
+			          <div><b>Price : </b></div>
+			          <div>₹ <%= product.getPrice() %></div>
+			        </div>
+			        <div class="brand-name">
+			          <div><b>Brand : </b></div>
+			          <div><%= product.getBrand() %></div>
+			        </div>
+		        </div>
+	        <% } %>
 	    </div>
 	
 	    <div class="buttons">
-	      <button onclick="window.location.href='/product/home'">Continue Shopping</button>
+	      <button onclick="window.location.href='/product'">Continue Shopping</button>
 	      <button>Add to Cart</button>
 	    </div>
     </div>

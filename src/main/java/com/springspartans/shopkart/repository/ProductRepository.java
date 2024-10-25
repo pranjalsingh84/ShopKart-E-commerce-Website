@@ -16,8 +16,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     
     @Query(value = "SELECT * FROM product WHERE category = ?1", nativeQuery = true)
     List<Product> findByCategory(String category);
-
-    @Query(value = "SELECT * FROM product WHERE price BETWEEN ?1 AND ?2", nativeQuery = true)
-    List<Product> findByPriceRange(double minPrice, double maxPrice);
     
+    @Query(value = "SELECT DISTINCT(category) FROM product", nativeQuery=true)
+    List<String> findAllCategories();
 }

@@ -29,18 +29,18 @@
 	          <% for (int i = 0; i < 4; i++){ %>
 	          	 <tr>
 		            <td class="item-name">
-		              <a href="/product/details">
+		              <a href="/product/1">
 			              <img
-			                src="../../images/Shirt_image.jpg"
-			                alt="Item 1"
+			                src="../../images/product/laptop.jpg"
+			                alt="Ultrabook Laptop"
 			                class="product-img"
 			              />
 		              </a>
-		              Blue Shirt
+		              Ultrabook Laptop
 		            </td>
-		            <td class="item-price">₹1,200</td>
+		            <td class="item-price">₹29999</td>
 		            <td class="item-qty">2</td>
-		            <td class="item-total-price">₹2,400</td>
+		            <td class="item-total-price">₹<%= 2 * 29999 %></td>
 		            <td class="delete-action">
 		              <div class="buttons">
 		                <button class="delete-item">Delete Item</button>
@@ -52,12 +52,12 @@
 	        </tbody>
 	      </table>
 	      <div class="checkout">
-	        <h3>Total Price : ₹9,600</h3>
+	        <h3>Total Price : ₹<%= 8 * 29999 %></h3>
 	      </div>
 	    </div>
 	
 	    <div class="button">
-	      <button onclick="window.location.href='/product/home'">
+	      <button onclick="window.location.href='/product'">
 	        Continue Shopping!
 	      </button>
 	      <button>Order Now</button>
