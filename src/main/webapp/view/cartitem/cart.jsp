@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.springspartans.shopkart.model.Product" %>  
+<%@ page import="com.springspartans.shopkart.model.CartItem" %>     
+<%@ page import="java.util.List" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +19,10 @@
     	<div class="cart-owner">Owner's Cart :</div>
 	    <div class="cart-address">Delivery Address : Kolkata, India</div>
 	    <div class="cart-container">
+	     <% List<CartItem> cart=(List<CartItem>)request.getAttribute("cart");%>     
+	     <% if(cart==null || cart.size()==0) { %>
+	      <h2>Your Cart is empty!</h2>
+	     <% } else { %>
 	      <table class="cart-items">
 	        <thead>
 	          <tr>
@@ -26,25 +34,29 @@
 	          </tr>
 	        </thead>
 	        <tbody>
-	          <% for (int i = 0; i < 4; i++){ %>
+	        <% for(CartItem item:cart) { %>
 	          	 <tr>
 		            <td class="item-name">
-		              <a href="/product/1">
+		              <a href="/product/<%= item.getProduct().getId() %>">
 			              <img
-			                src="../../images/product/laptop.jpg"
-			                alt="Ultrabook Laptop"
+			                src="../../images/product/<%=item.getProduct().getImage()%>"
+			                alt="<%=item.getProduct().getName()%>"
 			                class="product-img"
 			              />
 		              </a>
-		              Ultrabook Laptop
+		              <%=item.getProduct().getName()%>
 		            </td>
-		            <td class="item-price">₹29999</td>
-		            <td class="item-qty">2</td>
-		            <td class="item-total-price">₹<%= 2 * 29999 %></td>
+		            <td class="item-price">₹<%=item.getProduct().getPrice()%></td>
+		            <td class="item-qty"><%=item.getQuantity()%></td>
+		            <td class="item-total-price">₹<%=item.getProduct().getPrice()*item.getQuantity()%></td>
 		            <td class="delete-action">
 		              <div class="buttons">
+		              <form action="/cartitem/delete/<%=item.getSlno()%>" method="post">
 		                <button class="delete-item">Delete Item</button>
+		              </form>
+		              <form action="/cartitem/addmore/<%=item.getSlno()%>" method="post">
 		                <button class="delete-item">Add more</button>
+		              </form>
 		              </div>
 		            </td>
 		          </tr>
@@ -52,8 +64,9 @@
 	        </tbody>
 	      </table>
 	      <div class="checkout">
-	        <h3>Total Price : ₹<%= 8 * 29999 %></h3>
+	        <h3>Total Price : ₹<%= request.getAttribute("totalPrice") %></h3>
 	      </div>
+	      <% } %>
 	    </div>
 	
 	    <div class="button">
