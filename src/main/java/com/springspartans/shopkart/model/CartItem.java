@@ -22,12 +22,12 @@ public class CartItem {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int slno;
-	
-	@ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.REMOVE)
+
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "cust_id", nullable = false, foreignKey = @ForeignKey(name = "FK_Customer"))
     private Customer customer;
-
-	@ManyToOne(fetch = FetchType.LAZY, optional = false, cascade = CascadeType.REMOVE)
+	
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "prod_id", nullable = false, foreignKey = @ForeignKey(name = "FK_Product"))
     private Product product;
 	
@@ -55,7 +55,6 @@ public class CartItem {
 	public void setSlno(int slno) {
 		this.slno = slno;
 	}
-
 	public Customer getCustomer() {
 		return customer;
 	}
