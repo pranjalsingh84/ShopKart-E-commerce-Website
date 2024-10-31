@@ -24,8 +24,6 @@ public class CartItemService
 	private CartItemRepository cart;
 	@Autowired
 	private ProductRepository prodRepo;
-	@Autowired
-	private CustomerService customerService;
 	
 	public List<CartItem> getAllCartItems()
 	{
@@ -60,7 +58,7 @@ public class CartItemService
 		}
 		return total;
 	}
-	public void addToCart(Integer itemId)
+	public void addToCart(int itemId, Customer cust)
 	{
 		 Product prod = prodRepo.findById(itemId).orElse(null);
 		 if (prod == null) 
@@ -68,7 +66,6 @@ public class CartItemService
 			 System.out.println("Product not found for id: " + itemId);
 		     return;
 		 }
-		Customer cust=customerService.getCustomer();
 		CartItem item=new CartItem();
 		item.setCustomer(cust);
 		item.setProduct(prod);
