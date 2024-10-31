@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.springspartans.shopkart.model.*;
 import com.springspartans.shopkart.service.CartItemService;
+import com.springspartans.shopkart.service.CustomerService;
 
 @Controller
 @RequestMapping("/cartitem")
@@ -20,6 +21,8 @@ public class CartItemController
 {
 	@Autowired
 	private CartItemService cartservice;
+	@Autowired
+	private CustomerService customerService;
 	
 	@GetMapping("/cart")
 	public String getAllCartItems(Model model)
@@ -27,8 +30,9 @@ public class CartItemController
 		List<CartItem> cart=cartservice.getAllCartItems();
 		model.addAttribute("cart", cart);
 		double totalPrice = cartservice.getCartPrice();
-        model.addAttribute("totalPrice", totalPrice);
-        System.out.println("Total = "+totalPrice);
+        	model.addAttribute("totalPrice", totalPrice);
+        	Customer customer = customerService.getCustomer(); 
+        	model.addAttribute("customer", customer);
    		return "/cartitem/cart";
 	}
 	@PostMapping("/addmore/{slno}")
@@ -46,10 +50,8 @@ public class CartItemController
 	 @PostMapping("/add/{id}")
 	 public String addToCart(@PathVariable int id)
 	 {
-		 cartservice.addToCart(id);
+		 Customer customer = customerService.getCustomer();
+		 cartservice.addToCart(id,customer);
 		 return "redirect:/cartitem/cart";
 	 }
 }
-
-
-
