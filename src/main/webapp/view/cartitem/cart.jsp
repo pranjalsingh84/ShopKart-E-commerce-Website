@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="com.springspartans.shopkart.model.Product" %>  
-<%@ page import="com.springspartans.shopkart.model.CartItem" %>     
+<%@ page import="com.springspartans.shopkart.model.Product, com.springspartans.shopkart.model.CartItem, com.springspartans.shopkart.model.Customer"%>    
 <%@ page import="java.util.List" %>
     
 <!DOCTYPE html>
@@ -16,8 +15,9 @@
     <%@ include file="../../templates/header.jsp" %>
     
     <div style="margin-top: 100px">
-    	<div class="cart-owner">Owner's Cart :</div>
-	    <div class="cart-address">Delivery Address : Kolkata, India</div>
+    	<% Customer customer=(Customer)request.getAttribute("customer"); %>
+    	<div class="cart-owner"><%= customer.getName()%>'s Cart :</div>
+	    <div class="cart-address">Delivery Address : <%= customer.getAddress() %></div>
 	    <div class="cart-container">
 	     <% List<CartItem> cart=(List<CartItem>)request.getAttribute("cart");%>     
 	     <% if(cart==null || cart.size()==0) { %>
