@@ -1,78 +1,55 @@
-package com.springspartans.shopkart.service;
+package com.springspartans.shopkart.controller;
 
-import java.sql.Timestamp;
-import java.time.Instant;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.springspartans.shopkart.model.CartItem;
-import com.springspartans.shopkart.model.Customer;
-import com.springspartans.shopkart.model.Product;
-import com.springspartans.shopkart.repository.CartItemRepository;
-import com.springspartans.shopkart.repository.CustomerRepository;
-import com.springspartans.shopkart.repository.ProductRepository;
+import com.springspartans.shopkart.model.*;
+import com.springspartans.shopkart.service.CartItemService;
 
-import jakarta.annotation.PostConstruct;
-
-@Service
-public class CartItemService
+@Controller
+@RequestMapping("/cartitem")
+public class CartItemController
 {
 	@Autowired
-	private CartItemRepository cart;
-	@Autowired
-	private ProductRepository prodRepo;
-	@Autowired
-	private CustomerService customerService;
+	private CartItemService cartservice;
 	
-	public List<CartItem> getAllCartItems()
+	@GetMapping("/cart")
+	public String getAllCartItems(Model model)
 	{
-		List<CartItem> items = cart.findAll();
-	    return items;
+		List<CartItem> cart=cartservice.getAllCartItems();
+		model.addAttribute("cart", cart);
+		double totalPrice = cartservice.getCartPrice();
+        model.addAttribute("totalPrice", totalPrice);
+        System.out.println("Total = "+totalPrice);
+   		return "/cartitem/cart";
 	}
-	public void incrementQuantity(int itemId)
+	@PostMapping("/addmore/{slno}")
+	public String incrementQuantity(@PathVariable int slno)
 	{
-		CartItem item=cart.findById(itemId).get();
-		item.setQuantity(item.getQuantity()+1);
-		cart.save(item);
+		cartservice.incrementQuantity(slno);
+		return "redirect:/cartitem/cart";
 	}
-	public void deleteCartItem(int itemId)
+	@PostMapping("/delete/{slno}")
+	public String deleteCartItem(@PathVariable int slno, Model model)
 	{
-		cart.deleteById(itemId);
+		cartservice.deleteCartItem(slno);
+		return "redirect:/cartitem/cart";
 	}
-	public double getCartItemPrice(int itemId)
-	{
-		CartItem item = cart.findById(itemId).get();
-		Product prod=item.getProduct();
-		return prod.getPrice();
-	}
-	public double getCartPrice()
-	{
-		List<CartItem> list=getAllCartItems();
-		double total=0;
-		Product prod;
-		for(CartItem item : list)
-		{
-			prod=item.getProduct();
-			total+=prod.getPrice()*item.getQuantity();		
-		}
-		return total;
-	}
-	public void addToCart(Integer itemId)
-	{
-		 Product prod = prodRepo.findById(itemId).orElse(null);
-		 if (prod == null) 
-		 {
-			 System.out.println("Product not found for id: " + itemId);
-		     return;
-		 }
-		Customer cust=customerService.getCustomer();
-		CartItem item=new CartItem();
-		item.setCustomer(cust);
-		item.setProduct(prod);
-		item.setQuantity(1);
-		cart.save(item);
-	}
+	 @PostMapping("/add/{id}")
+	 public String addToCart(@PathVariable int id)
+	 {
+		 cartservice.addToCart(id);
+		 return "redirect:/cartitem/cart";
+	 }
 }
+
+
+
