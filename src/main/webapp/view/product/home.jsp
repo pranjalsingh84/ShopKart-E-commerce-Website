@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
       pageEncoding="UTF-8"%>
 <%@ page import="com.springspartans.shopkart.model.Product" %>      
+<%@ page import="com.springspartans.shopkart.model.Customer" %>      
 <%@ page import="java.util.List" %>
 
 <!DOCTYPE html>
@@ -15,7 +16,9 @@
     <%@ include file="../../templates/header.jsp" %>
 
     <div style="margin-top: 100px">
-    	<div class="welcome-msg">Hello name, welcome to our E-commerce website!</div>
+    	<% if (customer != null) { %>
+    		<div class="welcome-msg">Hello <%= customer.getName() %>, welcome to our E-commerce website!</div>
+  		<% } %>
 	    <div class="big-banner">
 	      <img src="../../images/banner1.jpg" alt="" />
 	    </div>

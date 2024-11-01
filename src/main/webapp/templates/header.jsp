@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
+<%@ page import="com.springspartans.shopkart.model.Customer" %>
 
 <!DOCTYPE html>
 <html>
@@ -53,16 +54,19 @@ pageEncoding="UTF-8"%>
 
       <h2>Hey name! See your Profile</h2>
       <div class="avatar">
-        <img src="../images/avatar.jpg" alt="" />
+        <img src="${pageContext.request.contextPath}/images/avatar.jpg" alt="" />
       </div>
-      <div><b>Name :</b> Undefined</div>
-      <div><b>Email-id :</b> Undefined</div>
-      <div><b>Address :</b> Undefined</div>
-      <div><b>Phone number :</b> Undefined</div>
-      <button id="update-btn" onclick="window.location.href='/updateinfo'">
-        Update
-      </button>
-      <button id="log-out-btn">Log out</button>
+      <% Customer customer = (Customer)request.getAttribute("customer"); %>
+	  <% if (customer != null) { %>
+	  	  <div><b>Name :</b> <%= customer.getName() %></div>
+	      <div><b>Email-id :</b> <%= customer.getEmail() %></div>
+	      <div><b>Address :</b> <%= customer.getAddress() %></div>
+	      <div><b>Phone number :</b> <%= customer.getPhone() %></div>
+	      <button id="update-btn" onclick="window.location.href='/update'">
+	        Update
+	      </button>
+	  <% } %>
+      <button id="log-out-btn" onclick="window.location.href='/logout'">Log out</button>
     </div>
     <script src="${pageContext.request.contextPath}/js/home.js"></script>
     <script src="${pageContext.request.contextPath}/js/about.js"></script>

@@ -18,6 +18,10 @@
     	<% Customer customer=(Customer)request.getAttribute("customer"); %>
     	<div class="cart-owner"><%= customer.getName()%>'s Cart :</div>
 	    <div class="cart-address">Delivery Address : <%= customer.getAddress() %></div>
+    	<% if (customer != null) { %>
+    		<div class="cart-owner"><%= customer.getName() %>'s Cart</div>
+	    	<div class="cart-address">Delivery Address : <%= customer.getAddress() %></div>
+	    <% } %>
 	    <div class="cart-container">
 	     <% List<CartItem> cart=(List<CartItem>)request.getAttribute("cart");%>     
 	     <% if(cart==null || cart.size()==0) { %>

@@ -19,9 +19,8 @@ public class CustomerService {
 
     @PostConstruct
     void addDemoUser() {
-        
         if (customerRepository.findByEmail("demo@springspartans.com").isEmpty()) {
-            Customer demoUser = new Customer(0, "Demo User", "demo@springspartans.com", "password", "123 Street", 1234567890L);
+            Customer demoUser = new Customer(0, "Demo User", "demo@springspartans.com", "shopkart123", "JD Block, Sector III, Salt Lake City, Kolkata-700106", 9876543210L);
             customerRepository.save(demoUser);
         }
     }
@@ -47,10 +46,18 @@ public class CustomerService {
         return loggedInCustomer; 
     }
 
-    public void updateCustomer(Customer customer) {
-        customerRepository.save(customer);
-        if (loggedInCustomer != null && loggedInCustomer.getEmail().equals(customer.getEmail())) {
+    public boolean updateCustomer(String newName, long newPhone, String newAddress, String newPassword, String oldPassword) {
+        if (loggedInCustomer != null && loggedInCustomer.getPassword().equals(oldPassword)) {
+        	Customer customer = new Customer(loggedInCustomer.getId(), newName, loggedInCustomer.getEmail(), newPassword, newAddress, newPhone);
+        	customerRepository.save(customer);
             loggedInCustomer = customer;
+            return true;
         }
+        return false;
     }
+
+	public void logout() {
+		loggedInCustomer = null;		
+	}
+    
 }
