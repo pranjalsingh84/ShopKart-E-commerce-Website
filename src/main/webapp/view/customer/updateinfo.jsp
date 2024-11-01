@@ -9,41 +9,48 @@ pageEncoding="UTF-8"%>
   </head>
   <body>
     <%@ include file="../../templates/header.jsp" %>
-    <div style="margin-top: 100px">
-      <h1>Update your profile :</h1>
-      <div class="container">
-        <div class="grid">
-          <div class="element">
-            <h3>Your new name :</h3>
-            <input type="text" placeholder="Your new name " required />
-          </div>
-
-          <div class="element">
-            <h3>Your new phone number :</h3>
-            <input type="text" placeholder="Your new phone number " required />
-          </div>
-
-          <div class="element">
-            <h3>Your new address :</h3>
-            <input type="text" placeholder="Your new address " required />
-          </div>
-
-          <div class="element">
-            <h3>Your new password :</h3>
-            <input type="text" placeholder="New Password " required />
-          </div>
-        </div>
-
-        <div class="confirm-element">
-          <h3>Type your old password to confirm :</h3>
-          <input type="text" placeholder="old password " required />
-        </div>
-        <div class="buttons">
-          <button class="save">Save Changes</button>
-          <button class="go-back" onclick="window.location.href='/product'">Go back</button>
-        </div>
-      </div>
-    </div>
+    <form action="/update" method="post">
+    	<div style="margin-top: 100px">
+    	<% String msg = request.getParameter("msg"); %>
+    	<% if (msg != null && msg.equals("failed")) { %>
+    		<h3 style="color: red;">Wrong Password entered!</h3>
+    	<% } %>
+	      <h1>Update your profile :</h1>
+	      <div class="container">
+	        <div class="grid">
+	          <div class="element">
+	            <h3>Your new name :</h3>
+	            <input type="text" name="newName" value="<%= customer.getName()%>" placeholder="Enter new name " required />
+	          </div>
+	
+	          <div class="element">
+	            <h3>Your new phone number :</h3>
+	            <input type="tel" name="newPhone" pattern="[0-9]{10}" value="<%= customer.getPhone()%>" placeholder="Enter new phone number " required />
+	          </div>
+	
+	          <div class="element">
+	            <h3>Your new address :</h3>
+	            <input type="text" name="newAddress" value="<%= customer.getAddress() %>" placeholder="Enter new address " required />
+	          </div>
+	
+	          <div class="element">
+	            <h3>Your new password :</h3>
+	            <input type="password" name="newPassword" placeholder="Enter new Password " required />
+	          </div>
+	        </div>
+	
+	        <div class="confirm-element">
+	          <h3>Type your old password to confirm :</h3>
+	          <input type="password" name="oldPassword" placeholder="Enter old password " required />
+	        </div>
+	        <div class="buttons">
+	          <button class="save">Save Changes</button>
+	          <button class="go-back" onclick="window.location.href='/product'">Go back</button>
+	        </div>
+	      </div>
+	    </div>
+    </form>
+    
     <%@ include file="../../templates/footer.jsp" %>
   </body>
 </html>

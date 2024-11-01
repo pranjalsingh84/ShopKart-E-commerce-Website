@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.springspartans.shopkart.model.Customer;
 import com.springspartans.shopkart.model.Product;
+import com.springspartans.shopkart.service.CustomerService;
 import com.springspartans.shopkart.service.ProductService;
 
 @Controller
@@ -18,7 +20,9 @@ import com.springspartans.shopkart.service.ProductService;
 public class ProductController {
 
 	@Autowired
-	private ProductService productService; 
+	private ProductService productService;
+	@Autowired
+	private CustomerService customerService; 
 	
 	@GetMapping
 	public String getAllProducts(Model model) {
@@ -26,6 +30,8 @@ public class ProductController {
 		model.addAttribute("productList", productList);
 		List<String> categoryList = productService.getAllCategories();
 		model.addAttribute("categoryList", categoryList);
+		Customer customer = customerService.getCustomer();
+        model.addAttribute("customer", customer);
 		return "product/home";
 	}
 	
@@ -35,6 +41,8 @@ public class ProductController {
 		model.addAttribute("product", product);
 		List<String> categoryList = productService.getAllCategories();
 		model.addAttribute("categoryList", categoryList);
+		Customer customer = customerService.getCustomer();
+        model.addAttribute("customer", customer);
 		return "product/details";
 	}
 	
@@ -45,6 +53,8 @@ public class ProductController {
 		model.addAttribute("category", category);		
 		List<String> categoryList = productService.getAllCategories();
 		model.addAttribute("categoryList", categoryList);
+		Customer customer = customerService.getCustomer();
+        model.addAttribute("customer", customer);
 		return "product/home";
 	}
 	
@@ -54,6 +64,8 @@ public class ProductController {
 		model.addAttribute("productList", productList);
 		List<String> categoryList = productService.getAllCategories();
 		model.addAttribute("categoryList", categoryList);
+		Customer customer = customerService.getCustomer();
+        model.addAttribute("customer", customer);
 		return "product/home";
 	}
 	
