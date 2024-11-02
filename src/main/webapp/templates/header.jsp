@@ -62,11 +62,11 @@ pageEncoding="UTF-8"%>
 	      <div><b>Email-id :</b> <%= customer.getEmail() %></div>
 	      <div><b>Address :</b> <%= customer.getAddress() %></div>
 	      <div><b>Phone number :</b> <%= customer.getPhone() %></div>
-	      <button id="update-btn" onclick="window.location.href='/update'">
-	        Update
-	      </button>
-	  <% } %>
-      <button id="log-out-btn" onclick="window.location.href='/logout'">Log out</button>
+	      <button id="update-btn" onclick="window.location.href='/update'">Update</button>
+	      <button id="log-out-btn" onclick="window.location.href='/logout'">Log out</button>
+	  <% } else {%>
+      	<button id="log-out-btn" onclick="window.location.href='/logout'">Log in</button>
+      <% } %>
     </div>
     <script src="${pageContext.request.contextPath}/js/home.js"></script>
     <script src="${pageContext.request.contextPath}/js/about.js"></script>

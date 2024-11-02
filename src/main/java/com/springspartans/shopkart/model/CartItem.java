@@ -3,7 +3,6 @@ package com.springspartans.shopkart.model;
 import java.sql.Timestamp;
 import java.time.Instant;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -55,6 +54,7 @@ public class CartItem {
 	public void setSlno(int slno) {
 		this.slno = slno;
 	}
+	
 	public Customer getCustomer() {
 		return customer;
 	}

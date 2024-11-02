@@ -51,7 +51,11 @@
 	
 	    <div class="buttons">
 	      <button onclick="window.location.href='/product'">Continue Shopping</button>
-	      <button>Add to Cart</button>
+	      <% if (product != null && customer != null) { %>
+	      		<form action="/cartitem/add/<%= product.getId()%>" method="post">
+	      			<button>Add to Cart</button>
+	      		</form>
+	      <% } %>
 	    </div>
     </div>
     
