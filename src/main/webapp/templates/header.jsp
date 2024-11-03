@@ -52,12 +52,12 @@ pageEncoding="UTF-8"%>
       <!-- Add the back button at the top-left corner -->
       <button id="back-btn" class="back-button">&larr; Back</button>
 
-      <h2>Hey name! See your Profile</h2>
+	  <% Customer customer = (Customer)request.getAttribute("customer"); %>
+	  <% if (customer != null) { %>
+      <h2>Hey <%= customer.getName() %>! See your Profile</h2>
       <div class="avatar">
         <img src="${pageContext.request.contextPath}/images/avatar.jpg" alt="" />
-      </div>
-      <% Customer customer = (Customer)request.getAttribute("customer"); %>
-	  <% if (customer != null) { %>
+      </div>	  
 	  	  <div><b>Name :</b> <%= customer.getName() %></div>
 	      <div><b>Email-id :</b> <%= customer.getEmail() %></div>
 	      <div><b>Address :</b> <%= customer.getAddress() %></div>
