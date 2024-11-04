@@ -6,6 +6,13 @@ pageEncoding="UTF-8"%>
     <meta charset="UTF-8" />
     <title>ShopKart | Update Profile</title>
     <link rel="stylesheet" href="../../css/updateinfo.css" />
+    <style>
+    	#error-msg {
+    		text-align : center;
+    		color : red;
+    		margin-bottom : 20px;
+    	}
+    </style>
   </head>
   <body>
     <%@ include file="../../templates/header.jsp" %>
@@ -13,7 +20,7 @@ pageEncoding="UTF-8"%>
     	<div style="margin-top: 100px">
     	<% String msg = request.getParameter("msg"); %>
     	<% if (msg != null && msg.equals("failed")) { %>
-    		<h3 style="color: red;">Wrong Password entered!</h3>
+    		<h3 id="error-msg">Wrong Password entered!</h3>
     	<% } %>
 	      <h1>Update your profile :</h1>
 	      <div class="container">

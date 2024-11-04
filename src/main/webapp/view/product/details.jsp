@@ -9,6 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShopKart | Product Details</title>
     <link rel="stylesheet" href="../../css/details.css" />
+    <style>
+    	.error {
+    		text-align : center;
+    		color : red;
+    	}
+    </style>
 </head>
 <body>
     
@@ -17,7 +23,7 @@
     <div style="margin-top: 100px">	      
 	      	<% Product product = (Product)request.getAttribute("product"); %>
 	        <% if (product == null) { %>
-	        	<h2> Sorry, we're unable to fetch the product you're looking for </h2>
+	        	<h2 class="error"> Sorry, we're unable to fetch the product you're looking for! </h2>
 	        <% } else { %>
 	        	<h2 class="heading">Product Details</h2>
 			    <div class="product-container">
