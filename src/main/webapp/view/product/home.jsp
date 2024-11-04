@@ -11,6 +11,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShopKart | Product Home</title>
     <link rel="stylesheet" href="../../css/home.css"/>
+    
+    <style>
+    	.error{
+    		display : flex;
+    		flex-direction : column;
+    		height : 15vh;
+    		width : 80vw;
+    		margin : 10px auto;
+    		align-items : center;
+    		justify-content : center;
+    	}
+    	.error h2 {
+    		color : red;
+    	}
+    </style>
 </head>
 <body>
     <%@ include file="../../templates/header.jsp" %>
@@ -34,8 +49,10 @@
 	    
 	    <% List<Product> productList = (List<Product>)request.getAttribute("productList"); %>
 	    <% if (productList == null || productList.size() == 0) { %>
-	    	<h2>Looks like we haven't got anything for you right now!</h2>
-	    	<h2>Try removing the search filters if any or please visit us later</h2>
+	    	<div class="error">
+	    		<h2>Looks like we haven't got anything for you right now!</h2>
+	    		<h2>Try removing the search filters if any or please visit us later</h2>
+	    	</div>
 	    <% } else { %>
 	    	<div class="grid-container">
 		      <% for (Product product : productList) { %>

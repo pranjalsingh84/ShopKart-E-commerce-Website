@@ -7,12 +7,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ShopKart | Login</title>
     <link rel="stylesheet" href="../../css/login.css">
+    <style>
+    	#invalidation {
+    		text-align : center;
+    		color : red;
+    		margin-bottom : 20px;
+    	}
+    </style>
 </head>
 <body>
 	<form action="/login" method="get">
 		<% String msg = (String)request.getParameter("msg"); %>
 		<% if (msg != null && msg.equals("failed")) { %>
-			<h3 style="color: red;">Invalid E-mail or Password!</h3>
+			<h3 id="invalidation">Invalid E-mail or Password!</h3>
 		<% } %>
 	    <div class="login-container">
 	      <h1>Login</h1>
