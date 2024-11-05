@@ -13,14 +13,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShopKart | Your Cart</title>
     <link rel="stylesheet" href="../../css/cart.css" />
+    
+    <style>
+    	.error {
+    		display : flex;
+    		flex-direction : column;
+    		margin : 20px auto;
+    		justify-content : center;
+    		align-items : center;
+    	}
+    	.error h1 , .error h2 {
+    		color : red;
+    	}
+    	#empty-msg {
+    		color : red;
+    		margin-bottom : 20px;
+    		text-align : center;
+    	}
+    </style>
 </head>
 <body>
     <%@ include file="../../templates/header.jsp" %>
     
     <div style="margin-top: 100px">
     <% if (customer == null) { %>
-    	<h1>You're not logged in!</h1>
-    	<h2>Please login to view your cart</h2>
+    	<div class="error">
+    		<h1>You're not logged in!</h1>
+    		<h2>Please login to view your cart</h2>
+    	</div>
     <% } else { %>
     	<div class="cart-owner"><%= customer.getName() %>'s Cart</div>
 		<div class="cart-address">Delivery Address : <%= customer.getAddress() %></div>
@@ -28,7 +48,7 @@
 		<div class="cart-container">
 		     <% List<CartItem> cart = (List<CartItem>)request.getAttribute("cart");%>     
 		     <% if(cart==null || cart.size()==0) { %>
-		      <h2>Your Cart is empty!</h2>
+		      <h2 id="empty-msg">Your Cart is empty!</h2>
 		     <% } else { %>
 		      <table class="cart-items">
 		        <thead>

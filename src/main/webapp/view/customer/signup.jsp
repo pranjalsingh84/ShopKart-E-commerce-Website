@@ -7,14 +7,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ShopKart | Sign Up</title>
     <link rel="stylesheet" href="../../css/signup.css">
+    <style>
+    	.error {
+    		display : flex;
+    		flex-direction : column;
+    		justify-content : center;
+    		align-items : center;
+    	}
+    	.error h3 {
+    		color : red;
+    	}
+    </style>
 </head>
 <body>
 	<form action="/signup" method="post">
 	    <div class="signup-container">
 	    	<% String msg = (String)request.getParameter("msg"); %>
 			<% if (msg != null && msg.equals("failed")) { %>
-				<h3 style="color: red;">Account already exists with the given E-mail!</h3>
-				<h3 style="color: red;">Please login or use another E-mail</h3>
+				<div class="error">
+					<h3>Account already exists with the given E-mail!</h3>
+					<h3>Please login or use another E-mail</h3>
+				</div>
 			<% } %>
 	      <h1>Sign Up</h1>
 	        <div class="form-group">
