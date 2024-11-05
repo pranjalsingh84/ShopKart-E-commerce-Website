@@ -37,6 +37,9 @@ public class CartItemController
         model.addAttribute("totalPrice", totalPrice);
         Customer customer = customerService.getCustomer(); 
         model.addAttribute("customer", customer);
+        if (customer == null) {
+			 throw new ResponseStatusException(HttpStatus.UNAUTHORIZED); 
+		}
         List<String> categoryList = productService.getAllCategories();
 		model.addAttribute("categoryList", categoryList);
    		return "/cartitem/cart";
@@ -66,14 +69,16 @@ public class CartItemController
 	
 	 @PostMapping("/add/{prod_id}")
 	 public String addToCart(@PathVariable("prod_id") int id)
-	 {	
-		 
+	 {		 
 		 Customer customer = customerService.getCustomer();
-		 if(customer==null)
+		 if (customer == null) {
 			 throw new ResponseStatusException(HttpStatus.UNAUTHORIZED); 
-		 if (productService.getProductById(id) == null) 
+		 }
+		 if (productService.getProductById(id) == null) {
 			 throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-		 cartservice.addToCart(id,customer);
+		 }
+		 cartservice.addToCart(id, customer);
 		 return "redirect:/cartitem/cart";
 	 }
+	 
 }

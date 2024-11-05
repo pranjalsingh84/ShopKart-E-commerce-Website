@@ -1,4 +1,4 @@
-but eta dekh ami banalam custom error handling-package com.springspartans.shopkart.controller;
+package com.springspartans.shopkart.controller;
 
 import com.springspartans.shopkart.model.Customer;
 import com.springspartans.shopkart.service.CustomerService;
@@ -54,12 +54,11 @@ public class CustomerController {
         if (email == null || password == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-
         boolean success = customerService.login(email, password);
         if (success) {
             return "redirect:/product";
         } else {
-        	 return "redirect:/?msg=failed";
+        	return "redirect:/?msg=failed";
         }
     }
 
@@ -69,8 +68,7 @@ public class CustomerController {
         if (success) {
             return "redirect:/";
         } else {
-          
-            return "redirect:/signup?msg=failed";
+        	return "redirect:/signup?msg=failed";
         }
     }
 
@@ -79,11 +77,9 @@ public class CustomerController {
             @RequestParam String newName, @RequestParam long newPhone, 
             @RequestParam String newAddress, @RequestParam String newPassword, 
             @RequestParam String oldPassword, Model model) {
-
         if (newName == null || newPassword == null || oldPassword == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-
         boolean success = customerService.updateCustomer(newName, newPhone, newAddress, newPassword, oldPassword);
         if (success) {
             Customer customer = customerService.getCustomer();
@@ -99,4 +95,5 @@ public class CustomerController {
         customerService.logout();
         return "customer/login";
     }
+    
 }
