@@ -6,6 +6,7 @@ pageEncoding="UTF-8"%>
     <meta charset="UTF-8" />
     <title>ShopKart | Update Profile</title>
     <link rel="stylesheet" href="../../css/updateinfo.css" />
+    <link rel="stylesheet" href="../../css/colorScheme.css" />
     <style>
     	#error-msg {
     		text-align : center;
