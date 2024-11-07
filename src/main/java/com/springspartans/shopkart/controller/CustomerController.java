@@ -93,7 +93,7 @@ public class CustomerController {
     @GetMapping("/logout")
     public String logout() {
         customerService.logout();
-        return "customer/login";
+        return "redirect:/?logout=true";
     }
     
 }

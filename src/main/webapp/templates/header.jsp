@@ -65,7 +65,7 @@ pageEncoding="UTF-8"%>
 	      <button id="update-btn" onclick="window.location.href='/update'">Update</button>
 	      <button id="log-out-btn" onclick="window.location.href='/logout'">Log out</button>
 	  <% } else {%>
-      	<button id="log-out-btn" onclick="window.location.href='/logout'">Log in</button>
+      	<button id="log-out-btn" onclick="window.location.href='/'">Login</button>
       <% } %>
     </div>
     <script src="${pageContext.request.contextPath}/js/home.js"></script>
