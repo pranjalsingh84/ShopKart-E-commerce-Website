@@ -10,7 +10,7 @@
 - Service classes for Product, Customer & CartItem 
 - Controller classes for Product, Customer & CartItem 
 - Exception handling & Custom HTTP Error pages
+- Classes for SecurityConfig & PasswordEncoder
 
 ## Ongoing stages
-- Configuration classes for Web Security & Password Encryption
 - Rebranding the website with a cooler design
