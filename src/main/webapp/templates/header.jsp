@@ -10,6 +10,7 @@ pageEncoding="UTF-8"%>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Header Template</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/colorScheme.css" />
   </head>
   <body>
     <nav>
