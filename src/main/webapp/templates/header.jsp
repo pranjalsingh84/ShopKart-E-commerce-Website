@@ -9,13 +9,13 @@ pageEncoding="UTF-8"%>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Header Template</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/colorScheme.css" />
+    <link rel="stylesheet" href="../../css/header.css">
+	<link rel="stylesheet" href="../../css/colorScheme.css" />
   </head>
   <body>
     <nav>
       <div class="navbar">
-        <div class="logo">Ecommerce-website</div>
+        <div class="logo">ShopKart</div>
         
         <form action="/product/search" method="get">
           <div class="search-bar">
@@ -27,7 +27,7 @@ pageEncoding="UTF-8"%>
         <div class="category">
 	        <% List<String> categoryList = (List<String>)request.getAttribute("categoryList"); %>
 	        <% if (categoryList != null) { %>
-	        	<label for="category">Category:</label>
+	        	<label for="category" style="color : var(--base-text);">Category:</label>
 		          <select name="category" id="category" onchange="window.location.href='/product/category/' + this.value">
 		          	<option value="None"></option>
 		            <% for (String category : categoryList) { %>
@@ -55,7 +55,7 @@ pageEncoding="UTF-8"%>
 
 	  <% Customer customer = (Customer)request.getAttribute("customer"); %>
 	  <% if (customer != null) { %>
-      <h2>Hey <%= customer.getName() %>! See your Profile</h2>
+      <h2>Hey <span style="color : var(--high-text-button);"><%= customer.getName()%></span> ! See your Profile</h2>
       <div class="avatar">
         <img src="${pageContext.request.contextPath}/images/avatar.jpg" alt="" />
       </div>	  
