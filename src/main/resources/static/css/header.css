@@ -3,34 +3,44 @@
   padding: 0;
   font-family: system-ui;
 }
+body {
+  z-index : 1;
+}
 
 nav {
   position: fixed;
   top: 0;
   height: 90px;
   width: 100%;
-  background-color: rgb(220, 220, 220);
+  background-color : var(--header-footer-color);
 }
 
 .navbar {
-  height: 100%;
-  max-width: 1400px;
-  margin: 0px auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  background-color : var(--header-footer-color);
+    height: 100%;
+    max-width: 1572px;
+    margin: 0px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .logo {
-  font-size: 30px;
+  background : linear-gradient(135deg , var(--high-text-button) , var(--low-text-button));	
+  background-clip: text;
+    color: transparent;
+    font-weight: bold;
+    font-size: 30px;
 }
 
 .sections button {
+  background-color : var(--card);
   margin: 0 10px;
   padding: 10px 20px;
   border-radius: 10px;
   border: none;
   outline: none;
+  color : black;
 }
 
 .profile {
@@ -52,9 +62,9 @@ nav {
 }
 
 .sections button:hover {
+  background-color : var(--card);
   border: 1px solid grey;
-  background-color: black;
-  color: white;
+  color: black;
   transition: 0.5s ease;
 }
 
@@ -74,18 +84,24 @@ nav {
 }
 
 .search-bar input:focus {
+  color : var(--high-text-button);
   width: 250px;
   transition: 0.5s ease;
 }
 
 .search-bar button {
+  background-color : var(--low-text-button);
   padding: 10px 20px;
   border: 1px solid grey;
   border-radius: 10px;
+  color : var(--base-text);
 }
 .category {
   display : flex;
   gap : 15px;
+}
+#category {
+  color : black;
 }
 .profile-form {
   display: flex;
@@ -97,31 +113,32 @@ nav {
   right: -33%;
   width: 33%;
   height: 100%;
-  background-color: rgba(255, 255, 255, 1);
+  background-color: var(--header-footer-color);
   backdrop-filter: blur(5px);
   box-shadow: -5px 0 15px rgba(0, 0, 0, 0.5);
   transition: right 0.5s ease;
   padding: 20px 50px;
   box-sizing: border-box;
+  color : var(--base-text);
 }
 
-/* Style for the back button */
 .back-button {
   position: absolute;
   top: 10px;
   left: 10px;
-  background-color: #f0f0f0;
+  background-color: var(--card);
   padding: 10px 20px;
   border: 1px solid grey;
   border-radius: 5px;
   cursor: pointer;
   font-size: 16px;
-  color: black;
+  color: var(--base-text);
 }
 
 .back-button:hover {
   background-color: #ddd;
   transition: background-color 0.3s;
+  color : var(--background);
 }
 
 .profile-form.open {
@@ -148,16 +165,12 @@ nav {
   align-self: center;
   margin-top: 20px;
   padding: 10px 15px;
-  background-color: #008CBA;
+  background-color: var(--low-text-button);
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
-}
-
-#update-btn:hover {
-  background-color: #007B9E;
 }
 
 #log-out-btn {
@@ -165,14 +178,10 @@ nav {
   align-self: center;
   margin-top: 20px;
   padding: 10px 15px;
-  background-color: rgb(255, 108, 108);
+  background-color: var(--high-text-button);
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
-}
-
-#log-out-btn:hover {
-  background-color: red;
 }
