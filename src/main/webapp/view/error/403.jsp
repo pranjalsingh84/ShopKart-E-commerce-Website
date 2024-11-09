@@ -18,7 +18,7 @@
 		
 		<p>If you believe this is an error, please contact the site administrator for assistance.</p>
 	</div>
-	<button class="log-out" onclick="window.location.href='/logout'">
+	<button class="log-in" onclick="window.location.href='/logout'">
 		Back to Login
 	</button>
 </body>

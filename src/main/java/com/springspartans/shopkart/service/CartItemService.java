@@ -29,6 +29,11 @@ public class CartItemService
 		return getAllCartItemsforCustomer(custId);
 	}
 	
+	public CartItem getBySlno(int itemId)
+	{
+		return cartRepo.findById(itemId).orElse(null);
+	}
+	
 	public List<CartItem> getAllCartItemsforCustomer(int custId)
 	{
 		List<CartItem> items = cartRepo.findByCustId(custId);

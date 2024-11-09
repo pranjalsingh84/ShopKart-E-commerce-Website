@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../../css/login.css">
     <link rel="stylesheet" href="../../css/colorScheme.css" />
     <style>
-    	#invalidation {
+    	#custom-msg {
     		text-align : center;
     		color : red;
     		margin-bottom : 20px;
@@ -18,10 +18,16 @@
 </head>
 <body>
 	<form action="/login" method="get">
-		<% String msg = (String)request.getParameter("msg"); %>
+		<% String msg = request.getParameter("msg"); %>
 		<% if (msg != null && msg.equals("failed")) { %>
-			<h3 id="invalidation">Invalid E-mail or Password!</h3>
+			<h3 id="custom-msg">Invalid E-mail or Password!</h3>
 		<% } %>
+		
+		<% String logout = request.getParameter("logout"); %>
+		<% if (logout != null && logout.equals("true")) { %>
+			<h3 id="custom-msg">You've been logged out!</h3>
+		<% } %>
+		
 	    <div class="login-container">
 	      <h1>Login</h1>
 	        <div class="form-group">

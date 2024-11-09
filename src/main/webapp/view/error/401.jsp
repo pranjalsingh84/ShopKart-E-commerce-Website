@@ -18,7 +18,7 @@
 		
 		<p>If you have an account, please log in with your credentials. If you believe you should have access, please contact our support team for assistance. If you don’t have an account yet, consider signing up to gain access!</p>
 	</div>
-	<button class="log-out" onclick="window.location.href='/logout'">
+	<button class="log-in" onclick="window.location.href='/'">
 		Back to Login
 	</button>
 </body>
