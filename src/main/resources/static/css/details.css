@@ -82,12 +82,12 @@ body {
     color : var(--base-text);
 }
 #continue-button {
-    background-color : var(--high-text-button);
+    background-color : var(--low-text-button);
 }
 #cart-button {
-    background-color : var(--low-text-button);
+    background-color : var(--high-text-button);
 }
 .error {
     text-align : center;
-    color : red;
+    color : var(--high-text-button);
 }

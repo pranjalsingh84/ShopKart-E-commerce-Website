@@ -61,6 +61,12 @@ nav {
   height: 18px;
 }
 
+#log-in {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
 .sections button:hover {
   background-color : var(--card);
   border: 1px solid grey;
