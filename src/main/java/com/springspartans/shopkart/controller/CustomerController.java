@@ -4,6 +4,7 @@ import com.springspartans.shopkart.model.Customer;
 import com.springspartans.shopkart.service.CustomerService;
 import com.springspartans.shopkart.service.ProductService;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 @Controller
@@ -74,13 +76,23 @@ public class CustomerController {
 
     @PostMapping("/update")
     public String updateCustomer(
-            @RequestParam String newName, @RequestParam long newPhone, 
-            @RequestParam String newAddress, @RequestParam String newPassword, 
-            @RequestParam String oldPassword, Model model) {
+    	@RequestParam String newName, @RequestParam long newPhone, @RequestParam String newAddress, 
+        @RequestParam String newPassword, @RequestParam String oldPassword, 
+        @RequestParam(required = false) MultipartFile profilePicture, Model model
+    ) {
         if (newName == null || newPassword == null || oldPassword == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-        boolean success = customerService.updateCustomer(newName, newPhone, newAddress, newPassword, oldPassword);
+        boolean success;
+		try {
+			success = customerService.updateCustomer(newName, newPhone, newAddress, newPassword, oldPassword, profilePicture);
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+			return "redirect:/update?msg=invalidFile";
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
         if (success) {
             Customer customer = customerService.getCustomer();
             model.addAttribute("customer", customer);

@@ -57,7 +57,12 @@ pageEncoding="UTF-8"%>
 		
 		      <h2>Hey <span style="color : var(--high-text-button);"><%= customer.getName()%></span> ! See your Profile</h2>
 		      <div class="avatar">
-		        <img src="${pageContext.request.contextPath}/images/avatar.jpg" alt="" />
+		      	<% String profilePicture = customer.getProfilePic(); %>
+		      	<% if (profilePicture != null) { %>
+		      		<img src="${pageContext.request.contextPath}/images/customer/<%= profilePicture %>" alt="" />
+		      	<% } else { %>
+		      		<img src="${pageContext.request.contextPath}/images/avatar.jpg" alt="" />
+		      	<% } %>
 		      </div>	  
 			  	  <div><b>Name :</b> <%= customer.getName() %></div>
 			      <div><b>Email-id :</b> <%= customer.getEmail() %></div>
