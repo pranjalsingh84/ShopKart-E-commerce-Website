@@ -75,10 +75,7 @@ pageEncoding="UTF-8"%>
         </div>
         
       </div>
-    </nav>
-
-    
-	  
+    </nav> 
     
     <script src="${pageContext.request.contextPath}/js/home.js"></script>
     <script src="${pageContext.request.contextPath}/js/about.js"></script>

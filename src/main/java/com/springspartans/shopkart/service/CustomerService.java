@@ -5,6 +5,7 @@ import com.springspartans.shopkart.repository.CustomerRepository;
 import com.springspartans.shopkart.util.PasswordEncoder;
 
 import jakarta.annotation.PostConstruct;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,12 +20,13 @@ public class CustomerService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    private Customer loggedInCustomer; 
+    @Autowired
+    private HttpSession httpSession;
 
     @PostConstruct
     void addDemoUser() {
         if (customerRepository.findByEmail("demo@springspartans.com").isEmpty()) {
-            Customer demoUser = new Customer(0, "Demo User", "demo@springspartans.com", passwordEncoder.encode("shopkart123"), "JD Block, Sector III, Salt Lake City, Kolkata-700106", 9876543210L);
+            Customer demoUser  = new Customer(0, "Demo User", "demo@springspartans.com", passwordEncoder.encode("shopkart123"), "JD Block, Sector III, Salt Lake City, Kolkata-700106", 9876543210L);
             customerRepository.save(demoUser);
         }
     }
@@ -32,7 +34,7 @@ public class CustomerService {
     public boolean login(String email, String password) {
         Optional<Customer> customer = customerRepository.findByEmail(email);
         if (customer.isPresent() && passwordEncoder.matches(password, customer.get().getPassword())) {
-            loggedInCustomer = customer.get(); 
+            httpSession.setAttribute("loggedInCustomer", customer.get());
             return true;
         }
         return false;
@@ -48,21 +50,23 @@ public class CustomerService {
     }
 
     public Customer getCustomer() {
-        return loggedInCustomer; 
+        return (Customer) httpSession.getAttribute("loggedInCustomer");
     }
 
     public boolean updateCustomer(String newName, long newPhone, String newAddress, String newPassword, String oldPassword) {
+        Customer loggedInCustomer = (Customer) httpSession.getAttribute("loggedInCustomer");
         if (loggedInCustomer != null && passwordEncoder.matches(oldPassword, loggedInCustomer.getPassword())) {
-        	Customer newCustomer = new Customer(loggedInCustomer.getId(), newName, loggedInCustomer.getEmail(), passwordEncoder.encode(newPassword), newAddress, newPhone);
-        	customerRepository.save(newCustomer);
-            loggedInCustomer = newCustomer;
+            String encodedPassword = newPassword.isEmpty() ? loggedInCustomer.getPassword() : passwordEncoder.encode(newPassword);
+            Customer updatedCustomer = new Customer(loggedInCustomer.getId(), newName, loggedInCustomer.getEmail(), encodedPassword, newAddress, newPhone);
+            customerRepository.save(updatedCustomer);
+            httpSession.setAttribute("loggedInCustomer", updatedCustomer);
             return true;
         }
         return false;
     }
 
-	public void logout() {
-		loggedInCustomer = null;		
-	}
+    public void logout() {
+        httpSession.invalidate();
+    }
     
 }

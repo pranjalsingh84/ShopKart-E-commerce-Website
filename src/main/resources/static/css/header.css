@@ -65,6 +65,7 @@ nav {
   display: inline-flex;
   align-items: center;
   gap: 5px;
+  background : linear-gradient(135deg , var(--high-text-button) , var(--low-text-button));	
 }
 
 .sections button:hover {
