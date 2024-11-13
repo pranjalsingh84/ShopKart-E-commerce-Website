@@ -70,7 +70,7 @@ body {
 }
 
 .delete-item {
-    background-color: var(--high-text-button);
+    background-color: #4E4E4E;
     padding: 2px;
     border-radius: 5px;
     border: 1px solid var(--header-footer-color);
@@ -81,30 +81,10 @@ body {
 }
 
 .delete-item:hover {
-    background-color: #FF4C4C;
-}
-
-.delete-item:active {
-    background-color: white;
-    transition: none;
-    transform: scale(0.95);
-}
-.add-more {
-   background-color: var(--low-text-button);
-    padding: 2px;
-    border-radius: 5px;
-    border: 1px solid var(--header-footer-color);
-    cursor: pointer;
-    font-size: 1rem;
-    color: var(--header-footer-color);
-    transition: background-color 0.3s ease, box-shadow 0.1s ease;
-}
-
-.add-more:hover {
     background-color: var(--base-text);
 }
 
-.add-more:active {
+.delete-item:active {
     background-color: white;
     transition: none;
     transform: scale(0.95);
