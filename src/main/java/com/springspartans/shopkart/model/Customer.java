@@ -31,16 +31,20 @@ public class Customer {
 	@Column(nullable = false)
 	private Long phone;
 	
+	@Column(length = 50)
+	private String profilePic;
+	
 	public Customer() {
 	}
-	
-	public Customer(int id, String name, String email, String password, String address, Long phone) {
+
+	public Customer(int id, String name, String email, String password, String address, Long phone, String profilePic) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
 		this.password = password;
 		this.address = address;
 		this.phone = phone;
+		this.profilePic = profilePic;
 	}
 
 	public int getId() {
@@ -91,10 +95,18 @@ public class Customer {
 		this.phone = phone;
 	}
 
+	public String getProfilePic() {
+		return profilePic;
+	}
+
+	public void setProfilePic(String profilePic) {
+		this.profilePic = profilePic;
+	}
+
 	@Override
 	public String toString() {
 		return "Customer [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", address="
-				+ address + ", phone=" + phone + "]";
+				+ address + ", phone=" + phone + ", profilePic=" + profilePic + "]";
 	}
 	
 }

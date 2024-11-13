@@ -12,32 +12,22 @@
     <title>ShopKart | Product Home</title>
     <link rel="stylesheet" href="../../css/home.css"/>
     <link rel="stylesheet" href="../../css/colorScheme.css" />
-    
-    <style>
-    	.error{
-    		display : flex;
-    		flex-direction : column;
-    		height : 15vh;
-    		width : 80vw;
-    		margin : 10px auto;
-    		align-items : center;
-    		justify-content : center;
-    	}
-    	.error h2 {
-    		color : red;
-    	}
-    </style>
 </head>
 <body>
     <%@ include file="../../templates/header.jsp" %>
 
     <div style="margin-top: 100px">
     	<% if (customer != null) { %>
-    		<div class="welcome-msg">Hello <%= customer.getName() %>, welcome to our E-commerce website!</div>
+    		<div class="welcome-msg">Hello <span style="color : var(--high-text-button)"><%= customer.getName() %></span>, welcome to our E-commerce website!</div>
   		<% } %>
 	    <div class="big-banner">
-	      <img src="../../images/banner1.jpg" alt="" />
-	    </div>
+	        <div class="banner-images">
+	            <img src="../../images/banners/banner1.jpg" alt="Banner 1" />
+	            <img src="../../images/banners/banner2.jpg" alt="Banner 2" />
+	            <img src="../../images/banners/banner3.jpg" alt="Banner 3" />
+	            <img src="../../images/banners/banner4.jpg" alt="Banner 4" />
+	        </div>
+    	</div>
 	
 	    <div class="collection">
 	      <% String category = (String)request.getAttribute("category"); %>
@@ -64,14 +54,13 @@
 			            alt=<%= product.getImage() %>
 			          />
 			        </a>
-			        <p><b><%= product.getName() %></b></p>
-			        <p>₹<%= product.getPrice() %></p>
+			        <p class="details1-product"><b><%= product.getName() %></b></p>
+			        <p class="details2-product">₹<%= product.getPrice() %></p>
 			      </div>
 		      <% } %>
 	    </div>
 	    <% } %>	    
     </div>
-	
 	<%@ include file="../../templates/footer.jsp" %>
   </body>
 </html>

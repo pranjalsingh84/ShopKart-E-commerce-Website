@@ -10,12 +10,6 @@
     <title>ShopKart | Product Details</title>
     <link rel="stylesheet" href="../../css/details.css" />
     <link rel="stylesheet" href="../../css/colorScheme.css" />
-    <style>
-    	.error {
-    		text-align : center;
-    		color : red;
-    	}
-    </style>
 </head>
 <body>
     
@@ -57,10 +51,10 @@
 	    </div>
 	
 	    <div class="buttons">
-	      <button onclick="window.location.href='/product'">Continue Shopping</button>
+	      <button id="continue-button" onclick="window.location.href='/product'">Continue Shopping</button>
 	      <% if (product != null && customer != null) { %>
 	      		<form action="/cartitem/add/<%= product.getId()%>" method="post">
-	      			<button>Add to Cart</button>
+	      			<button id="cart-button">Add to Cart</button>
 	      		</form>
 	      <% } %>
 	    </div>
