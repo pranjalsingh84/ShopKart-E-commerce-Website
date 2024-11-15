@@ -13,7 +13,7 @@ body {
     margin-top:5px;
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 10px var(--base-text);
+    box-shadow: 0 4px 10px var(--card);
     background: var(--background);
 }
 
@@ -194,11 +194,11 @@ h3 {
 }
 
 .error h1, .error h2 {
-	color: red;
+	color: var(--high-text-button);
 }
 
 #empty-msg {
-	color: red;
+	color: var(--high-text-button);
 	margin-bottom: 20px;
 	text-align: center;
 }
