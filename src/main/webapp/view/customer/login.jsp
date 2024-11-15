@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -8,13 +9,6 @@
     <title>ShopKart | Login</title>
     <link rel="stylesheet" href="../../css/login.css">
     <link rel="stylesheet" href="../../css/colorScheme.css" />
-    <style>
-    	#custom-msg {
-    		text-align : center;
-    		color : red;
-    		margin-bottom : 20px;
-    	}
-    </style>
 </head>
 <body>
 	<form action="/login" method="get">
