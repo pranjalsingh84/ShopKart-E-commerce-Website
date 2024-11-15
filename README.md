@@ -47,14 +47,14 @@ Before you begin, ensure that you have met the following requirements:
 - **IDE**: An Integrated Development Environment (IDE) such as `IntelliJ IDEA` or `Eclipse IDE`.
 ---
 
-## Cloning the Repository & Executing the Project 📥
+## Cloning the Repository 📥
 To clone the repository, follow these steps:
 1. Open your terminal (Command Prompt, PowerShell, or any terminal emulator).
 2. Navigate to the directory where you want to clone the project.
 3. Run the following command:
    
    ```bash
-   git clone https://github.com/yourusername/shopkart.git
+   git clone https://github.com/Swarnotaj003/ShopKart-E-commerce-Website.git
    ```
    
 4. Navigate into the project directory:
@@ -82,14 +82,14 @@ To clone the repository, follow these steps:
     ```
     Replace your_mysql_username and your_mysql_password with your MySQL credentials.
     
-7. **Setup your Project Path**: Open the [`CustomerService.java`](src/main/java/com/springspartans/shopkart/controller/CustomerService.java) file and set your Project path. This is required to configure the path for image uploads.
+7. **Setup your Project Path**: Open the [`CustomerService.java`](src/main/java/com/springspartans/shopkart/service/CustomerService.java) file and set your Project path. This is required to configure the path for image uploads.
    ```java
    private final String projectPath = "<your_project_path>";
    private final String uploadPath = projectPath + "\\src\\main\\resources\\static\\images\\customer";
    ```
 ---
 
-## Executing the Application 💻
+## Executing the Project 💻
 
 ### Using Maven Wrapper 
 The Maven Wrapper allows you to run Maven commands without needing to install Maven on your machine. Follow these steps to run the Spring Boot application using the Maven Wrapper:
