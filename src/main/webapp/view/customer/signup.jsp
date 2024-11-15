@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%> 
 <!DOCTYPE html>
@@ -8,17 +9,6 @@
     <title>ShopKart | Sign Up</title>
     <link rel="stylesheet" href="../../css/signup.css">
     <link rel="stylesheet" href="../../css/colorScheme.css" />
-    <style>
-    	.error {
-    		display : flex;
-    		flex-direction : column;
-    		justify-content : center;
-    		align-items : center;
-    	}
-    	.error h3 {
-    		color : red;
-    	}
-    </style>
 </head>
 <body>
 	<form action="/signup" method="post">
