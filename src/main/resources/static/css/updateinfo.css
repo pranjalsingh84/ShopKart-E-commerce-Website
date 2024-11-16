@@ -143,6 +143,6 @@ h1 {
 
 #error-msg {
 	text-align : center;
-	color : red;
+	color : var(--high-text-button);
 	margin-bottom : 20px;
 }

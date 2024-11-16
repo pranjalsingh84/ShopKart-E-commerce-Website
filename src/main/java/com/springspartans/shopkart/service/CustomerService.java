@@ -18,6 +18,9 @@ import java.util.Optional;
 @Service
 public class CustomerService {
 
+	private final String projectPath = "<your_project_path>";
+	private final String uploadPath = projectPath + "\\src\\main\\resources\\static\\images\\customer";
+	
     @Autowired
     private CustomerRepository customerRepository;
     
@@ -29,10 +32,6 @@ public class CustomerService {
 
     @Autowired
     private ImageUploadValidator imageUploadValidator;
-
-    // Set your own projectPath
-	private final String projectPath = "D:\\Web Development\\E-commerce Website\\ShopKart-E-commerce-Website";
-	private final String uploadPath = projectPath + "\\src\\main\\resources\\static\\images\\customer";
 
     @PostConstruct
     void addDemoUser() {

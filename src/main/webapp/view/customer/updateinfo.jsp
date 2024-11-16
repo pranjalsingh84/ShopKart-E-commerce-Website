@@ -12,14 +12,14 @@ pageEncoding="UTF-8"%>
     <%@ include file="../../templates/header.jsp" %>
     <form action="/update" method="post" enctype="multipart/form-data">
     	<div style="margin-top: 100px">
-    	<% String msg = request.getParameter("msg"); %>
-    	<% if (msg != null && msg.equals("failed")) { %>
-    		<h3 id="error-msg">Wrong Password entered!</h3>
-    	<% } %>
-    	<% if (msg != null && msg.equals("invalidFile")) { %>
-    		<h3 id="error-msg">The uploaded file exceeds the mentioned specifications!</h3>
-    	<% } %>
 	      <h1>Update your profile :</h1>
+	      <% String msg = request.getParameter("msg"); %>
+	    	<% if (msg != null && msg.equals("failed")) { %>
+	    		<h3 id="error-msg">Wrong Password entered!</h3>
+	    	<% } %>
+	    	<% if (msg != null && msg.equals("invalidFile")) { %>
+	    		<h3 id="error-msg">The uploaded file exceeds the mentioned specifications!</h3>
+	    	<% } %>
 	      <div class="container">	      
 	      <div class="image-element">
                 <h3>Upload your profile picture :</h3>
