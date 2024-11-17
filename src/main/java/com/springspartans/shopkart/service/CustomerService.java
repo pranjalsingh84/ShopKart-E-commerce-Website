@@ -20,9 +20,9 @@ import java.util.Optional;
 
 @Service
 public class CustomerService {
-
-	private final String projectPath = "<your_project_path>";
-	private final String uploadPath = projectPath + "\\src\\main\\resources\\static\\images\\customer";
+	
+	@Autowired
+	private String uploadPath; 
 	
     @Autowired
     private CustomerRepository customerRepository;
@@ -88,7 +88,8 @@ public class CustomerService {
             httpSession.setAttribute("loggedInCustomer", updatedCustomer);
             
             if (imageUploadValidator.isValidImage(profilePicture)) {
-                File destination = new File(uploadPath);
+            	String customerUploadPath = uploadPath + "\\customer";
+                File destination = new File(customerUploadPath);
                 if (!destination.exists()) {
                 	destination.mkdirs();
                 }
