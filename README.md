@@ -1,18 +1,18 @@
 # ShopKart : E-commerce Website
 
 ## About ❓
-This is a simple e-commerce website implemented using the `Spring Boot` framework in Java, by a group of five members, namely `Spring Spartans`. We won't accept any external contributions.
-> **Note**: This group project is assigned under `Information Processing for Web` in 5th semester of BTech, University of Calcutta
+This is a simple e-commerce website implemented using the `Spring Boot` framework in Java, by a group of five members, namely `Spring Spartans`. This group project is assigned under `Information Processing for Web` in 5th semester of BTech (IT), `University of Calcutta`
 
 ## Project Status 🏳
-![Version](https://img.shields.io/badge/Version%20no.-v1.0-blue)  ![Type](https://img.shields.io/badge/Version%20type-Beta-yellow)  ![Commit No.](https://img.shields.io/badge/Released%20on-Commit%20no.%2074-green) ![Status](https://img.shields.io/badge/Status-Ongoing%20Updates-orange)
+![Version](https://img.shields.io/badge/Version%20no.-v1.0-blue)  ![Type](https://img.shields.io/badge/Version%20type-Beta-yellow)  ![Commit No.](https://img.shields.io/badge/Released%20on-Commit%20no.%2075-green) ![Status](https://img.shields.io/badge/Status-Ongoing%20Updates-orange)
 
 ## Tech Stack 👨‍💻
-![Java](https://img.shields.io/badge/Java-ED8B00?style=flat-square&logo=java&logoColor=white)
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=flat&logo=openjdk&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-6DB33F?style=flat-square&logo=spring&logoColor=white)
 ![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white)
 ![JSP](https://img.shields.io/badge/JSP-FFB800?style=flat-square&logo=java&logoColor=white)
 ![CSS](https://img.shields.io/badge/CSS-1572B6?style=flat-square&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=flat&logo=javascript&logoColor=%23F7DF1E)
 ![Maven](https://img.shields.io/badge/Maven-C71A36?style=flat-square&logo=apache-maven&logoColor=white)
 ---
 
@@ -26,17 +26,18 @@ This is a simple e-commerce website implemented using the `Spring Boot` framewor
 - Exception handling & Custom HTTP Error pages
 - Classes for SecurityConfig & PasswordEncoder
 - Rebranding the website with a cooler design
+- Utility for password validation
 
 ## Ongoing stages ⏳
 - Admin to get its login page & dashboard
 - Customers now can place orders and view their summary & history
 - Introducing site map for customers
-- Utility for password validation
 - Model classes for Order and Admin
 - Repository classes for Order and Admin
 - Service classes for Order and Admin
 - Controller classes for Order and Admin
 - Consequent changes to existing Service & Controller classes
+- Consequent changes to existing view pages 
 ---
 
 ## Prerequisites 🛠️
@@ -45,6 +46,7 @@ Before you begin, ensure that you have met the following requirements:
 - **Maven**: Download from [Maven's official website](https://maven.apache.org/download.cgi).
 - **MySQL**: Download from [MySQL's official website](https://dev.mysql.com/downloads/mysql/).
 - **IDE**: An Integrated Development Environment (IDE) such as `IntelliJ IDEA` or `Eclipse IDE`.
+- **STS Plugin (If you're using Eclipse)**: [Install STS Plugin](https://marketplace.eclipse.org/content/spring-tools-4-aka-spring-tool-suite-4).
 ---
 
 ## Cloning the Repository 📥
@@ -60,32 +62,34 @@ To clone the repository, follow these steps:
 4. Navigate into the project directory:
    
    ```bash
-   cd shopkart
+   cd ShopKart-E-commerce-Website
    ```
    
-5. **Setup your Database**: Open MySQL Command Line Client or Workbench and create a new database for the project:
+5. **Setup your Database**: Open MySQL Command Line Client or Workbench and create a new database for the project.
    
     ```sql
     DROP DATABASE IF EXISTS shopkart;
     CREATE DATABASE shopkart;
     ```
-    >**Note**: You may follow this setup anytime to reset your database
+    >**Note**: You may follow this step anytime to reset your database
     
-6. **Configure Application Properties**: Open the [`application.properties`](src/main/resources/application.properties) file & update the database connection settings
+6. **Configure Database Connection Settings**: Open the [`application.properties`](src/main/resources/application.properties) file & update the database connection settings.
    
     ```properties
-    
     # Database connection settings
-    spring.datasource.url=jdbc:mysql://localhost:3306/<your_database>
-    spring.datasource.username=<your_username>
-    spring.datasource.password=<your_password>
+    spring.datasource.url=jdbc:mysql://localhost:3306/shopkart
+    spring.datasource.username=<your_mysql_username>
+    spring.datasource.password=<your_mysql_password>
     ```
     Replace your_mysql_username and your_mysql_password with your MySQL credentials.
     
-7. **Setup your Project Path**: Open the [`CustomerService.java`](src/main/java/com/springspartans/shopkart/service/CustomerService.java) file and set your Project path. This is required to configure the path for image uploads.
-   ```java
-   private final String projectPath = "<your_project_path>";
-   private final String uploadPath = projectPath + "\\src\\main\\resources\\static\\images\\customer";
+7. **Setup your Project Path**: Open the [`application.properties`](src/main/resources/application.properties) file & update the project path.
+   
+   ```properties
+   # Settings for uploading files
+   spring.servlet.multipart.enabled=true
+   file.project-path=<your_project_path>
+   file.image-path=src\\main\\resources\\static\\images
    ```
 ---
 
@@ -97,7 +101,7 @@ The Maven Wrapper allows you to run Maven commands without needing to install Ma
 2. **Navigate to the project directory**: If you are not already in the project directory, use the `cd` command to navigate to it. For example:
    
    ```bash
-   cd path/to/your/shopkart
+   cd path/to/your/ShopKart-E-commerce-Website
    ```
    
 3. **Run the application using the Maven Wrapper**: Use the following command to build and start the application:
@@ -120,7 +124,7 @@ The Maven Wrapper allows you to run Maven commands without needing to install Ma
 ### Using an IDE 
 You can also run the Spring Boot application directly from your IDE. Follow these steps based on your preferred IDE:
 1. Launch the IDE & import the project.
-2. Locate the main application class named [`ShopKartApplication.java`](src/main/java/com/springspartans/shopkart/ShopkartApplication.java) in the `src/main/java` directory.
+2. Locate the main application class named [`ShopkartApplication.java`](src/main/java/com/springspartans/shopkart/ShopkartApplication.java) in the `src/main/java` directory.
    - Right-click on the main class file and select `Run As` > `Spring Boot Application`.
 3. Once the application starts, open your web browser and navigate to:
    
