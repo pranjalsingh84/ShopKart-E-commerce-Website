@@ -1,5 +1,8 @@
 package com.springspartans.shopkart.model;
 
+import java.sql.Timestamp;
+import java.time.Instant;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,10 +37,17 @@ public class Customer {
 	@Column(length = 50)
 	private String profilePic;
 	
+	@Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+	private Timestamp signup_date=Timestamp.from(Instant.now());
+	
+	@Column(columnDefinition = "TIMESTAMP DEFAULT NULL")
+	private Timestamp last_login_date;
+	
 	public Customer() {
 	}
 
-	public Customer(int id, String name, String email, String password, String address, Long phone, String profilePic) {
+	public Customer(int id, String name, String email, String password, String address, Long phone, String profilePic,
+			Timestamp signup_date, Timestamp last_login_date) {
 		this.id = id;
 		this.name = name;
 		this.email = email;
@@ -45,8 +55,10 @@ public class Customer {
 		this.address = address;
 		this.phone = phone;
 		this.profilePic = profilePic;
+		this.signup_date = signup_date;
+		this.last_login_date = last_login_date;
 	}
-
+	
 	public int getId() {
 		return id;
 	}
@@ -103,10 +115,29 @@ public class Customer {
 		this.profilePic = profilePic;
 	}
 
+	public Timestamp getSignup_date() {
+		return signup_date;
+	}
+
+	public void setSignup_date(Timestamp signup_date) {
+		this.signup_date = signup_date;
+	}
+
+	public Timestamp getLast_login_date() {
+		return last_login_date;
+	}
+
+	public void setLast_login_date(Timestamp last_login_date) {
+		this.last_login_date = last_login_date;
+	}
+
 	@Override
 	public String toString() {
 		return "Customer [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", address="
-				+ address + ", phone=" + phone + ", profilePic=" + profilePic + "]";
+				+ address + ", phone=" + phone + ", profilePic=" + profilePic + ", signup_date=" + signup_date
+				+ ", last_login_date=" + last_login_date + "]";
 	}
+
+	
 	
 }

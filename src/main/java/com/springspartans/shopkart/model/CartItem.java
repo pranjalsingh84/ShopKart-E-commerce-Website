@@ -34,7 +34,7 @@ public class CartItem {
 	private int quantity;
 	
 	@Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
-	private Timestamp orderDate = Timestamp.from(Instant.now());
+	private Timestamp addedDate = Timestamp.from(Instant.now());
 	
 	public CartItem() {
 	}
@@ -44,7 +44,7 @@ public class CartItem {
 		this.customer = customer;
 		this.product = product;
 		this.quantity = quantity;
-		this.orderDate = orderDate;
+		this.addedDate = orderDate;
 	}
 
 	public int getSlno() {
@@ -54,7 +54,6 @@ public class CartItem {
 	public void setSlno(int slno) {
 		this.slno = slno;
 	}
-	
 	public Customer getCustomer() {
 		return customer;
 	}
@@ -79,18 +78,18 @@ public class CartItem {
 		this.quantity = quantity;
 	}
 
-	public Timestamp getOrderDate() {
-		return orderDate;
+	public Timestamp getAddedDate() {
+		return addedDate;
 	}
 
-	public void setOrderDate(Timestamp orderDate) {
-		this.orderDate = orderDate;
+	public void setAddedDate(Timestamp addedDate) {
+		this.addedDate = addedDate;
 	}
 
 	@Override
 	public String toString() {
 		return "CartItem [slno=" + slno + ", customer=" + customer + ", product=" + product + ", quantity=" + quantity
-				+ ", orderDate=" + orderDate + "]";
+				+ ", addedDate=" + addedDate + "]";
 	}
 		
 }

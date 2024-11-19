@@ -29,20 +29,29 @@ public class Product {
     
     @Column
     private String image;
+    
+    @Column(nullable = false)
+    private int stock;
+    
+    @Column(columnDefinition = "DECIMAL(5,2) DEFAULT 0.00")
+    private double discount;
 
     public Product() {
     }
 
-    public Product(int id, String name, String category, String brand, double price, String image) {
-        this.id = id;
-        this.name = name;
-        this.category = category;
-        this.brand = brand;
-        this.price = price;
-        this.image = image;
-    }
+    public Product(int id, String name, String category, String brand, double price, String image, int stock,
+			double discount) {
+		this.id = id;
+		this.name = name;
+		this.category = category;
+		this.brand = brand;
+		this.price = price;
+		this.image = image;
+		this.stock = stock;
+		this.discount = discount;
+	}
 
-    public int getId() {
+	public int getId() {
         return id;
     }
 
@@ -89,10 +98,27 @@ public class Product {
     public void setImage(String image) {
         this.image = image;
     }
+    
+    public int getStock() {
+		return stock;
+	}
 
-    @Override
-    public String toString() {
-        return "Product [id=" + id + ", name=" + name + ", category=" + category + ", brand=" + brand + ", price=" + price + ", image=" + image + "]";
-    }
+	public void setStock(int stock) {
+		this.stock = stock;
+	}
+
+	public double getDiscount() {
+		return discount;
+	}
+
+	public void setDiscount(double discount) {
+		this.discount = discount;
+	}
+
+	@Override
+	public String toString() {
+		return "Product [id=" + id + ", name=" + name + ", category=" + category + ", brand=" + brand + ", price="
+				+ price + ", image=" + image + ", stock=" + stock + ", discount=" + discount + "]";
+	}
     
 }
