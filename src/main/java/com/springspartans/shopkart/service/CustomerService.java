@@ -16,6 +16,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.Optional;
 
 @Service
@@ -42,7 +44,7 @@ public class CustomerService {
     @PostConstruct
     void addDemoUser() {
         if (customerRepository.findByEmail("demo@springspartans.com").isEmpty()) {
-            Customer demoUser  = new Customer(0, "Demo User", "demo@springspartans.com", passwordEncoder.encode("shopkart123@SS"), "JD Block, Sector III, Salt Lake City, Kolkata-700106", 9876543210L, "user1.jpg");
+            Customer demoUser  = new Customer(0, "Demo User", "demo@springspartans.com", passwordEncoder.encode("shopkart123@AD"), "JD Block, Sector III, Salt Lake City, Kolkata-700106", 9876543210L, "user1.jpg",Timestamp.from(Instant.now()),null);
             customerRepository.save(demoUser);
         }
     }
@@ -83,7 +85,7 @@ public class CustomerService {
         	}
             String encodedPassword = newPassword.isEmpty() ? loggedInCustomer.getPassword() : passwordEncoder.encode(newPassword);
             String profilePictureName = (profilePicture != null && !profilePicture.isEmpty()) ? "user" + loggedInCustomer.getId() + ".jpg" : null;
-            Customer updatedCustomer = new Customer(loggedInCustomer.getId(), newName, loggedInCustomer.getEmail(), encodedPassword, newAddress, newPhone, profilePictureName);
+            Customer updatedCustomer = new Customer(loggedInCustomer.getId(), newName, loggedInCustomer.getEmail(), encodedPassword, newAddress, newPhone, profilePictureName, loggedInCustomer.getSignup_date(), loggedInCustomer.getLast_login_date());
             customerRepository.save(updatedCustomer);
             httpSession.setAttribute("loggedInCustomer", updatedCustomer);
             
