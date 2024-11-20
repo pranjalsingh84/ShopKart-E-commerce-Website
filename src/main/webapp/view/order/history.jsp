@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="../../css/history.css"/>
-<link rel="stylesheet" href="../../css/colorScheme.css" />
-<link rel="stylesheet" href="../../css/colorSchemeForOrderStatus.css" />
+	<title>ShopKart | Your orders</title>
+	<link rel="stylesheet" href="../../css/history.css"/>
+	<link rel="stylesheet" href="../../css/colorScheme.css" />
+	<link rel="stylesheet" href="../../css/colorSchemeForOrderStatus.css" />
 </head>
 <body>
 <%@ include file="../../templates/header.jsp" %>

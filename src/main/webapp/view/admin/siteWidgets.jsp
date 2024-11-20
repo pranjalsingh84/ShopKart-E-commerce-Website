@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site Widgets</title>
-    <link rel="stylesheet" href="../../css/colorScheme.css" />
-    <link rel="stylesheet" href="../../css/siteWidgets.css" />
+    <title>ShopKart | Site Widgets</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/colorScheme.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/siteWidgets.css" />
 </head>
 <body>
 	<%@ include file="../../templates/admin_sidebar.jsp" %>

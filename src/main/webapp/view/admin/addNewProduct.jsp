@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product Form</title>
-    <link rel="stylesheet" href="../../css/colorScheme.css" />
-    <link rel="stylesheet" href="../../css/addNewProduct.css" />
+    <title>ShopKart | Add New Product</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/colorScheme.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/addNewProduct.css" />
 </head>
 <body>
 	<%@ include file="../../templates/admin_sidebar.jsp" %>

@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manage Product Catalogue</title>
-	<link rel="stylesheet" href="../../css/colorScheme.css"/>
-	<link rel="stylesheet" href="../../css/manageCustomers.css"/>
+    <title>ShopKart | Manage Customers</title>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/colorScheme.css"/>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/manageCustomers.css"/>
 </head>
 <body>
 	<%@ include file="../../templates/admin_sidebar.jsp" %>

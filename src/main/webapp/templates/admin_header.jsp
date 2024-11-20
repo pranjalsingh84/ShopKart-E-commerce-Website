@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Admin Header</title>
-<link rel="stylesheet" href="../../css/colorScheme.css" />
-<link rel="stylesheet" href="../../css/colorSchemeForOrderStatus.css" />
-<link rel="stylesheet" href="../../css/admin_header.css" />
+<title>Admin Header Template</title>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/colorScheme.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/colorSchemeForOrderStatus.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin_header.css" />
 
 </head>
 <body>
@@ -18,7 +18,7 @@
    			<p>baibhabkarmakar29@gmail.com</p>
 		</div>
 		<div>
-			<img style="height : 40px;"src="../../images/avatar.jpg">
+			<img style="height : 40px;"src="${pageContext.request.contextPath}/images/avatar.jpg">
 		</div>
 	</div>
    	</div>

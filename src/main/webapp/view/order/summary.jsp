@@ -12,7 +12,7 @@ pageEncoding="UTF-8"%>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/summary.css">
     <link rel="stylesheet" href="../../css/colorSchemeForOrderStatus.css">
-    <title>Order Summary</title>
+    <title>ShopKart | Order Summary</title>
 </head>
 <body>
 <%@ include file="../../templates/header.jsp" %>

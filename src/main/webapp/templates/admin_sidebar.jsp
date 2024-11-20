@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin-Sidebar</title>
-    <link rel="stylesheet" href="../../css/colorScheme.css" />
-    <link rel="stylesheet" href="../../css/admin_sidebar.css" />
+    <title>Admin Sidebar Template</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/colorScheme.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/admin_sidebar.css" />
 
 </head>
 <body>

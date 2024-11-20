@@ -5,10 +5,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analytics Dashboard</title>
-   	<link rel="stylesheet" href="../../css/colorScheme.css" />
-	<link rel="stylesheet" href="../../css/colorSchemeForOrderStatus.css" />
-	<link rel="stylesheet" href="../../css/dashboard.css" />
+    <title>ShopKart | Analytics Dashboard</title>
+   	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/colorScheme.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/colorSchemeForOrderStatus.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/css/dashboard.css" />
 </head>
 
 <body>
