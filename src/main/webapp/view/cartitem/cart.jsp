@@ -69,10 +69,10 @@
 								alt="<%=item.getProduct().getName()%>" class="product-img" />
 						</a> <%=item.getProduct().getName()%></td>
 						<%
-						Timestamp orderDate = item.getOrderDate();
+						Timestamp addedDate = item.getAddedDate();
 						String formattedDate = "";
-						if (orderDate != null) {
-							Date date = new Date(orderDate.getTime());
+						if (addedDate != null) {
+							Date date = new Date(addedDate.getTime());
 							SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy, HH:mm:ss");
 							formattedDate = formatter.format(date);
 						} else {

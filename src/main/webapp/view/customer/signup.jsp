@@ -15,8 +15,13 @@
 	    	<% String msg = (String)request.getParameter("msg"); %>
 			<% if (msg != null && msg.equals("failed")) { %>
 				<div class="error">
-					<h3>Account already exists with the given E-mail!</h3>
+					<h3>Account already exists!</h3>
 					<h3>Please login or use another E-mail</h3>
+				</div>
+			<% } %>
+			<% if (msg != null && msg.equals("invalidPassword")) { %>
+				<div class="error">
+					<h3>Entered password doesn't fulfill the requirements!</h3>
 				</div>
 			<% } %>
 	      <h1>Sign Up</h1>
@@ -50,6 +55,8 @@
 	            placeholder="Password"
 	            required
 	          />
+	          <small>The password must contain 8-15 characters</small>
+	          <small>Atleast one lowercase, one uppercase, one digit and one special character</small>
 	        </div>
 	        <div class="form-group">
 	          <button type="submit" class="btn">Create Account</button>

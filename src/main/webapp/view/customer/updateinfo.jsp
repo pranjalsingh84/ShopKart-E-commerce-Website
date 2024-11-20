@@ -20,6 +20,9 @@ pageEncoding="UTF-8"%>
 	    	<% if (msg != null && msg.equals("invalidFile")) { %>
 	    		<h3 id="error-msg">The uploaded file exceeds the mentioned specifications!</h3>
 	    	<% } %>
+	    	<% if (msg != null && msg.equals("invalidPassword")) { %>
+	    		<h3 id="error-msg">The new password doesn't fulfill the requirements!</h3>
+	    	<% } %>
 	      <div class="container">	      
 	      <div class="image-element">
                 <h3>Upload your profile picture :</h3>
@@ -45,6 +48,7 @@ pageEncoding="UTF-8"%>
 	          <div class="element">
 	            <h3>Your new password :</h3>
 	            <input type="password" name="newPassword" placeholder="Enter new Password " required />
+	            <small>The password must contain 8-15 characters. Atleast one lowercase, one uppercase, one digit and one special character</small>
 	          </div>
 	        </div>
 

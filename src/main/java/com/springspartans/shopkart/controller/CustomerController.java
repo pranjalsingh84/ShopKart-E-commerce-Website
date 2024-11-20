@@ -1,5 +1,7 @@
 package com.springspartans.shopkart.controller;
 
+import com.springspartans.shopkart.exception.InvalidImageUploadException;
+import com.springspartans.shopkart.exception.InvalidPasswordException;
 import com.springspartans.shopkart.model.Customer;
 import com.springspartans.shopkart.service.CustomerService;
 import com.springspartans.shopkart.service.ProductService;
@@ -66,7 +68,12 @@ public class CustomerController {
 
     @PostMapping("/signup")
     public String signup(@Validated @ModelAttribute Customer customer) {
-        boolean success = customerService.signup(customer);
+        boolean success = false;
+		try {
+			success = customerService.signup(customer);
+		} catch (InvalidPasswordException e) {
+			return "redirect:/signup?msg=invalidPassword";
+		}
         if (success) {
             return "redirect:/";
         } else {
@@ -83,15 +90,18 @@ public class CustomerController {
         if (newName == null || newPassword == null || oldPassword == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
-        boolean success;
+        boolean success = false;
 		try {
 			success = customerService.updateCustomer(newName, newPhone, newAddress, newPassword, oldPassword, profilePicture);
-		} catch (IllegalArgumentException e) {
-			e.printStackTrace();
-			return "redirect:/update?msg=invalidFile";
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+		} catch (InvalidPasswordException e) {
+			e.printStackTrace();
+			return "redirect:/update?msg=invalidPassword";
+		} catch (InvalidImageUploadException e) {
+			e.printStackTrace();
+			return "redirect:/update?msg=invalidFile";
 		}
         if (success) {
             Customer customer = customerService.getCustomer();
