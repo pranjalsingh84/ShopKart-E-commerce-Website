@@ -15,11 +15,16 @@
 <title>ShopKart | Your Cart</title>
 <link rel="stylesheet" href="../../css/cart.css" />
 <link rel="stylesheet" href="../../css/colorScheme.css" />
+<link rel="stylesheet" href="../../css/siteMapBanner.css">
 </head>
 <body>
 	<%@ include file="../../templates/header.jsp"%>
 
 	<div style="margin-top: 100px">
+		<div class="SiteMapBanner">
+	        <img src="../../images/siteMapBanner.jpg">
+	        <p>Home > Product Catalogue > Your Cart</p>
+	    </div>
 		<%
 		if (customer == null) {
 		%>
@@ -81,7 +86,12 @@
 						%>
 						<td class="item-date"><%=formattedDate%></td>
 						<td class="item-price">₹<%=item.getProduct().getPrice()%></td>
-						<td class="item-qty"><%=item.getQuantity()%></td>
+						<td class="item-qty">
+							<div style="display : flex; gap : 5px; justify-content : center; align-items : center;">
+								<button style="padding : 0px 5px; border-radius : 5px;background-color : var(--card);"><p style="font-size : 20px;">-<p></button>
+								<%=item.getQuantity()%>
+								<button style="font-size : 10px; padding : 0px 5px; border-radius : 5px;background-color : var(--card);"><p style="font-size : 20px;">+<p></button>							
+							</div></td>
 						<td class="item-total-price">₹<%=item.getProduct().getPrice() * item.getQuantity()%></td>
 						<td class="delete-action">
 							<div class="buttons">
@@ -91,7 +101,7 @@
 								</form>
 								<form action="/cartitem/addmore/<%=item.getSlno()%>"
 									method="post">
-									<button class="add-more">Add more</button>
+									<button class="add-more">Order Now</button>
 								</form>
 							</div>
 						</td>
@@ -111,7 +121,7 @@
 		</div>
 		<div class="button">
 			<button id="continue-button" onclick="window.location.href='/product'">Continue Shopping!</button>
-			<button id="order-button">Order Now</button>
+			<button id="order-button">Order All</button>
 		</div>
 		<%
 		}

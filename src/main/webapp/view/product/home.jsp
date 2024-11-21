@@ -56,6 +56,11 @@
 			        </a>
 			        <p class="details1-product"><b><%= product.getName() %></b></p>
 			        <p class="details2-product">₹<%= product.getPrice() %></p>
+			        <p class="details3-product">
+			        	<div class="In-stock">In Stock</div>
+			            <div class="left5">Only 5 left</div>
+			            <div class="left0">Out Of Stock</div>			        
+			        </p>
 			      </div>
 		      <% } %>
 	    </div>

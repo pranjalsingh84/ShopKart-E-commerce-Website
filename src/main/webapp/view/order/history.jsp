@@ -8,10 +8,15 @@
 	<link rel="stylesheet" href="../../css/history.css"/>
 	<link rel="stylesheet" href="../../css/colorScheme.css" />
 	<link rel="stylesheet" href="../../css/colorSchemeForOrderStatus.css" />
+	<link rel="stylesheet" href="../../css/siteMapBanner.css">
 </head>
 <body>
 <%@ include file="../../templates/header.jsp" %>
 	<div style="margin-top: 100px">
+		<div class="SiteMapBanner">
+	        <img src="../../images/siteMapBanner.jpg">
+	        <p>Home > Product Catalogue > Your Orders</p>
+	    </div>
 		<div class="container-filter-shippingCategory">
 	        <div class="dropdown-container">
 	            <label style="color : var(--base-text);"for="shippingCategory">Select Order Status:</label>

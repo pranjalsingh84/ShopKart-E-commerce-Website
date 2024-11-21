@@ -58,6 +58,26 @@ nav {
   gap: 5px;
 }
 .cart img {
+  width : 18px;
+  height: 18px;
+}
+
+#aboutUsBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+#aboutUsBtn img {
+  width : 18px;
+  height: 18px;
+}
+.orders {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+.orders img {
+  width : 18px;
   height: 18px;
 }
 

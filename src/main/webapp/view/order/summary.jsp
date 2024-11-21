@@ -12,11 +12,16 @@ pageEncoding="UTF-8"%>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../css/summary.css">
     <link rel="stylesheet" href="../../css/colorSchemeForOrderStatus.css">
+    <link rel="stylesheet" href="../../css/siteMapBanner.css">
     <title>ShopKart | Order Summary</title>
 </head>
 <body>
 <%@ include file="../../templates/header.jsp" %>
 <div style="margin-top : 100px;">
+	<div class="SiteMapBanner">
+        <img src="../../images/siteMapBanner.jpg">
+        <p>Home > Product Catalogue > Order Summary</p>
+    </div>
     <div class="container">
         <h1>Order Summary</h1>
 			<%

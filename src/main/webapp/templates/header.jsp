@@ -40,7 +40,13 @@ pageEncoding="UTF-8"%>
         </div>
 
         <div class="sections">
-          <button id="aboutusBtn">About us</button>
+          <button id="aboutUsBtn">
+            About us <img src="${pageContext.request.contextPath}/images/group.png" alt="" />
+          </button>
+          
+          <button class="orders" onclick="window.location.href='/cartitem/cart'">
+            Your Orders <img src="${pageContext.request.contextPath}/images/orders.png" alt="" />
+          </button>
           
           <button class="cart" onclick="window.location.href='/cartitem/cart'">
             Your cart <img src="${pageContext.request.contextPath}/images/cart.svg" alt="" />
