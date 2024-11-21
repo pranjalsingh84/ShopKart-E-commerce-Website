@@ -1,5 +1,9 @@
 package com.springspartans.shopkart.service;
+import java.time.LocalDate;
 
+import java.time.LocalDateTime;
+import java.util.List;
+import java.time.format.DateTimeParseException;
 import com.springspartans.shopkart.exception.InvalidImageUploadException;
 import com.springspartans.shopkart.exception.InvalidPasswordException;
 import com.springspartans.shopkart.model.Customer;
@@ -52,7 +56,11 @@ public class CustomerService {
     public boolean login(String email, String password) {
         Optional<Customer> customer = customerRepository.findByEmail(email);
         if (customer.isPresent() && passwordEncoder.matches(password, customer.get().getPassword())) {
-            httpSession.setAttribute("loggedInCustomer", customer.get());
+        	 Customer loggedInCustomer = customer.get();
+             loggedInCustomer.setLast_login_date(Timestamp.from(Instant.now()));
+             customerRepository.save(loggedInCustomer);
+             System.out.println("New Last Login Date: " + loggedInCustomer.getLast_login_date());
+             httpSession.setAttribute("loggedInCustomer", loggedInCustomer);
             return true;
         }
         return false;
@@ -65,9 +73,11 @@ public class CustomerService {
         if (!passwordValidator.isValidPassword(customer.getPassword())) {
         	throw new InvalidPasswordException("Invalid password entered!");
         }
+        customer.setSignup_date(Timestamp.from(Instant.now()));
+        System.out.println("Signup Date: " + customer.getSignup_date());
         customer.setPassword(passwordEncoder.encode(customer.getPassword()));
         customerRepository.save(customer);
-        return true;
+        return  true;
     }
 
     public Customer getCustomer() {
@@ -103,6 +113,38 @@ public class CustomerService {
             return true;
         }
         return false;
+    }
+
+    // service methods to be used in adminController
+    public List<Customer> getAllCustomers() {
+        return customerRepository.findAll();
+    }
+    public void deleteCustomer(int customerId) {
+            customerRepository.deleteById(customerId);
+    }
+    public int countCustomers() {
+        return (int) customerRepository.count();
+    }
+    public int countSignupByDate(String date) {
+        try {
+            LocalDate localDate = LocalDate.parse(date);
+            Timestamp startTimestamp = Timestamp.valueOf(localDate.atStartOfDay());
+            Timestamp endTimestamp = Timestamp.valueOf(localDate.atTime(23, 59, 59));
+            return customerRepository.countBySignup_dateBetween(startTimestamp, endTimestamp);
+        } catch (DateTimeParseException e) {
+            return 0;
+        }
+    }
+
+    public int countLoginByDate(String date) {
+        try {
+            LocalDate localDate = LocalDate.parse(date);
+            Timestamp startTimestamp = Timestamp.valueOf(localDate.atStartOfDay());
+            Timestamp endTimestamp = Timestamp.valueOf(localDate.atTime(23, 59, 59));
+            return customerRepository.countByLast_login_dateBetween(startTimestamp, endTimestamp);
+        } catch (DateTimeParseException e) {
+            return 0;
+        }
     }
 
     public void logout() {
