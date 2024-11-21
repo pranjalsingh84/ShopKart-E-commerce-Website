@@ -106,7 +106,7 @@ public class CartItemService {
 	{
 		List<CartItem> items = cartRepo.findByCustId(custId);
 		for(CartItem item:items)
-			cartRepo.delete(item);
+			deleteCartItem(item.getSlno());
 	}
 
 }
