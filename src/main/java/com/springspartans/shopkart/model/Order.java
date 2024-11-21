@@ -53,9 +53,11 @@ public class Order
 	@Column(nullable=false)
 	private double total_amount;
 
+	public Order() {
+	}
+
 	public Order(int id, Customer customer, Product product, int quantity, Timestamp order_date,
 			Timestamp delivered_date, OrderStatus status, double total_amount) {
-		super();
 		this.id = id;
 		this.customer = customer;
 		this.product = product;
@@ -136,6 +138,5 @@ public class Order
 				+ ", order_date=" + order_date + ", delivered_date=" + delivered_date + ", status=" + status
 				+ ", total_amount=" + total_amount + "]";
 	}
-	
 	
 }
