@@ -27,17 +27,17 @@ This is a simple e-commerce website implemented using the `Spring Boot` framewor
 - Classes for SecurityConfig & PasswordEncoder
 - Rebranding the website with a cooler design
 - Utility for password validation
-
-## Ongoing stages ⏳
 - Admin to get its login page & dashboard
 - Customers now can place orders and view their summary & history
 - Introducing site map for customers
 - Model classes for Order and Admin
 - Repository classes for Order and Admin
+- Consequent changes to existing view pages 
+
+## Ongoing stages ⏳
 - Service classes for Order and Admin
 - Controller classes for Order and Admin
 - Consequent changes to existing Service & Controller classes
-- Consequent changes to existing view pages 
 ---
 
 ## Prerequisites 🛠️
