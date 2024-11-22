@@ -47,45 +47,31 @@
 	        <!-- Lists -->
 	        <div class="card">
 	            <h2>Top Selling Products</h2>
-	            <ul class="list" id="top-products">
-	                <li>
-		                <div class="list-container" style="display : flex; justify-content : center; align-items : center; gap : 20px;">
-		                	<img src="../../images/product/tshirt.jpg">
-		                	<h4>Men's T-shirt</h4>
-		                </div>
-	                </li>
-	                <li>
-		                <div class="list-container" style="display : flex; justify-content : center; align-items : center; gap : 20px;">
-		                	<img src="../../images/product/tshirt.jpg">
-		                	<h4>Men's T-shirt</h4>
-		                </div>
-	                </li>
-	                <li>
-		                <div class="list-container" style="display : flex; justify-content : center; align-items : center; gap : 20px;">
-		                	<img src="../../images/product/tshirt.jpg">
-		                	<h4>Men's T-shirt</h4>
-		                </div>
-	                </li>
-	                <li>
-		                <div class="list-container" style="display : flex; justify-content : center; align-items : center; gap : 20px;">
-		                	<img src="../../images/product/tshirt.jpg">
-		                	<h4>Men's T-shirt</h4>
-		                </div>
-	                </li>
-	                <li>
-		                <div class="list-container" style="display : flex; justify-content : center; align-items : center; gap : 20px;">
-		                	<img src="../../images/product/tshirt.jpg">
-		                	<h4>Men's T-shirt</h4>
-		                </div>
-	                </li>
-	                <li>
-		                <div class="list-container" style="display : flex; justify-content : center; align-items : center; gap : 20px;">
-		                	<img src="../../images/product/tshirt.jpg">
-		                	<h4>Men's T-shirt</h4>
-		                </div>
-	                </li>
-	                
-	            </ul>
+	            <table>
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Stock sold</th>               
+            </tr>
+        </thead>
+        <tbody>
+        		<% 
+	                for (int i = 1; i <= 5; i++) { 
+	            %>
+            <tr>
+                <td>
+	                <div class="name">
+	                	<img src="../../images/product/tshirt.jpg" >
+	                    <h4>Baibhab's T-shirt</h4>
+	                </div>
+                </td>
+                <td> <p>20</p> </td>
+            </tr>
+			<% 
+                } 
+            %>
+        </tbody>
+    </table>
 	        </div>        
         </div>
         <div class="card-container">
@@ -115,11 +101,11 @@
         new Chart(pieCtx, {
             type: 'pie',
             data: {
-                labels: ['Delivered', 'Shipped', 'Pending'],
+                labels: ['Delivered', 'Shipped', 'Pending', 'Cancelled'],
                 datasets: [{
                     label: 'Order Fulfillment Ratio',
-                    data: [50, 30, 20], // Example data
-                    backgroundColor: ['#568203', '#FFBF00', '#B31B1B']
+                    data: [40 , 30, 20 , 10], // Example data
+                    backgroundColor: ['#568203', '#0047AB', '#FFBF00', '#B31B1B']
                 }]
             }
         });

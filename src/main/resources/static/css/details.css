@@ -60,12 +60,28 @@ body {
 .name,
 .price,
 .category, 
-.brand-name {
+.brand-name,
+.discount,
+.availability {
     font-size: 20px;
     width: 300px;
     display: flex;
     justify-content: space-between;
+}
 
+
+.left0 {
+	color : red;
+	
+}
+.left5 {
+	color : orange;
+	display : none;
+		
+}
+.In-stock {
+	color : green;
+	display : none;
 }
 
 .buttons {

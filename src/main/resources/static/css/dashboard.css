@@ -63,6 +63,41 @@ body {
             border-radius: 8px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 16px;
+            text-align: left;
+        }
+        th, td {
+            border: 1px solid var(--card);
+            padding: 8px;
+        }
+        th {
+            background-color: var(--base-text);
+            font-weight: bold;
+            color : var(--header-footer-color);
+        }
+        tbody tr:hover {
+        	background-color : var(--background);
+        }
+        td img {
+            width : 60px;
+        }
+        .name {
+        	display : flex;
+        	justify-content : center;
+        	align-items : center;
+        	gap : 20px;
+        }
+        td p {
+            color : var(--base-text);
+            text-align : center;
+        }
+        td h4 {
+            color : var(--base-text);
+        }
 		.line-graph {
 			width : 900px;
 			height : 500px;

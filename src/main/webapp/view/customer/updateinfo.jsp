@@ -7,11 +7,16 @@ pageEncoding="UTF-8"%>
     <title>ShopKart | Update Profile</title>
     <link rel="stylesheet" href="../../css/updateinfo.css" >
     <link rel="stylesheet" href="../../css/colorScheme.css" >
+    <link rel="stylesheet" href="../../css/siteMapBanner.css">
   </head>
   <body>
     <%@ include file="../../templates/header.jsp" %>
     <form action="/update" method="post" enctype="multipart/form-data">
     	<div style="margin-top: 100px">
+    		<div class="SiteMapBanner">
+		        <img src="../../images/siteMapBanner.jpg">
+		        <p>Home > Product Catalogue > Update Profile</p>
+		    </div>
 	      <h1>Update your profile :</h1>
 	      <% String msg = request.getParameter("msg"); %>
 	    	<% if (msg != null && msg.equals("failed")) { %>

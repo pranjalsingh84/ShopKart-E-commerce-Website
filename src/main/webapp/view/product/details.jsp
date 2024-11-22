@@ -10,12 +10,18 @@
     <title>ShopKart | Product Details</title>
     <link rel="stylesheet" href="../../css/details.css" />
     <link rel="stylesheet" href="../../css/colorScheme.css" />
+    <link rel="stylesheet" href="../../css/colorSchemeForOrderStatus.css" />   
+    <link rel="stylesheet" href="../../css/siteMapBanner.css">
 </head>
 <body>
     
     <%@ include file="../../templates/header.jsp" %>
 
-    <div style="margin-top: 100px">	      
+    <div style="margin-top: 100px">	  
+    	<div class="SiteMapBanner">
+	        <img src="../../images/siteMapBanner.jpg">
+	        <p>Home > Product Catalogue > Product Details</p>
+	    </div>    
 	      	<% Product product = (Product)request.getAttribute("product"); %>
 	        <% if (product == null) { %>
 	        	<h2 class="error"> Sorry, we're unable to fetch the product you're looking for! </h2>
@@ -45,6 +51,16 @@
 			        <div class="brand-name">
 			          <div><b>Brand : </b></div>
 			          <div><%= product.getBrand() %></div>
+			        </div>
+			        <div class="discount">
+			          <div><b>Discount : </b></div>
+			          <div>0.00%</div>
+			        </div>
+			        <div class="availability">
+			          <div><b>Availability : </b></div>
+				          <div class="In-stock">In Stock</div>
+				          <div class="left5">Only 5 left</div>
+				          <div class="left0">Out Of Stock</div>
 			        </div>
 		        </div>
 	        <% } %>
