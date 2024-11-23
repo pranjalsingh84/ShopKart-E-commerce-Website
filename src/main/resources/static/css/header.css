@@ -25,7 +25,7 @@ nav {
     justify-content: space-between;
 }
 
-.logo {
+.logo a {
   background : linear-gradient(135deg , var(--high-text-button) , var(--low-text-button));	
   background-clip: text;
     color: transparent;

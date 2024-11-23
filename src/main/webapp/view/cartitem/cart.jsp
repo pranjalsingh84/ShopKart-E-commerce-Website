@@ -99,9 +99,9 @@
 									method="post">
 									<button class="delete-item">Delete Item</button>
 								</form>
-								<form action="/cartitem/addmore/<%=item.getSlno()%>"
+								<form action="/order/<%=item.getSlno()%>"
 									method="post">
-									<button class="add-more">Order Now</button>
+									<button class="order-now">Order Now</button>
 								</form>
 							</div>
 						</td>
@@ -121,7 +121,9 @@
 		</div>
 		<div class="button">
 			<button id="continue-button" onclick="window.location.href='/product'">Continue Shopping!</button>
-			<button id="order-button">Order All</button>
+			<form action="/order" method="post">
+				<button id="order-button">Order All</button>
+			</form>
 		</div>
 		<%
 		}

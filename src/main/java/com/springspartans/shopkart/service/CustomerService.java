@@ -44,7 +44,7 @@ public class CustomerService {
     @PostConstruct
     void addDemoUser() {
         if (customerRepository.findByEmail("demo@springspartans.com").isEmpty()) {
-            Customer demoUser  = new Customer(0, "Demo User", "demo@springspartans.com", passwordEncoder.encode("shopkart123@AD"), "JD Block, Sector III, Salt Lake City, Kolkata-700106", 9876543210L, "user1.jpg",Timestamp.from(Instant.now()),null);
+            Customer demoUser  = new Customer(0, "Demo User", "demo@springspartans.com", passwordEncoder.encode("shopkart123@SS"), "JD Block, Sector III, Salt Lake City, Kolkata-700106", 9876543210L, "user1.jpg",Timestamp.from(Instant.now()),null);
             customerRepository.save(demoUser);
         }
     }

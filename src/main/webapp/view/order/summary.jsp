@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 pageEncoding="UTF-8"%>
+<%@ page import="com.springspartans.shopkart.model.Order"%>
+<%@ page import="com.springspartans.shopkart.model.Order.OrderStatus"%>
+<%@ page import="com.springspartans.shopkart.model.Product"%>
 <%@ page import="java.sql.Timestamp" %>
 <%@ page import="java.util.Calendar" %>
 <%@ page import="java.text.SimpleDateFormat" %>
@@ -22,78 +25,92 @@ pageEncoding="UTF-8"%>
         <img src="../../images/siteMapBanner.jpg">
         <p>Home > Product Catalogue > Order Summary</p>
     </div>
-    <div class="container">
-        <h1>Order Summary</h1>
-			<%
-			  // Get the current date and time
-			  Timestamp orderDate = new Timestamp(System.currentTimeMillis());
-			  
-			  // Format the order date
-			  SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy");
-			  String formattedOrderDate = dateFormat.format(orderDate);
-			  
-			  // Calculate the delivery date (5 days from today)
-			  Calendar calendar = Calendar.getInstance();
-			  calendar.setTime(orderDate);
-			  calendar.add(Calendar.DAY_OF_MONTH, 5); // Add 5 days
-			  Timestamp deliveryDate = new Timestamp(calendar.getTimeInMillis());
-			  
-			  // Format the delivery date
-			  String formattedDeliveryDate = dateFormat.format(deliveryDate);
-			%>
-			<div class="thank-you-message">
-			 <h3>Thank you for shopping with us!</h3>
-			 <p>Order placed on: <strong id="order-date"><%= formattedOrderDate %></strong></p>
-			 <p>Expected delivery by: <strong id="delivery-date"><%= formattedDeliveryDate %></strong></p>
-			 
-			 <!-- Order Status -->
-			    <div class="order-status pending">Order Status: Pending</div>
-			    <div class="order-status shipped">Order Status: Shipped</div>
-			    <div class="order-status delivered">Order Status: Delivered</div>
-			    <div class="order-status cancelled">Order Status: Cancelled</div>
-			</div>
-        </div>
-
-        <!-- Shipping and Bill Summary -->
-        <div class="summary-container">
-            <div class="shipping-details">
-                <h2>Shipping Details</h2>
-                <p><strong>Name: </strong>Sonu Singh Patar</p>
-                <p><strong>Email: </strong>sonusinghpatar2004@gmail.com</p>
-                <p><strong>Address: </strong>D-29, Sukantanagar, Sector-IV, Salt Lake, Kolkata - 700106</p>
-            </div>
-        
-            <div class="bill-summary">
-                <h2>Bill Summary</h2>
-                <p><strong>Total Amount: </strong>₹59,998.00</p>
-                <p><strong>Shipping Charge: </strong>0.00</p>
-                <p><strong>Discount Applied: </strong>20%</p>
-                <p><strong>Payable Amount: </strong>₹47,998.20</p>
-            </div>
-        </div>     
-
-        <!-- Product Summary -->
-        <div class="product-summary">
-            <h2>Product Summary</h2>
-            <div class="product-item">
-                <div class="product-details">
-                    <p><strong>Product Name: </strong>Ultrabook Laptop</p>
-                    <p><strong>Category: </strong>Electronics</p>
-                    <p><strong>Price: </strong>₹29,999.00</p>
-                    <p><strong>Brand: </strong>Dell</p>
-                    <p><strong>Quantity: </strong>2</p>
-                </div>
-                <a href="product-link.html" class="product-image">
-                    <img src="../../images/product/laptop.jpg" alt="Ultrabook Laptop" />
-                </a>
-            </div>
-        </div>
-
-        <!-- Buttons -->
-        <div class="button-container">
-            <button class="continue-shopping">Continue Shopping</button>
-            <button class="buy-again">Buy Again</button>
-        </div>
+    <% Order order = (Order)request.getAttribute("order"); %>
+    <% if (order != null) { %>
+    	<div class="container">
+	        <h1>Order Summary</h1>
+				<%
+				  Timestamp orderDate = order.getOrder_date();
+				  
+				  SimpleDateFormat dateFormat = new SimpleDateFormat("MMMM dd, yyyy");
+				  String formattedOrderDate = dateFormat.format(orderDate);
+				  
+				  Calendar calendar = Calendar.getInstance();
+				  calendar.setTime(orderDate);
+				  calendar.add(Calendar.DAY_OF_MONTH, 5); // Add 5 days
+				  Timestamp deliveryDate = new Timestamp(calendar.getTimeInMillis());
+				  
+				  String formattedDeliveryDate = dateFormat.format(deliveryDate);
+				%>
+				<% OrderStatus status = order.getStatus(); %>
+				<% if (!status.equals(OrderStatus.Cancelled)) { %>
+					<div class="thank-you-message">
+					 <h3>Thank you for shopping with us!</h3>
+					 <p>Order placed on: <strong id="order-date"><%= formattedOrderDate %></strong></p>
+					 <% if (!status.equals(OrderStatus.Delivered)) { %>
+					 	<p>Expected delivery by: <strong id="delivery-date"><%= formattedDeliveryDate %></strong></p>
+					 <% } %>				 
+					 
+					 <% if (status.equals(OrderStatus.Pending)) { %>
+					 	<div class="order-status pending">Order Status: Pending</div>
+					 <% } else if (status.equals(OrderStatus.Shipped)) { %>
+					 	<div class="order-status shipped">Order Status: Shipped</div>
+					 <% } else if (status.equals(OrderStatus.Delivered)) { %>
+					 	<div class="order-status delivered">Order Status: Delivered</div>
+					 <% } else if (status.equals(OrderStatus.Cancelled)) { %>
+					 	<div class="order-status cancelled">Order Status: Cancelled</div>
+					 <% } %>
+				</div>
+				<% } %>
+	        </div>
+	
+	        <!-- Shipping and Bill Summary -->
+	        <div class="summary-container">
+	            <div class="shipping-details">
+	                <h2>Shipping Details</h2>
+	                <% Customer orderCustomer = order.getCustomer(); %>
+	                <p><strong>Name: </strong><%= orderCustomer.getName() %></p>
+	                <p><strong>Email: </strong><%= orderCustomer.getEmail() %></p>
+	                <p><strong>Address: </strong><%= orderCustomer.getAddress() %></p>
+	            </div>
+	        
+	            <div class="bill-summary">
+	                <h2>Bill Summary</h2>
+	                <p><strong>Total Amount: </strong><%= order.getProduct().getPrice() * order.getQuantity()%></p>
+	                <p><strong>Shipping Charge: </strong>0.00</p>
+	                <p><strong>Discount Applied: </strong><%= order.getProduct().getDiscount() %></p>
+	                <p><strong>Payable Amount: </strong><%= order.getTotal_amount() %></p>
+	            </div>
+	        </div>     
+	
+	        <!-- Product Summary -->
+	        <div class="product-summary">
+	            <h2>Product Summary</h2>
+	            <% Product orderProduct = order.getProduct(); %>
+	            <div class="product-item">
+	                <div class="product-details">
+	                    <p><strong>Product Name: </strong><%= orderProduct.getName() %></p>
+	                    <p><strong>Category: </strong><%= orderProduct.getCategory() %></p>
+	                    <p><strong>Price: </strong><%= orderProduct.getPrice() %></p>
+	                    <p><strong>Brand: </strong><%= orderProduct.getBrand() %></p>
+	                    <p><strong>Quantity: </strong><%= order.getQuantity() %></p>
+	                </div>
+	                <a href="/product/<%= orderProduct.getId() %>" class="product-image">
+	                    <img src="../../images/product/<%= orderProduct.getImage() %>" alt="<%= orderProduct.getImage() %>" />
+	                </a>
+	            </div>
+	        </div>
+	
+	        <!-- Buttons -->
+	        <div class="button-container">	            
+	            <form action="/order/again/<%= order.getId() %>" method="post">
+	            	<button class="buy-again" type="submit">Buy Again</button>
+	            </form>
+	            <form action="/order/cancel/<%= order.getId() %>" method="post">
+	            	<button class="cancel-order" type="submit">Cancel Order</button>
+	            </form>
+	        </div>
+    <% } %>
     <%@ include file="../../templates/footer.jsp" %>
 </div>
 
