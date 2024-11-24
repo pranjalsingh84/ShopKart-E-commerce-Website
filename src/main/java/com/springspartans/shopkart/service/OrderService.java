@@ -12,13 +12,18 @@ import org.springframework.stereotype.Service;
 import com.springspartans.shopkart.model.CartItem;
 import com.springspartans.shopkart.model.Order;
 import com.springspartans.shopkart.model.Order.OrderStatus;
+import com.springspartans.shopkart.model.Product;
 import com.springspartans.shopkart.repository.OrderRepository;
+import com.springspartans.shopkart.repository.ProductRepository;
 
 @Service
 public class OrderService {
 	
 	@Autowired
 	private OrderRepository orderRepository;
+	
+	@Autowired
+	private ProductRepository productRepository;
 	
 	@Autowired
 	private CustomerService customerService;
@@ -52,9 +57,14 @@ public class OrderService {
 			order.setTotal_amount(cartItem.getProduct().getPrice() 
 					* (100.0 - cartItem.getProduct().getDiscount())/100.0
 					* cartItem.getQuantity());
-			orderRepository.save(order);
+			Product product = order.getProduct();
+			if (order.getQuantity() <= product.getStock()) {
+				product.setStock(product.getStock() - order.getQuantity());
+				orderRepository.save(order);
+				productRepository.save(product);				
+			}			
 		}
-//		cartItemService.clearCart();
+		cartItemService.clearCart();
 	}
 
 	public int orderCartItem(int slno) {
@@ -66,9 +76,15 @@ public class OrderService {
 		order.setTotal_amount(cartItem.getProduct().getPrice() 
 				* (100.0 - cartItem.getProduct().getDiscount())/100.0
 				* cartItem.getQuantity());
-		order = orderRepository.save(order);
-		cartItemService.deleteCartItem(slno);
-		return order.getId();
+		Product product = order.getProduct();
+		if (order.getQuantity() <= product.getStock()) {
+			product.setStock(product.getStock() - order.getQuantity());
+			order = orderRepository.save(order);
+			productRepository.save(product);
+			cartItemService.deleteCartItem(slno);
+			return order.getId();
+		}	
+		return 0;
 	}
 
 	public int orderAgain(int orderId) {
@@ -83,7 +99,14 @@ public class OrderService {
 		newOrder.setTotal_amount(order.getProduct().getPrice()
 				* (100.0 - order.getProduct().getDiscount())/100.0);
 		newOrder = orderRepository.save(newOrder);	
-		return newOrder.getId();
+		Product product = order.getProduct();
+		if (newOrder.getQuantity() <= product.getStock()) {
+			product.setStock(product.getStock() - newOrder.getQuantity());
+			newOrder = orderRepository.save(newOrder);
+			productRepository.save(product);
+			return newOrder.getId();
+		}	
+		return 0;
 	}
 
 	public void cancelOrder(int orderId) {
@@ -92,6 +115,9 @@ public class OrderService {
 			return;
 		}
 		order.setStatus(OrderStatus.Cancelled);
+		Product product = order.getProduct();
+		product.setStock(product.getStock() + order.getQuantity());
+		productRepository.save(product);
 		orderRepository.save(order);
 	}
 	

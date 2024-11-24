@@ -76,7 +76,7 @@ public class CustomerService {
         System.out.println("Signup Date: " + customer.getSignup_date());
         customer.setPassword(passwordEncoder.encode(customer.getPassword()));
         customerRepository.save(customer);
-        return  true;
+        return true;
     }
 
     public Customer getCustomer() {

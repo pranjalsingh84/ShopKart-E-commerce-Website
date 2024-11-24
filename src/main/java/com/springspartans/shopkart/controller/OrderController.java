@@ -111,9 +111,6 @@ public class OrderController {
         	throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
 		List<Order> orderList = orderService.filterByStatusForCustId(status);
-		if (orderList == null || orderList.isEmpty()) {
-			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-		}
 		model.addAttribute("orderList", orderList);
 		int orderCountByStatusArr[] = {
 			orderService.countOrdersByStatusForCustId(OrderStatus.Pending),

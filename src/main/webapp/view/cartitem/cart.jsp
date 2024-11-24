@@ -42,6 +42,13 @@
 			<%=customer.getAddress()%></div>
 
 		<div class="cart-container">
+			<% 
+			String error = (String)request.getAttribute("error");
+			if (error != null)				
+			%>
+				<div class="error">
+					<h2>${error}</h2>
+				</div>
 			<%
 			List<CartItem> cart = (List<CartItem>) request.getAttribute("cart");
 			%>
@@ -88,9 +95,17 @@
 						<td class="item-price">₹<%=item.getProduct().getPrice()%></td>
 						<td class="item-qty">
 							<div style="display : flex; gap : 5px; justify-content : center; align-items : center;">
-								<button style="padding : 0px 5px; border-radius : 5px;background-color : var(--card);"><p style="font-size : 20px;">-<p></button>
-								<%=item.getQuantity()%>
-								<button style="font-size : 10px; padding : 0px 5px; border-radius : 5px;background-color : var(--card);"><p style="font-size : 20px;">+<p></button>							
+								<form action="/cartitem/decrease/<%= item.getSlno()%>" method="post">
+									<button type="submit" style="padding : 0px 5px; border-radius : 5px;background-color : var(--card);">
+										<p style="font-size : 20px;">-<p>
+									</button>
+								</form>
+									<%=item.getQuantity()%>
+								<form action="/cartitem/increase/<%= item.getSlno()%>" method="post">
+									<button type="submit" style="font-size : 10px; padding : 0px 5px; border-radius : 5px;background-color : var(--card);">
+										<p style="font-size : 20px;">+<p>
+									</button>
+								</form>							
 							</div></td>
 						<td class="item-total-price">₹<%=item.getProduct().getPrice() * item.getQuantity()%></td>
 						<td class="delete-action">

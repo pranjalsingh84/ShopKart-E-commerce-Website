@@ -9,7 +9,6 @@ import com.springspartans.shopkart.model.CartItem;
 import com.springspartans.shopkart.model.Customer;
 import com.springspartans.shopkart.model.Product;
 import com.springspartans.shopkart.repository.CartItemRepository;
-import com.springspartans.shopkart.repository.OrderRepository;
 import com.springspartans.shopkart.repository.ProductRepository;
 
 @Service
@@ -106,7 +105,7 @@ public class CartItemService {
 	{
 		List<CartItem> items = cartRepo.findByCustId(custId);
 		for(CartItem item:items)
-			cartRepo.delete(item);
+			deleteCartItem(item.getSlno());
 	}
 
 }
