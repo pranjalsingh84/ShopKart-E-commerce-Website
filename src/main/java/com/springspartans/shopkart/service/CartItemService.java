@@ -80,7 +80,7 @@ public class CartItemService {
 		Product prod;
 		for (CartItem item : list) {
 			prod = item.getProduct();
-			total += prod.getPrice() * item.getQuantity();
+			total += prod.getPrice() * (100 - prod.getDiscount())/100.0 * item.getQuantity();
 		}
 		return total;
 	}

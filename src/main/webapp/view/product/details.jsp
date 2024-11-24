@@ -46,7 +46,7 @@
 			        </div>
 			        <div class="price">
 			          <div><b>Price : </b></div>
-			          <div>₹ <%= product.getPrice() %></div>
+			          <div>₹ <%= String.format("%.2f", product.getPrice()) %></div>
 			        </div>
 			        <div class="brand-name">
 			          <div><b>Brand : </b></div>
@@ -54,13 +54,18 @@
 			        </div>
 			        <div class="discount">
 			          <div><b>Discount : </b></div>
-			          <div>0.00%</div>
+			          <div><%= String.format("%.2f", product.getDiscount()) %>%</div>
 			        </div>
 			        <div class="availability">
 			          <div><b>Availability : </b></div>
-				          <div class="In-stock">In Stock</div>
-				          <div class="left5">Only 5 left</div>
-				          <div class="left0">Out Of Stock</div>
+			          <% int stock = product.getStock(); %>
+			          <% if (stock == 0) { %>
+			          	<div class="left0">Out Of Stock</div>
+			          <% } else if (stock <= 5) {  %>
+				       	<div class="left5">Only 5 left</div>
+				      <% } else { %>
+				      	<div class="In-stock">In Stock</div>
+				      <% } %>				          
 			        </div>
 		        </div>
 	        <% } %>

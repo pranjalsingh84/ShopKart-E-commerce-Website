@@ -115,7 +115,7 @@
 		                        <h4><%= order.getProduct().getName() %></h4>
 		                    </div>
 		                </td>
-		                <td><h4>₹ <%= order.getTotal_amount() %></h4></td>
+		                <td><h4>₹ <%= String.format("%.2f", order.getTotal_amount()) %></h4></td>
 		                <td>
 		                	<%
 								Timestamp orderDate = order.getOrder_date();

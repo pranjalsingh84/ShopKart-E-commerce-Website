@@ -70,17 +70,13 @@
   padding: 20px;
 }
 .left0 {
-	color : red;
-	display : none;
-	
+	color : red;	
 }
 .left5 {
-	color : orange;
-		
+	color : orange;		
 }
 .In-stock {
-	color : green;
-	display : none;
+	color : darkgreen;
 }
 .grid-element {
 background-color : var(--card);

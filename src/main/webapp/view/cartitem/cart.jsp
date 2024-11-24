@@ -92,7 +92,8 @@
 						}
 						%>
 						<td class="item-date"><%=formattedDate%></td>
-						<td class="item-price">₹<%=item.getProduct().getPrice()%></td>
+						<% double priceAfterDiscount = item.getProduct().getPrice() * (100 - item.getProduct().getDiscount())/100.0; %>
+						<td class="item-price">₹<%= String.format("%.2f", priceAfterDiscount) %></td>
 						<td class="item-qty">
 							<div style="display : flex; gap : 5px; justify-content : center; align-items : center;">
 								<form action="/cartitem/decrease/<%= item.getSlno()%>" method="post">
@@ -106,8 +107,8 @@
 										<p style="font-size : 20px;">+<p>
 									</button>
 								</form>							
-							</div></td>
-						<td class="item-total-price">₹<%=item.getProduct().getPrice() * item.getQuantity()%></td>
+							</div></td>						
+						<td class="item-total-price"><%= String.format("%.2f", priceAfterDiscount * item.getQuantity()) %></td>
 						<td class="delete-action">
 							<div class="buttons">
 								<form action="/cartitem/delete/<%=item.getSlno()%>"
@@ -128,7 +129,7 @@
 			</table>
 			<div class="checkout">
 				<h3>
-					Total Price : ₹<%=request.getAttribute("totalPrice")%></h3>
+					Total Price : ₹ <%= String.format("%.2f", request.getAttribute("totalPrice")) %></h3>
 			</div>
 			<%
 			}

@@ -55,12 +55,28 @@
 			          />
 			        </a>
 			        <p class="details1-product"><b><%= product.getName() %></b></p>
-			        <p class="details2-product">₹<%= product.getPrice() %></p>
+			        <% double discount = product.getDiscount(); %>
+			        <% if (discount > 0) { %>
+			        	<% double priceAfterDiscount = product.getPrice() * (100 - product.getDiscount())/100.0; %>
+			        	<p class="details2-product">
+			        		<span style="text-decoration: line-through;">₹<%= String.format("%.2f", product.getPrice()) %></span>	
+			        		₹<%= String.format("%.2f", priceAfterDiscount) %>		        		
+			        	</p>
+			        <% } else { %>
+			        	<p class="details2-product">₹<%= String.format("%.2f", product.getPrice()) %></p>
+			        <% } %>
+			        
+			        
 			        <p class="details3-product">
-			        	<div class="In-stock">In Stock</div>
-			            <div class="left5">Only 5 left</div>
-			            <div class="left0">Out Of Stock</div>			        
-			        </p>
+			        	<% int stock = product.getStock(); %>
+				          <% if (stock == 0) { %>
+				          	<div class="left0">Out Of Stock</div>
+				          <% } else if (stock <= 5) {  %>
+					       	<div class="left5">Only 5 left</div>
+					      <% } else { %>
+					      	<div class="In-stock">In Stock</div>
+					      <% } %>
+			        </p>		        					       
 			      </div>
 		      <% } %>
 	    </div>

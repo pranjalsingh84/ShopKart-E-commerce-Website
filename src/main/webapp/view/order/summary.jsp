@@ -76,10 +76,10 @@ pageEncoding="UTF-8"%>
 	        
 	            <div class="bill-summary">
 	                <h2>Bill Summary</h2>
-	                <p><strong>Total Amount: </strong><%= order.getProduct().getPrice() * order.getQuantity()%></p>
+	                <p><strong>Total Amount: </strong><%= String.format("%.2f", order.getProduct().getPrice() * order.getQuantity()) %></p>
 	                <p><strong>Shipping Charge: </strong>0.00</p>
-	                <p><strong>Discount Applied: </strong><%= order.getProduct().getDiscount() %></p>
-	                <p><strong>Payable Amount: </strong><%= order.getTotal_amount() %></p>
+	                <p><strong>Discount Applied: </strong><%= String.format("%.2f", order.getProduct().getDiscount()) %></p>
+	                <p><strong>Payable Amount: </strong><%= String.format("%.2f", order.getTotal_amount()) %></p>
 	            </div>
 	        </div>     
 	
@@ -91,7 +91,7 @@ pageEncoding="UTF-8"%>
 	                <div class="product-details">
 	                    <p><strong>Product Name: </strong><%= orderProduct.getName() %></p>
 	                    <p><strong>Category: </strong><%= orderProduct.getCategory() %></p>
-	                    <p><strong>Price: </strong><%= orderProduct.getPrice() %></p>
+	                    <p><strong>Price: </strong><%= String.format("%.2f", orderProduct.getPrice()) %></p>
 	                    <p><strong>Brand: </strong><%= orderProduct.getBrand() %></p>
 	                    <p><strong>Quantity: </strong><%= order.getQuantity() %></p>
 	                </div>
