@@ -15,7 +15,9 @@ pageEncoding="UTF-8"%>
   <body>
     <nav>
       <div class="navbar">
-        <div class="logo">ShopKart</div>
+        <div class="logo">
+        	<a href="/product">ShopKart</a>
+        </div>
         
         <% Customer customer = (Customer)request.getAttribute("customer"); %>
         <% List<String> categoryList = (List<String>)request.getAttribute("categoryList"); %>
@@ -44,7 +46,7 @@ pageEncoding="UTF-8"%>
             About us <img src="${pageContext.request.contextPath}/images/group.png" alt="" />
           </button>
           
-          <button class="orders" onclick="window.location.href='/cartitem/cart'">
+          <button class="orders" onclick="window.location.href='/order'">
             Your Orders <img src="${pageContext.request.contextPath}/images/orders.png" alt="" />
           </button>
           

@@ -127,11 +127,11 @@ public class OrderService {
 	
 	public int countOrdersByStatusForCustId(OrderStatus status) {
 		int custId = customerService.getCustomer().getId();
-		return orderRepository.countByStatusCustId(status, custId);
+		return orderRepository.countByStatusCustId(status.toString(), custId);
 	}
 	
 	public int countOrdersByStatus(OrderStatus status) {
-		return orderRepository.countByStatus(status);
+		return orderRepository.countByStatus(status.toString());
 	}
 	
 	public int countOrdersByOrderDate(Timestamp orderDate) {

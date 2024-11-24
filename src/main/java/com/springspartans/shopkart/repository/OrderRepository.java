@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import com.springspartans.shopkart.model.Order;
-import com.springspartans.shopkart.model.Order.OrderStatus;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Integer> {
@@ -33,10 +32,10 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 	@Query(value = "SELECT * FROM orders WHERE status = ?1 AND cust_id = ?2 ORDER BY id DESC", nativeQuery = true)
 	List<Order> findByStatusCustIdReverse(String status, int custId);
 
-	int countByStatus(OrderStatus status);
+	int countByStatus(String status);
 	
 	@Query(value = "SELECT COUNT(*) FROM orders WHERE status = ?1 AND cust_id = ?2", nativeQuery = true)
-	int countByStatusCustId(OrderStatus status, int custId);
+	int countByStatusCustId(String status, int custId);
 
 	@Query(value = "SELECT COUNT(*) FROM orders WHERE DATE(order_date) = DATE(?)", nativeQuery = true)
 	int countByOrderDate(Timestamp orderDate);

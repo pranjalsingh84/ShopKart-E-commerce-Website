@@ -39,7 +39,7 @@ public class OrderController {
         if (customer == null) {
         	throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
         }	
-		List<Order> orderList = orderService.getOrdersOfLoggedInCustomer();
+        List<Order> orderList = orderService.getOrdersOfLoggedInCustomer();
 		model.addAttribute("orderList", orderList);
 		int orderCountByStatusArr[] = {
 			orderService.countOrdersByStatusForCustId(OrderStatus.Pending),
