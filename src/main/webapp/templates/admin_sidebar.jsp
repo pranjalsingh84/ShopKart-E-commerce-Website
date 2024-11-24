@@ -20,7 +20,7 @@
             <li><a href="/admin/dashboard/product">Manage Product Catalogue</a></li>
             <li><a href="/admin/dashboard/customer">Manage Customers</a></li>
             <li><a href="/admin/dashboard/order">Manage Orders</a></li>
-            <li><a href="">Log-Out</a></li>
+            <li><a href="/admin/logout">Log-Out</a></li>
         </ul>
     </div>
 </body>

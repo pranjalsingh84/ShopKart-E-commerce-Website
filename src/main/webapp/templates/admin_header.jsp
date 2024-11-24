@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+   <%@ page import="com.springspartans.shopkart.model.Admin" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,17 +12,21 @@
 
 </head>
 <body>
+	<% Admin admin = (Admin)request.getAttribute("admin"); %>
+	<% admin = (Admin)session.getAttribute("loggedInAdmin"); %>
+	<% if (admin != null) { %>
 	<div class="admin_header">
 	<div class="header-content">
 		<div class="details">
-			<p>BAIBHAB KARMAKAR</p>
-   			<p>baibhabkarmakar29@gmail.com</p>
+			<p><%= admin.getUsername()%></p>
+   			<p><%= admin.getEmail()%></p>
 		</div>
 		<div>
 			<img style="height : 40px;"src="${pageContext.request.contextPath}/images/avatar.jpg">
 		</div>
 	</div>
    	</div>
+     <% } %>
    	<div class="breaker"></div>
 </body>
 </html>
