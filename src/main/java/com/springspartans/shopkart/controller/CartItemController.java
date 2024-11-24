@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.springspartans.shopkart.model.*;
 import com.springspartans.shopkart.service.CartItemService;
@@ -45,14 +46,27 @@ public class CartItemController
    		return "/cartitem/cart";
 	}
 	
-	@PostMapping("/addmore/{slno}")
-	public String incrementQuantity(@PathVariable int slno)
+	@PostMapping("/increase/{slno}")
+	public String incrementQuantity(@PathVariable int slno, RedirectAttributes redirectAttributes)
 	{
 		if(cartservice.getBySlno(slno)==null)
 		{
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
 		}
-		cartservice.incrementQuantity(slno);
+		boolean incrementFlag=cartservice.incrementQuantity(slno);
+		if(!incrementFlag)
+			redirectAttributes.addFlashAttribute("error", "No more stock available for this item");
+		return "redirect:/cartitem/cart";
+	}
+	
+	@PostMapping("/decrease/{slno}")
+	public String decrementQuantity(@PathVariable int slno)
+	{
+		if(cartservice.getBySlno(slno)==null)
+		{
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+		}
+		cartservice.decrementQuantity(slno);
 		return "redirect:/cartitem/cart";
 	}
 	
