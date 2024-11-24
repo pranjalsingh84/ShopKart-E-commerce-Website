@@ -53,7 +53,7 @@ public class CustomerController {
         return "customer/updateinfo";
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public String login(@RequestParam String email, @RequestParam String password) {
         if (email == null || password == null) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST);

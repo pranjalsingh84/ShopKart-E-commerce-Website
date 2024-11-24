@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../../css/colorScheme.css" />
 </head>
 <body>
-	<form action="/login" method="get">
+	<form action="/login" method="post">
 		
 	    <div class="login-container">
 	      <% String msg = request.getParameter("msg"); %>

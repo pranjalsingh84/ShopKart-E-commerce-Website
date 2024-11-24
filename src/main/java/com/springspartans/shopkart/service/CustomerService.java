@@ -1,7 +1,6 @@
 package com.springspartans.shopkart.service;
 import java.time.LocalDate;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.time.format.DateTimeParseException;
 import com.springspartans.shopkart.exception.InvalidImageUploadException;
@@ -59,7 +58,7 @@ public class CustomerService {
         	 Customer loggedInCustomer = customer.get();
              loggedInCustomer.setLast_login_date(Timestamp.from(Instant.now()));
              customerRepository.save(loggedInCustomer);
-             System.out.println("New Last Login Date: " + loggedInCustomer.getLast_login_date());
+//             System.out.println("New Last Login Date: " + loggedInCustomer.getLast_login_date());
              httpSession.setAttribute("loggedInCustomer", loggedInCustomer);
             return true;
         }
@@ -115,16 +114,18 @@ public class CustomerService {
         return false;
     }
 
-    // service methods to be used in adminController
     public List<Customer> getAllCustomers() {
         return customerRepository.findAll();
     }
+    
     public void deleteCustomer(int customerId) {
             customerRepository.deleteById(customerId);
     }
+    
     public int countCustomers() {
         return (int) customerRepository.count();
     }
+    
     public int countSignupByDate(String date) {
         try {
             LocalDate localDate = LocalDate.parse(date);
