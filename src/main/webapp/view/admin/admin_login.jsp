@@ -10,9 +10,16 @@
     <link rel="stylesheet" href="../../css/colorScheme.css" />
 </head>
 <body>
-    <form action="/admin_login" method="post">
+    <form action="/admin/login" method="get">
         <div class="adminLogin-container">
             <h1>Admin Login</h1>
+            <% String msg = request.getParameter("msg"); %>
+			<% if (msg != null && msg.equals("failed")) { %>
+				<h3 id="custom-msg">Invalid E-mail or Password or Security-Key !</h3>
+			<% } %>	
+			<% if (msg != null && msg.equals("logout")) { %>
+				<h3 id="custom-msg">You've been logged out!</h3>
+			<% } %>
             <div class="form-group">
                 <input type="email" name="email" placeholder="Email" required />
             </div>
@@ -20,7 +27,7 @@
                 <input type="password" name="password" placeholder="Password" required />
             </div>
             <div class="form-group">
-                <input type="password" name="securityKey" placeholder="Security Key" required />
+                <input type="password" name="security_key" placeholder="Security Key" required />
             </div>
             <div class="form-group">
                 <button type="submit" class="btn">Log in</button>

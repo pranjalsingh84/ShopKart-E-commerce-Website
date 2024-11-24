@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="Admin")
+@Table(name = "Admin")
 public class Admin
 {
 	@Id
@@ -27,6 +27,9 @@ public class Admin
 	@Column(nullable=false, length=255)
 	private String security_key;
 	
+	public Admin() {
+		
+	}
 	public Admin(int id, String username, String password, String email, String security_key) {
 		super();
 		this.id = id;
