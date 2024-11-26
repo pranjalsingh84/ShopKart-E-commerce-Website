@@ -1,4 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="com.springspartans.shopkart.model.Order" %> 
+<%@ page import="com.springspartans.shopkart.model.Order.OrderStatus"%>
+<%@ page import="java.sql.Timestamp"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="java.util.Date"%>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,41 +24,73 @@
       <div class="container-filter-shippingCategory">
         <div class="dropdown-container">
             <label style="color : var(--base-text);"for="shippingCategory">Select Order Status:</label>
-            <select name="shippingCategory" id="shippingCategory">
-                <option value="blank"></option>
-                <option value="all">All</option>
-                <option value="pending">Pending</option>
-                <option value="shipped">Shipped</option>
-                <option value="delivered">Delivered</option>
-                <option value="cancelled">Cancelled</option>
+            <select name="shippingCategory" id="shippingCategory" onchange="window.location.href='/admin/dashboard/order/status/' + this.value">
+                <option value=""></option>
+                <option value="All">All</option>
+                <option value="Pending">Pending</option>
+                <option value="Shipped">Shipped</option>
+                <option value="Delivered">Delivered</option>
+                <option value="Cancelled">Cancelled</option>
             </select>
         </div>
-        <div class="categry pending">
-            <h2 id="pending-text">Pending</h2>
-            <h1>30</h1>
-        </div>
-        <div class="categry shipped">
-            <h2>Shipped</h2>
-            <h1>30</h1>
-        </div>
-        <div class="categry delivered">
-            <h2>Delivered</h2>
-            <h1>30</h1>
-        </div>
-        <div class="categry cancelled">
-            <h2>Cancelled</h2>
-            <h1>30</h1>
-        </div>
+        
+        <% int[] orderCountByStatusArr = (int [])request.getAttribute("orderCountByStatusArr"); %>
+        <% String orderStatus = (String)request.getAttribute("status"); %>
+        
+        <% if (orderStatus == null || orderStatus.equals("All")) { %>
+        	<div class="categry pending">
+	            <h2 id="pending-text">Pending</h2>
+	            <h1><%= orderCountByStatusArr[0] %></h1>
+	        </div>
+	        <div class="categry shipped">
+	            <h2>Shipped</h2>
+	            <h1><%= orderCountByStatusArr[1] %></h1>
+	        </div>
+	        <div class="categry delivered">
+	            <h2>Delivered</h2>
+	            <h1><%= orderCountByStatusArr[2] %></h1>
+	        </div>
+	        <div class="categry cancelled">
+	            <h2>Cancelled</h2>
+	            <h1><%= orderCountByStatusArr[3] %></h1>
+	        </div>
+        <% } else if (orderStatus.equals("Pending")) { %>
+        	<div class="categry pending">
+	            <h2 id="pending-text">Pending</h2>
+	            <h1><%= orderCountByStatusArr[0] %></h1>
+	        </div>
+        <% } else if (orderStatus.equals("Shipped")) { %>
+        	<div class="categry shipped">
+	            <h2>Shipped</h2>
+	            <h1><%= orderCountByStatusArr[1] %></h1>
+	        </div>
+        <% } else if (orderStatus.equals("Delivered")) { %>
+        	<div class="categry delivered">
+	            <h2>Delivered</h2>
+	            <h1><%= orderCountByStatusArr[2] %></h1>
+	        </div>
+        <% } else if (orderStatus.equals("Cancelled")) { %>
+        	<div class="categry cancelled">
+	            <h2>Cancelled</h2>
+	            <h1><%= orderCountByStatusArr[3] %></h1>
+	        </div>
+        <% } %>
+        
     </div>
       <div class="search-bar" style="margin : 20px;">
-        <input
-          name="prefix"
-          type="number"
-          style="color: black"
-          placeholder="search cutomer-id"
-        />
-        <button type="submit">Search</button>
+      	<form action="/admin/dashboard/order/search" method="get">
+      		<input
+	          name="custId"
+	          type="number"
+	          style="color: black"
+	          placeholder="search by customer-id..."
+	          required
+	        />
+	        <button type="submit">Search</button>
+      	</form>
       </div>
+      
+      <% List<Order> orderList = (List<Order>)request.getAttribute("orderList"); %>
       <table>
         <thead>
           <tr>
@@ -67,57 +106,94 @@
           </tr>
         </thead>
         <tbody>
-                <%   
-	                for (int i = 1; i <= 20; i++) { 
-	            %>
-          <tr>
-            <td>
-              <h4><%= 100000 + i %></h4>
-            </td>
-            <td>
-            	<div class="name">
-            		<img src="../../images/product/tshirt.jpg">
-            		<h4>Baibhab Karmakar(<%= 100000 + i %>)</h4>
-            	</div>
-            </td>
-            <td>
-            	<div class="name">
-            		<img src="../../images/product/tshirt.jpg">
-            		<h4>T-Shirt</h4>
-            	</div>
-            </td>
-            <td><h4>100</h4></td>
-            <td><h4>16th June , 2024</h4></td>
-            <td>
-              <h4>19th June , 2024</h4>
-            </td>
-            <td>
-                <div class="status-pending">
-                    <h3>Pending</h3>
-                </div>
-                <div class="status-shipped">
-                    <h3>Shipped</h3>
-                </div>
-                <div class="status-delivered">
-                    <h3>Delivered</h3>
-                </div>
-                <div class="status-cancelled">
-                    <h3>Cancelled</h3>
-                </div>
-            </td>
-            <td>
-              <h4>₹1,20,000</h4>
-            </td>
-            <td>
-                <div class="buttons">
-                    <button class="update">Update Status</button>
-                    <button class="cancel">Cancel Order</button>
-                </div>
-            </td>
-          </tr>
-            <% 
-                } 
-            %>
+        <% if (orderList != null) { %>
+        	<% for (Order order : orderList) { %>
+	          <tr>
+	            <td>
+	              <h4>ORD<%= String.format("%04d", order.getId()) %></h4>
+	            </td>
+	            <td>
+	            	<div class="name">
+	            		<% String profilePic = order.getCustomer().getProfilePic(); %>
+	            		<% if (profilePic != null) { %>
+	            			<img src="${pageContext.request.contextPath}/images/customer/<%= profilePic %>" alt="<%= profilePic %>">
+	            		<% } else { %>
+	            			<img src="${pageContext.request.contextPath}/images/avatar.jpg" alt="avatar">
+	            		<% } %>
+	            		<h4><%= order.getCustomer().getName() %> (CUST<%= String.format("%04d", order.getCustomer().getId()) %>)</h4>
+	            	</div>
+	            </td>
+	            <td>
+	            	<div class="name">
+	            		<img src="${pageContext.request.contextPath}/images/product/<%= order.getProduct().getImage() %>" alt="<%= order.getProduct().getImage() %>">
+	            		<h4><%= order.getProduct().getName() %></h4>
+	            	</div>
+	            </td>
+	            <td><h4><%= order.getQuantity() %></h4></td>
+	            <td>
+		        	<%
+						Timestamp orderDate = order.getOrder_date();
+						String formattedOrderDate = "";
+						if (orderDate != null) {
+							Date date = new Date(orderDate.getTime());
+							SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
+							formattedOrderDate = formatter.format(date);
+						} else {
+							formattedOrderDate = "NA";
+						}
+					%>
+		            <h4><%= formattedOrderDate %></h4>
+		        </td>
+		        <td>
+		            <%
+						Timestamp deliveredDate = order.getDelivered_date();
+						String formattedDeliveredDate = "";
+						if (deliveredDate != null) {
+							Date date = new Date(deliveredDate.getTime());
+							SimpleDateFormat formatter = new SimpleDateFormat("dd MMM yyyy");
+							formattedDeliveredDate = formatter.format(date);
+						} else {
+							formattedDeliveredDate = "Not delivered";
+						}
+					%>
+		            <h4><%= formattedDeliveredDate %></h4>
+		        </td>
+	            <td>
+	                <% OrderStatus status = order.getStatus(); %> 
+		            <% if (status.equals(OrderStatus.Pending)) { %>  
+		                <div class="status-pending">
+				        	<h3>Pending</h3>
+				        </div> 
+		            <% } else if (status.equals(OrderStatus.Shipped)) { %> 
+		                <div class="status-shipped">
+				            <h3>Shipped</h3>
+				        </div>
+		            <% } else if (status.equals(OrderStatus.Delivered)) { %> 
+		                <div class="status-delivered">
+				            <h3>Delivered</h3>
+				        </div>
+		            <% } else if (status.equals(OrderStatus.Cancelled)) { %> 
+		                <div class="status-cancelled">
+				            <h3>Cancelled</h3>
+				        </div>
+		            <% } %>  
+	            </td>
+	            <td>
+	              <h4>₹ <%= String.format("%.2f", order.getTotal_amount()) %></h4>
+	            </td>
+	            <td>
+	                <div class="buttons">
+	                	<form action="/admin/dashboard/order/update/<%= order.getId() %>" method="post">
+	                		<button class="update" type="submit">Update Status</button>
+	                	</form>	                    
+	                    <form action="/admin/dashboard/order/cancel/<%= order.getId() %>" method="post">
+	                    	<button class="cancel" type="submit">Cancel Order</button>
+	                    </form>	                    
+	                </div>
+	            </td>
+	          </tr>
+          <% } %>
+        <% } %>
         </tbody>
       </table>
     </div>

@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,11 @@ public class OrderService {
 
 	public List<Order> getOrdersOfLoggedInCustomer() {
 		int custId = customerService.getCustomer().getId();
+		List<Order> orderList = orderRepository.findByCustIdReverse(custId);
+		return orderList;
+	} 
+	
+	public List<Order> getOrdersByCustId(int custId) {
 		List<Order> orderList = orderRepository.findByCustIdReverse(custId);
 		return orderList;
 	} 
@@ -156,12 +162,23 @@ public class OrderService {
 		return orderRepository.countByStatusCustId(status.toString(), custId);
 	}
 	
+	public int countOrdersByStatusAndCustId(OrderStatus status, int custId) {
+		return orderRepository.countByStatusCustId(status.toString(), custId);
+	}
+	
 	public int countOrdersByStatus(OrderStatus status) {
 		return orderRepository.countByStatus(status.toString());
 	}
 	
-	public int countOrdersByOrderDate(Timestamp orderDate) {
-		return orderRepository.countByOrderDate(orderDate);
+	public double getSalesForDate(Timestamp date) {
+		try {
+            LocalDate localDate = date.toLocalDateTime().toLocalDate();
+            Timestamp startTimestamp = Timestamp.valueOf(localDate.atStartOfDay());
+            Timestamp endTimestamp = Timestamp.valueOf(localDate.atTime(23, 59, 59));
+            return orderRepository.getSalesForDuration(startTimestamp, endTimestamp);
+        } catch (DateTimeParseException e) {
+            return 0;
+        }
 	}
 	
 	public int countCustomersWhoPlacedOrderOnDate(Timestamp orderDate) {
@@ -172,7 +189,7 @@ public class OrderService {
 		return orderRepository.findByCustIdReverse(custId);
 	}
 	
-	public List<Object[]> getTopSellingProducts(int n) {
+	public List<Integer[]> getTopSellingProducts(int n) {
 		return orderRepository.getTopSellingProducts(n);
 	}
 	

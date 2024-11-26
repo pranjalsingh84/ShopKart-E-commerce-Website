@@ -93,7 +93,7 @@
       }
       .name {
       	display : flex;
-      	justify-content : center;
+      	justify-content : left;
       	align-items : center;
       	gap : 20px;
       }
@@ -124,7 +124,6 @@
 	      background-color : var(--pending);
 	      color : var(--card);
 	      border-radius : 10px;
-	      display : none;
 	  }
 	  .status-shipped {
 		padding : 0px 10px;
@@ -132,7 +131,6 @@
 	      background-color : var(--shipped);
 	      color : var(--base-text);
 	      border-radius : 10px;
-	      display : none;
 	  }
 	  .status-delivered {
 		padding : 0px 10px;
@@ -147,7 +145,6 @@
 	      background-color : var(--cancelled);
 	      color : var(--base-text);
 	      border-radius : 10px;
-	      display : none;
 	  }
       .buttons {
             display : flex;

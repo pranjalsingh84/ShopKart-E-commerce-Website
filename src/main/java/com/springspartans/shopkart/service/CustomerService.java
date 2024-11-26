@@ -126,9 +126,9 @@ public class CustomerService {
         return (int) customerRepository.count();
     }
     
-    public int countSignupByDate(String date) {
+    public int countSignupByDate(Timestamp date) {
         try {
-            LocalDate localDate = LocalDate.parse(date);
+            LocalDate localDate = date.toLocalDateTime().toLocalDate();
             Timestamp startTimestamp = Timestamp.valueOf(localDate.atStartOfDay());
             Timestamp endTimestamp = Timestamp.valueOf(localDate.atTime(23, 59, 59));
             return customerRepository.countBySignup_dateBetween(startTimestamp, endTimestamp);
@@ -137,9 +137,9 @@ public class CustomerService {
         }
     }
 
-    public int countLoginByDate(String date) {
+    public int countLoginByDate(Timestamp date) {
         try {
-            LocalDate localDate = LocalDate.parse(date);
+            LocalDate localDate = date.toLocalDateTime().toLocalDate();
             Timestamp startTimestamp = Timestamp.valueOf(localDate.atStartOfDay());
             Timestamp endTimestamp = Timestamp.valueOf(localDate.atTime(23, 59, 59));
             return customerRepository.countByLast_login_dateBetween(startTimestamp, endTimestamp);

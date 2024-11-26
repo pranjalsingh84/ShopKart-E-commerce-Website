@@ -57,3 +57,9 @@ button {
 	border-radius: 5px;
 	cursor: pointer;
 }
+
+#error-msg {
+	text-align : center;
+	color : var(--high-text-button);
+	margin-bottom : 20px;
+}

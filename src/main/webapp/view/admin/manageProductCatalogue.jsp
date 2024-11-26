@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import="com.springspartans.shopkart.model.Product" %>        
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,11 +17,13 @@
     <div style="margin-left : 300px; margin-right : 100px;">
     	<%@ include file="../../templates/admin_header.jsp" %>
         <h2 style="font-size : 40px;">Manage Product Catalogue</h2>
+        
+    <% List<Product> productList = (List<Product>)request.getAttribute("productList");  %>
     <table>
         <thead>
             <tr>
                 <th>Product-ID</th>
-                <th>Product-name(with Img)</th>
+                <th>Product-Name</th>
                 <th>Product-Category</th>
                 <th>Brand</th>
                 <th>Price</th>
@@ -29,36 +33,38 @@
             </tr>
         </thead>
         <tbody>
-            <% 
-                for (int i = 1; i <= 20; i++) { 
-            %>
-            <tr>
-                <td><h4><%= 100000 + i %></h4></td>
-                <td>
-                    <div class="details-product">
-                        <img src="../../images/product/tshirt.jpg">
-                        <h4>Men's T-shirt <%= i %></h4>
-                    </div>
-                </td>
-                <td><h4>Wears</h4></td>
-                <td><h4>Zara</h4></td>
-                <td><h4>₹1200</h4></td>
-                <td>
-                    <h4><%= 20 + i %></h4>
-                </td>
-                <td>
-                    <h4>0.00%</h4>
-                </td>
-                <td>
-                    <div class="buttons">
-                        <button class="delete">Delete</button>
-                        <button class="update">Update</button>
-                    </div>
-                </td>
-            </tr>
-            <% 
-                } 
-            %>
+            <% if (productList != null) { %>
+            	<% for (Product prod : productList) {  %>
+		            <tr>
+		                <td><h4>PROD<%= String.format("%04d", prod.getId()) %></h4></td>
+		                <td>
+		                    <div class="details-product">
+		                        <img src="../../images/product/<%= prod.getImage() %>">
+		                        <h4><%= prod.getName() %></h4>
+		                    </div>
+		                </td>
+		                <td><h4><%= prod.getCategory() %></h4></td>
+		                <td><h4><%= prod.getBrand() %></h4></td>
+		                <td><h4>₹<%= String.format("%.2f", prod.getPrice()) %></h4></td>
+		                <td>
+		                    <h4><%= prod.getStock() %></h4>
+		                </td>
+		                <td>
+		                    <h4><%= String.format("%.2f", prod.getDiscount()) %>%</h4>
+		                </td>
+		                <td>
+		                    <div class="buttons">
+		                    	<form action="/admin/dashboard/product/delete/<%= prod.getId() %>" method="post">
+		                    		<button class="delete">Delete</button>
+		                    	</form>
+		                        <form action="/admin/dashboard/product/update/<%= prod.getId() %>" method="get">
+		                        	<button class="update">Update</button>
+		                        </form>		                        
+		                    </div>
+		                </td>
+		            </tr>
+	            <% } %>
+            <% } %>
         </tbody>
     </table>
     </div>

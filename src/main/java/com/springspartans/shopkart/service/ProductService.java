@@ -94,7 +94,7 @@ public class ProductService {
 			if (! imageUploadValidator.isValidImage(image)) { 
 	            throw new InvalidImageUploadException("Improper file format!");
 	        }
-	        imageName = "product" + id + ".jpg";
+	        imageName = image.getOriginalFilename();
 	    }
 		Product product = new Product(id, name, category, brand, price, imageName, stock, discount);
 		productRepository.save(product);
@@ -116,7 +116,7 @@ public class ProductService {
 			if (!imageUploadValidator.isValidImage(image)) { 
 	            throw new InvalidImageUploadException("Improper file format!");
 	        }
-	        String imageName = "product" + id + ".jpg";
+	        String imageName = image.getOriginalFilename();
 	        existingProduct.setImage(imageName);
 	        saveImageToDirectory(image, imageName, "product");
 		}
@@ -124,7 +124,7 @@ public class ProductService {
 	}
 	
 	private void saveImageToDirectory(MultipartFile image, String imageName, String folderName) throws IOException {
-	    String imageUploadPath = uploadPath + "\\image" ;
+	    String imageUploadPath = uploadPath + "\\product" ;
 	    File destination = new File(imageUploadPath);
 	    if (!destination.exists()) {
 	        destination.mkdirs(); 

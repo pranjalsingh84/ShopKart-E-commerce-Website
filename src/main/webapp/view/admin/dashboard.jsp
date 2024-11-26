@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="com.springspartans.shopkart.model.Admin" %>
-<%@ page import="com.springspartans.shopkart.model.Customer" %>
-<%@ page import="jakarta.servlet.http.HttpSession" %>
+<%@ page import="java.util.List" %>
+<%@ page import="com.springspartans.shopkart.model.Product" %> 
+<%@ page import="java.sql.Timestamp"%>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="java.util.Date"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,22 +29,27 @@
             if (admin != null) {
         %>
         <!-- Summary Statistics -->
+        <% int orderCountByStatusArr[] = (int[])request.getAttribute("orderCountByStatusArr"); %>
+        <% double totalSales = (double)request.getAttribute("totalSales"); %>
+        <% int prodCount = (int)request.getAttribute("prodCount"); %>
+        <% int custCount = (int)request.getAttribute("custCount"); %>
+        
         <div class="card-summary-stats">
             <div class="card-name total-sales">
-                <h2>Total Sales</h2>
-                <h1>10,000</h1>
+                <h2>Sales Last week </h2>
+                <h1>₹ <%= String.format("%.0f", totalSales) %></h1>
             </div>
             <div class="card-name product-count">
                 <h2>Product Count</h2>
-                <h1>20</h1>
+                <h1><%= prodCount %></h1>
             </div>
             <div class="card-name users-count">
                 <h2>Customer Count</h2>
-                <h1>5</h1>
+                <h1><%= custCount %></h1>
             </div>
             <div class="card-name active-orders">
                 <h2>Active Orders</h2>
-                <h1>10</h1>
+                <h1><%= orderCountByStatusArr[0] + orderCountByStatusArr[1] %></h1>
             </div>
         </div>
 
@@ -53,6 +60,7 @@
             </div>
 
             <!-- Lists -->
+            <% List<Object[]> topSellers = (List<Object[]>)request.getAttribute("topSellers"); %>
             <div class="card">
                 <h2>Top Selling Products</h2>
                 <table>
@@ -63,21 +71,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <%
-                        for (int i = 1; i <= 5; i++) {
-                        %>
-                        <tr>
-                            <td>
-                                <div class="name">
-                                    <img src="../../images/product/tshirt.jpg">
-                                    <h4>Baibhab's T-shirt</h4>
-                                </div>
-                            </td>
-                            <td><p>20</p></td>
-                        </tr>
-                        <%
-                        }
-                        %>
+                        <% for (Object[] obj : topSellers) { %>
+	                        <tr>
+	                        	<% Product prod = (Product) obj[0]; %>
+	                        	<% Integer stock = (Integer) obj[1]; %>
+	                            <% if (prod != null) { %>
+	                            	<td>
+		                                <div class="name">
+		                                    <img src="../../images/product/<%= prod.getImage() %>">
+		                                    <h4><%= prod.getName() %></h4>
+		                                </div>
+		                            </td>
+		                            <td><p><%= stock %></p></td>
+	                            <% } %>
+	                        </tr>
+                        <% } %>
                     </tbody>
                 </table>
             </div>
@@ -106,49 +114,92 @@
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // Example Data for Pie Chart
-        const pieCtx = document.getElementById('order-fulfillment-chart').getContext('2d');
-        new Chart(pieCtx, {
-            type: 'pie',
-            data: {
-                labels: ['Delivered', 'Shipped', 'Pending', 'Cancelled'],
-                datasets: [{
-                    label: 'Order Fulfillment Ratio',
-                    data: [40, 30, 20, 10], // Example data
-                    backgroundColor: ['#568203', '#0047AB', '#FFBF00', '#B31B1B']
-                }]
-            }
-        });
-
-        // Example Data for Line Graph
-        const lineCtx = document.getElementById('sales-line-chart').getContext('2d');
-        new Chart(lineCtx, {
-            type: 'line',
-            data: {
-                labels: ['Day 1', 'Day 2', 'Day 3', 'Day 4', 'Day 5', 'Day 6', 'Day 7'], // Example labels
-                datasets: [{
-                    label: 'Sales',
-                    data: [12, 34, 23, 56, 43, 120, 8], // Example data
-                    borderColor: 'var(--low-text-button)',
-                    backgroundColor: 'rgba(0, 123, 158, 0.5)',
-                    fill: true
-                }]
-            }
-        });
-
-        // Example Data for Bar Graph
-        const barCtx = document.getElementById('customer-activity-chart').getContext('2d');
-        new Chart(barCtx, {
-            type: 'bar',
-            data: {
-                labels: ['New Signups', 'Logins', 'Orders Placed'],
-                datasets: [{
-                    label: 'Customer Activity',
-                    data: [20, 50, 15], // Example data
-                    backgroundColor: ['#007B9E', '#6D6D6D', '#FF6C6C']
-                }]
-            }
-        });
+		 	// Pie Chart
+		 	<% int orderCountByStatusArr[] = (int[])request.getAttribute("orderCountByStatusArr"); %>
+		 	const pending = [<%= orderCountByStatusArr[0] %>];
+		 	const shipped = [<%= orderCountByStatusArr[1] %>];
+		 	const delivered = [<%= orderCountByStatusArr[2] %>];
+		 	const cancelled = [<%= orderCountByStatusArr[3] %>];
+		    const pieCtx = document.getElementById('order-fulfillment-chart').getContext('2d');
+		    new Chart(pieCtx, {
+		        type: 'pie',
+		        data: {
+		            labels: ['Pending', 'Shipped', 'Delivered', 'Cancelled'],
+		            datasets: [{
+		                label: 'Order Fulfillment Ratio',
+		                data: [pending, shipped, delivered, cancelled], 
+		                backgroundColor: ['#FFBF00', '#0047AB', '#568203', '#B31B1B']
+		            }]
+		        }
+		    });
+    
+		 	// Line Graph
+		 	<% List<Timestamp> lastWeek = (List<Timestamp>) request.getAttribute("lastWeek"); %>
+		 	<% List<Double> lastWeekSales = (List<Double>) request.getAttribute("lastWeekSales"); %>
+		    const lineCtx = document.getElementById('sales-line-chart').getContext('2d');
+		    const myLabels = [
+		        <%
+		            for (int i = 0; i < lastWeek.size(); i++) {
+		                Timestamp timestamp = lastWeek.get(i);
+		                String formattedDate = new java.text.SimpleDateFormat("dd-MMM").format(timestamp);
+		                out.print("\"" + formattedDate + "\"");
+		                if (i < lastWeek.size() - 1) {
+		                    out.print(", ");
+		                }
+		            }
+		        %>
+		    ];
+		    const myData = [
+		        <%
+		            for (int i = 0; i < lastWeekSales.size(); i++) {
+		                Double sales = lastWeekSales.get(i);
+		                out.print(sales);
+		                if (i < lastWeekSales.size() - 1) {
+		                    out.print(", ");
+		                }
+		            }
+		        %>
+		    ];
+		    new Chart(lineCtx, {
+		        type: 'line',
+		        data: {
+		            labels: myLabels, 
+		            datasets: [{
+		                label: 'Sales (in ₹)',
+		                data: myData, 
+		                borderColor: 'var(--low-text-button)',
+		                backgroundColor: 'rgba(0, 123, 158, 0.5)',
+		                fill: true
+		            }]
+		        }
+		    });
+		
+		    // Bar Graph
+		    <% int[] custActivity = (int[])request.getAttribute("custActivity"); %>
+		    const barCtx = document.getElementById('customer-activity-chart').getContext('2d');
+		    new Chart(barCtx, {
+		        type: 'bar',
+		        data: {
+		            labels: ['New Signups', 'Logins', 'Customers who ordered'],
+		            datasets: [
+		            	{
+		                    label: 'New Signups',
+		                    data: [<%= custActivity[0] %>, 0, 0], 
+		                    backgroundColor: '#007B9E'
+		                },
+		                {
+		                    label: 'Logins',
+		                    data: [0, <%= custActivity[1] %>, 0],
+		                    backgroundColor: '#6D6D6D'
+		                },
+		                {
+		                    label: 'Customers who ordered',
+		                    data: [0, 0, <%= custActivity[2] %>],
+		                    backgroundColor: '#FF6C6C'
+		                }
+		            ]
+		        }
+		    });
     </script>
 </body>
 

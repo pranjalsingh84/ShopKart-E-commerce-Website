@@ -84,10 +84,11 @@ body {
         }
         td img {
             width : 60px;
+            height : 60px;
         }
         .name {
         	display : flex;
-        	justify-content : center;
+        	justify-content : left;
         	align-items : center;
         	gap : 20px;
         }

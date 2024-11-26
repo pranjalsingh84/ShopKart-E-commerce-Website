@@ -22,7 +22,7 @@
    			<p><%= admin.getEmail()%></p>
 		</div>
 		<div>
-			<img style="height : 40px;"src="${pageContext.request.contextPath}/images/avatar.jpg">
+			<img style="height: 40px; width: 40px; border-radius: 50%; object-fit: cover;" src="${pageContext.request.contextPath}/images/avatar.jpg">
 		</div>
 	</div>
    	</div>

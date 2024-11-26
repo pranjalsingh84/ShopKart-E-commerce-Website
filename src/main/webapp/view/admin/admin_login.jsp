@@ -15,7 +15,7 @@
             <h1>Admin Login</h1>
             <% String msg = request.getParameter("msg"); %>
 			<% if (msg != null && msg.equals("failed")) { %>
-				<h3 id="custom-msg">Invalid E-mail or Password or Security-Key !</h3>
+				<h3 id="custom-msg">Invalid credentials!</h3>
 			<% } %>	
 			<% if (msg != null && msg.equals("logout")) { %>
 				<h3 id="custom-msg">You've been logged out!</h3>

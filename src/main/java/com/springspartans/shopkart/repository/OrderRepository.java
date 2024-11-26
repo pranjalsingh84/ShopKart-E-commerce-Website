@@ -32,6 +32,7 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 	@Query(value = "SELECT * FROM orders WHERE status = ?1 AND cust_id = ?2 ORDER BY id DESC", nativeQuery = true)
 	List<Order> findByStatusCustIdReverse(String status, int custId);
 
+	@Query(value = "SELECT COUNT(*) FROM orders WHERE status = ?", nativeQuery = true)
 	int countByStatus(String status);
 	
 	@Query(value = "SELECT COUNT(*) FROM orders WHERE status = ?1 AND cust_id = ?2", nativeQuery = true)
@@ -42,14 +43,17 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 
 	@Query(value = "SELECT COUNT(DISTINCT cust_id) FROM orders WHERE DATE(order_date) = DATE(?)", nativeQuery = true)
 	int countCustomersWhoPlacedOrderOnDate(Timestamp orderDate);
+	
+	@Query(value = "SELECT IFNULL(SUM(total_amount), 0) FROM orders WHERE order_date BETWEEN ?1 AND ?2", nativeQuery = true)
+	double getSalesForDuration(Timestamp start, Timestamp end);
 
 	@Query(value = "SELECT prod_id, SUM(quantity) FROM orders "
-			+ "WHERE status = 'Delivered' GROUP BY prod_id "
+			+ "WHERE status != 'Cancelled' GROUP BY prod_id "
 			+ "ORDER BY SUM(quantity) DESC LIMIT ?", nativeQuery = true)
-	List<Object[]> getTopSellingProducts(int n);
+	List<Integer[]> getTopSellingProducts(int n);
 
 	@Query(value = "SELECT IFNULL(SUM(total_amount), 0) FROM orders "
-			+ "WHERE status = 'Delivered' "
+			+ "WHERE status != 'Cancelled' "
 			+ "AND delivered_date BETWEEN ?1 AND ?2", nativeQuery = true)
 	double totalSalesLastWeek(Timestamp start, Timestamp end);
 	

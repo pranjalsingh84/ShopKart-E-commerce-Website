@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<%@ page import="java.util.List" %>
+<%@ page import="com.springspartans.shopkart.model.Customer" %>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,6 +15,7 @@
     <div style="margin-left : 300px; margin-right : 100px;">
     	<%@ include file="../../templates/admin_header.jsp" %>
         <h2 style="font-size : 40px;">Manage Customers</h2>
+    <% List<Customer> customerList = (List<Customer>)request.getAttribute("customerList"); %>
     <table>
         <thead>
             <tr>
@@ -25,32 +28,36 @@
             </tr>
         </thead>
         <tbody>
-        		<% 
-	                for (int i = 1; i <= 20; i++) { 
-	            %>
-            <tr>
-                <td><h4><%= 100000 + i %></h4></td>
-                <td>
-	                <div class="name">
-	                	<img src="../../images/product/tshirt.jpg" alt="">
-	                    <h4>Baibhab Karmakar</h4>
-	                </div>
-                </td>
-                <td><h4>baibhabkarmakar29@gmail.com</h4></td>
-                <td><h4>Kharar , West Bengal</h4></td>
-                <td>
-                    <h4>+91 7603037074</h4>
-                </td>               
-                <td>
-                    <div class="buttons">
-                        <button class="delete">Delete</button>
-                    </div>
-                </td>
-            </tr>
-			<% 
-                } 
-            %>
-
+        	<% if (customerList != null) { %>
+        		<% for (Customer cust : customerList) { %>
+		            <tr>
+		                <td><h4>CUST<%= String.format("%04d", cust.getId()) %></h4></td>
+		                <td>
+			                <div class="name">
+			                	<% String profilePic = cust.getProfilePic(); %>
+			                	<% if (profilePic != null) { %>
+			                		<img src="../../images/customer/<%= profilePic %>" alt="<%= profilePic %>">
+			                	<% } else { %>
+			                		<img src="../../images/avatar.jpg" alt="avatar" height=50>
+			                	<% } %>
+			                    <h4><%= cust.getName() %></h4>
+			                </div>
+		                </td>
+		                <td><h4><%= cust.getEmail() %></h4></td>
+		                <td><h4><%= cust.getAddress() %></h4></td>
+		                <td>
+		                    <h4><%= cust.getPhone() %></h4>
+		                </td>               
+		                <td>
+		                    <form action="/admin/dashboard/customer/delete/<%= cust.getId() %>" method="post">
+		                    	<div class="buttons">
+			                        <button class="delete" type="submit">Remove</button>
+			                    </div>
+		                    </form>
+		                </td>
+		            </tr>
+				<% } %>
+        	<% } %>
         </tbody>
     </table>
     </div>

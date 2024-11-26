@@ -1,4 +1,5 @@
 package com.springspartans.shopkart.service;
+
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class AdminService {
     @PostConstruct
     void addDemoAdmin() {
         if (adminRepository.findByEmail("admin@springspartans.com").isEmpty()) {
-            Admin demoAdmin  = new Admin(0, "Demo Admin", passwordEncoder.encode("shopkart123@ADMIN") ,"admin@springspartans.com", "SECURITY123@ADMIN");
+            Admin demoAdmin  = new Admin(0, "ADMINISTRATOR", passwordEncoder.encode("shopkart123@ADMIN") ,"admin@springspartans.com", "SECURITY123@ADMIN");
             adminRepository.save(demoAdmin);
         }
     }
