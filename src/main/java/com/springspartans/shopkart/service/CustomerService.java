@@ -89,7 +89,7 @@ public class CustomerService {
     ) throws IOException, InvalidPasswordException, InvalidImageUploadException {
         Customer loggedInCustomer = (Customer) httpSession.getAttribute("loggedInCustomer");
         if (loggedInCustomer != null && passwordEncoder.matches(oldPassword, loggedInCustomer.getPassword())) {
-        	if (!passwordValidator.isValidPassword(newPassword)) {
+        	if (!newPassword.isEmpty() && !passwordValidator.isValidPassword(newPassword)) {
         		throw new InvalidPasswordException("Invalid password entered!");
         	}
             String encodedPassword = newPassword.isEmpty() ? loggedInCustomer.getPassword() : passwordEncoder.encode(newPassword);

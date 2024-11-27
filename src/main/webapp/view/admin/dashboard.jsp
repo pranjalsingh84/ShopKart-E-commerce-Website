@@ -183,19 +183,9 @@
 		            labels: ['New Signups', 'Logins', 'Customers who ordered'],
 		            datasets: [
 		            	{
-		                    label: 'New Signups',
-		                    data: [<%= custActivity[0] %>, 0, 0], 
-		                    backgroundColor: '#007B9E'
-		                },
-		                {
-		                    label: 'Logins',
-		                    data: [0, <%= custActivity[1] %>, 0],
-		                    backgroundColor: '#6D6D6D'
-		                },
-		                {
-		                    label: 'Customers who ordered',
-		                    data: [0, 0, <%= custActivity[2] %>],
-		                    backgroundColor: '#FF6C6C'
+		                    label: 'Customer Activity',
+		                    data: [<%= custActivity[0] %>, <%= custActivity[1] %>, <%= custActivity[2] %>], 
+		                    backgroundColor: ['#007B9E', '#6D6D6D', '#FF6C6C']
 		                }
 		            ]
 		        }

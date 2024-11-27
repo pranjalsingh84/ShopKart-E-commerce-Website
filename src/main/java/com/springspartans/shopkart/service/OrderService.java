@@ -55,6 +55,7 @@ public class OrderService {
 	public void orderAll() {
 		int custId = customerService.getCustomer().getId();	
 		List<CartItem> cart = cartItemService.getAllCartItemsforCustomer(custId);
+		cartItemService.clearCart();
 		for (CartItem cartItem : cart) {
 			Order order = new Order();
 			order.setCustomer(cartItem.getCustomer());
@@ -70,11 +71,11 @@ public class OrderService {
 				productRepository.save(product);				
 			}			
 		}
-		cartItemService.clearCart();
 	}
 
 	public int orderCartItem(int slno) {
-		CartItem cartItem = cartItemService.getBySlno(slno);	
+		CartItem cartItem = cartItemService.getBySlno(slno);
+		cartItemService.deleteCartItem(slno);
 		Order order = new Order();
 		order.setCustomer(cartItem.getCustomer());
 		order.setProduct(cartItem.getProduct());
@@ -86,8 +87,7 @@ public class OrderService {
 		if (order.getQuantity() <= product.getStock()) {
 			product.setStock(product.getStock() - order.getQuantity());
 			order = orderRepository.save(order);
-			productRepository.save(product);
-			cartItemService.deleteCartItem(slno);
+			productRepository.save(product);			
 			return order.getId();
 		}	
 		return 0;
@@ -198,7 +198,7 @@ public class OrderService {
 	    Timestamp end = Timestamp.valueOf(endDateTime);
 	    LocalDateTime startDateTime = LocalDateTime.of(LocalDate.now().minusDays(6), LocalTime.MIN);
 	    Timestamp start = Timestamp.valueOf(startDateTime);
-		return orderRepository.totalSalesLastWeek(start, end);
+		return orderRepository.getSalesForDuration(start, end);
 	}
 	
 }

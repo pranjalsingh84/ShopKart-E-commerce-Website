@@ -52,7 +52,7 @@ pageEncoding="UTF-8"%>
 
 	          <div class="element">
 	            <h3>Your new password :</h3>
-	            <input type="password" name="newPassword" placeholder="Enter new Password " required />
+	            <input type="password" name="newPassword" placeholder="Enter new Password "/>
 	            <small>The password must contain 8-15 characters. Atleast one lowercase, one uppercase, one digit and one special character</small>
 	          </div>
 	        </div>
