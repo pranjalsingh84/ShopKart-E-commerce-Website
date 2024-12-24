@@ -32,5 +32,6 @@ build/
 ### VS Code ###
 .vscode/
 
-# Exclude bin directory
+### Others ###
 bin/
+.env
