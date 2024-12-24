@@ -44,14 +44,6 @@ public class CustomerService {
     @Autowired
     private ImageUploadValidator imageUploadValidator;
 
-    @PostConstruct
-    void addDemoUser() {
-        if (customerRepository.findByEmail("demo@springspartans.com").isEmpty()) {
-            Customer demoUser  = new Customer(0, "Demo User", "demo@springspartans.com", passwordEncoder.encode("shopkart123@SS"), "JD Block, Sector III, Salt Lake City, Kolkata-700106", 9876543210L, "user1.jpg",Timestamp.from(Instant.now()),null);
-            customerRepository.save(demoUser);
-        }
-    }
-
     public boolean login(String email, String password) {
         Optional<Customer> customer = customerRepository.findByEmail(email);
         if (customer.isPresent() && passwordEncoder.matches(password, customer.get().getPassword())) {

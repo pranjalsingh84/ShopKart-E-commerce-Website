@@ -22,14 +22,6 @@ public class AdminService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @PostConstruct
-    void addDemoAdmin() {
-        if (adminRepository.findByEmail("admin@springspartans.com").isEmpty()) {
-            Admin demoAdmin  = new Admin(0, "ADMINISTRATOR", passwordEncoder.encode("shopkart123@ADMIN") ,"admin@springspartans.com", "SECURITY123@ADMIN");
-            adminRepository.save(demoAdmin);
-        }
-    }
-
     public boolean login(String email, String password , String security_key) {
         Optional<Admin> admin = adminRepository.findByEmail(email);
         if (admin.isPresent() && passwordEncoder.matches(password, admin.get().getPassword()) && security_key.equals(admin.get().getSecurity_key())) {
