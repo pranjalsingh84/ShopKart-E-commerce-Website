@@ -36,9 +36,9 @@
 			                <div class="name">
 			                	<% String profilePic = cust.getProfilePic(); %>
 			                	<% if (profilePic != null) { %>
-			                		<img src="../../images/customer/<%= profilePic %>" alt="<%= profilePic %>">
+			                		<img src="${pageContext.request.contextPath}/uploads/customer/<%= profilePic %>" alt="<%= profilePic %>">
 			                	<% } else { %>
-			                		<img src="../../images/avatar.jpg" alt="avatar" height=50>
+			                		<img src="${pageContext.request.contextPath}/images/avatar.jpg" alt="avatar" height=50>
 			                	<% } %>
 			                    <h4><%= cust.getName() %></h4>
 			                </div>

@@ -1,8 +1,9 @@
 package com.springspartans.shopkart.service;
-import java.time.LocalDate;
 
-import java.util.List;
+import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
+import java.util.List;
+
 import com.springspartans.shopkart.exception.InvalidImageUploadException;
 import com.springspartans.shopkart.exception.InvalidPasswordException;
 import com.springspartans.shopkart.model.Customer;
@@ -11,7 +12,6 @@ import com.springspartans.shopkart.util.ImageUploadValidator;
 import com.springspartans.shopkart.util.PasswordEncoder;
 import com.springspartans.shopkart.util.PasswordValidator;
 
-import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -91,13 +91,20 @@ public class CustomerService {
             httpSession.setAttribute("loggedInCustomer", updatedCustomer);
             
             if (imageUploadValidator.isValidImage(profilePicture)) {
-            	String customerUploadPath = uploadPath + "\\customer";
+            	String customerUploadPath = uploadPath + "/customer";
                 File destination = new File(customerUploadPath);
                 if (!destination.exists()) {
-                	destination.mkdirs();
+                	boolean created = destination.mkdirs();
+                	destination.setWritable(true);
+                	if (created) {
+                		System.out.println("Created directory : " + destination.getAbsolutePath());
+                	} else {
+                		System.out.println(destination.getAbsolutePath() + "already exists");
+                	}
                 }
                 File fileToSave = new File(destination, profilePictureName);
                 profilePicture.transferTo(fileToSave);
+                System.out.println("Saved file : " + fileToSave.getAbsolutePath());
             }  else if (profilePicture != null && !profilePicture.isEmpty()) {
             	throw new InvalidImageUploadException("Improper file format!");
             }

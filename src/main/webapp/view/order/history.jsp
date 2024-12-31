@@ -109,7 +109,7 @@
 		                <td>
 		                    <div class="details-product">
 		                        <a href="/product/<%= order.getProduct().getId() %>">
-		                        	<img src="../../images/product/<%= order.getProduct().getImage() %>" 
+		                        	<img src="${pageContext.request.contextPath}/uploads/product/<%= order.getProduct().getImage() %>" 
 		                        	alt="<%= order.getProduct().getImage() %>">		                      
 		                        </a>
 		                        <h4><%= order.getProduct().getName() %></h4>

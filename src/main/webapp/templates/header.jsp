@@ -67,7 +67,7 @@ pageEncoding="UTF-8"%>
 		      <div class="avatar">
 		      	<% String profilePicture = customer.getProfilePic(); %>
 		      	<% if (profilePicture != null) { %>
-		      		<img src="${pageContext.request.contextPath}/images/customer/<%= profilePicture %>" alt="" />
+		      		<img src="${pageContext.request.contextPath}/uploads/customer/<%= profilePicture %>" alt="" />
 		      	<% } else { %>
 		      		<img src="${pageContext.request.contextPath}/images/avatar.jpg" alt="" />
 		      	<% } %>

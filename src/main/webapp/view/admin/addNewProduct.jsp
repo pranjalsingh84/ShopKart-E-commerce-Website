@@ -63,7 +63,7 @@
                 <div class="form-group">                	
                     <label for="image">Product Image</label>
                     <% if (product != null && product.getImage() != null) { %>
-				        <img src="${pageContext.request.contextPath}/images/product/<%= product.getImage() %>" alt="<%= product.getImage() %>" width="100" height="100">
+				        <img src="${pageContext.request.contextPath}/uploads/product/<%= product.getImage() %>" alt="<%= product.getImage() %>" width="100" height="100">
 				        <input type="file" id="image" name="image" value="<%= product.getImage() %>" accept="image/*">
 				    <% } else { %>
 				    	<input type="file" id="image" name="image" accept="image/*" required>

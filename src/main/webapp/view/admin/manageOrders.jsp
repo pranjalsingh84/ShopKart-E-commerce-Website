@@ -116,7 +116,7 @@
 	            	<div class="name">
 	            		<% String profilePic = order.getCustomer().getProfilePic(); %>
 	            		<% if (profilePic != null) { %>
-	            			<img src="${pageContext.request.contextPath}/images/customer/<%= profilePic %>" alt="<%= profilePic %>">
+	            			<img src="${pageContext.request.contextPath}/uploads/customer/<%= profilePic %>" alt="<%= profilePic %>">
 	            		<% } else { %>
 	            			<img src="${pageContext.request.contextPath}/images/avatar.jpg" alt="avatar">
 	            		<% } %>
@@ -125,7 +125,7 @@
 	            </td>
 	            <td>
 	            	<div class="name">
-	            		<img src="${pageContext.request.contextPath}/images/product/<%= order.getProduct().getImage() %>" alt="<%= order.getProduct().getImage() %>">
+	            		<img src="${pageContext.request.contextPath}/uploads/product/<%= order.getProduct().getImage() %>" alt="<%= order.getProduct().getImage() %>">
 	            		<h4><%= order.getProduct().getName() %></h4>
 	            	</div>
 	            </td>

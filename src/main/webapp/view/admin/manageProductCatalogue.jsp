@@ -39,7 +39,7 @@
 		                <td><h4>PROD<%= String.format("%04d", prod.getId()) %></h4></td>
 		                <td>
 		                    <div class="details-product">
-		                        <img src="../../images/product/<%= prod.getImage() %>">
+		                        <img src="${pageContext.request.contextPath}/uploads/product/<%= prod.getImage() %>">
 		                        <h4><%= prod.getName() %></h4>
 		                    </div>
 		                </td>

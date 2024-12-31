@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import com.springspartans.shopkart.model.Admin;
 import com.springspartans.shopkart.repository.AdminRepository;
 import com.springspartans.shopkart.util.PasswordEncoder;
-import jakarta.annotation.PostConstruct;
 import jakarta.servlet.http.HttpSession;
 
 @Service

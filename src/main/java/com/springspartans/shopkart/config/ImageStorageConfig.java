@@ -17,7 +17,7 @@ public class ImageStorageConfig {
 
     @Bean
     String getUploadPath() {
-		uploadPath = projectPath + "\\" + imagePath;
+		uploadPath = projectPath + imagePath;
 		return uploadPath;
 	}
     

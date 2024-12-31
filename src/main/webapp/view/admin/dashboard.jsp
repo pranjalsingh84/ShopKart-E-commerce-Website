@@ -78,7 +78,7 @@
 	                            <% if (prod != null) { %>
 	                            	<td>
 		                                <div class="name">
-		                                    <img src="../../images/product/<%= prod.getImage() %>">
+		                                    <img src="${pageContext.request.contextPath}/uploads/product/<%= prod.getImage() %>">
 		                                    <h4><%= prod.getName() %></h4>
 		                                </div>
 		                            </td>

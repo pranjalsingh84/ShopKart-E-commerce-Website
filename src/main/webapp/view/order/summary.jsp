@@ -96,7 +96,7 @@ pageEncoding="UTF-8"%>
 	                    <p><strong>Quantity: </strong><%= order.getQuantity() %></p>
 	                </div>
 	                <a href="/product/<%= orderProduct.getId() %>" class="product-image">
-	                    <img src="../../images/product/<%= orderProduct.getImage() %>" alt="<%= orderProduct.getImage() %>" />
+	                    <img src="${pageContext.request.contextPath}/uploads/product/<%= orderProduct.getImage() %>" alt="<%= orderProduct.getImage() %>" />
 	                </a>
 	            </div>
 	        </div>

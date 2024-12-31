@@ -30,7 +30,7 @@
 			    <div class="product-container">
 			      <div class="container-product-image">
 			        <div class="image-container">
-			          <img src="../../images/product/<%= product.getImage() %>" />
+			          <img src="${pageContext.request.contextPath}/uploads/product/<%= product.getImage() %>" />
 			        </div>
 			    </div>
 	        	<div class="container-product-details">

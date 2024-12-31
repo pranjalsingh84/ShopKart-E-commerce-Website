@@ -50,7 +50,7 @@
 			      <div class="grid-element">
 			        <a href="/product/<%= product.getId() %>">
 			          <img
-			            src="../../images/product/<%= product.getImage() %>"
+			            src="${pageContext.request.contextPath}/uploads/product/<%= product.getImage() %>"
 			            alt=<%= product.getImage() %>
 			          />
 			        </a>

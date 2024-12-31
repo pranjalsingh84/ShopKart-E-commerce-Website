@@ -3,7 +3,6 @@ package com.springspartans.shopkart.service;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +13,6 @@ import com.springspartans.shopkart.exception.InvalidImageUploadException;
 import com.springspartans.shopkart.model.Product;
 import com.springspartans.shopkart.repository.ProductRepository;
 import com.springspartans.shopkart.util.ImageUploadValidator;
-
-import jakarta.annotation.PostConstruct;
 
 @Service
 public class ProductService {
@@ -28,8 +25,6 @@ public class ProductService {
 	
 	@Autowired
     private ImageUploadValidator imageUploadValidator;
-	
-	private List<String> categoryList;
 
 	public List<Product> getAllProducts() {
 		return productRepository.findAll();
@@ -40,11 +35,9 @@ public class ProductService {
 	}
 
 	public List<String> getAllCategories() {
-		if (categoryList == null) {
-			categoryList = new ArrayList<>();
-			categoryList.add("All");
-			categoryList.addAll(productRepository.findAllCategories());
-		}
+		List<String> categoryList = new ArrayList<>();
+		categoryList.add("All");
+		categoryList.addAll(productRepository.findAllCategories());
 		return categoryList;
 	}
 
@@ -95,13 +88,20 @@ public class ProductService {
 	}
 	
 	private void saveImageToDirectory(MultipartFile image, String imageName, String folderName) throws IOException {
-	    String imageUploadPath = uploadPath + "\\product" ;
+	    String imageUploadPath = uploadPath + "/product" ;
 	    File destination = new File(imageUploadPath);
 	    if (!destination.exists()) {
-	        destination.mkdirs(); 
+	        boolean created = destination.mkdirs(); 
+	        destination.setWritable(true);
+	        if (created) {
+        		System.out.println("Created directory : " + destination.getAbsolutePath());
+        	} else {
+        		System.out.println(destination.getAbsolutePath() + "already exists");
+        	}
 	    }
 	    File fileToSave = new File(destination, imageName);
 	    image.transferTo(fileToSave);
+	    System.out.println("Saved file : " + fileToSave.getAbsolutePath());
 	}
 
 	public void deleteProduct(int id) {

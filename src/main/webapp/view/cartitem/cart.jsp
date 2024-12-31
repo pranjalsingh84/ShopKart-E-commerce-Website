@@ -77,7 +77,7 @@
 					<tr>
 						<td class="item-name"><a
 							href="/product/<%=item.getProduct().getId()%>"> <img
-								src="../../images/product/<%=item.getProduct().getImage()%>"
+								src="${pageContext.request.contextPath}/uploads/product/<%=item.getProduct().getImage()%>"
 								alt="<%=item.getProduct().getName()%>" class="product-img" />
 						</a> <%=item.getProduct().getName()%></td>
 						<%
