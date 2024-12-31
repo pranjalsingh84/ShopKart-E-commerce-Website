@@ -3,10 +3,8 @@
 ## About 💬
 This is a simple e-commerce website implemented using the `Spring Boot` framework in Java, by a group of five members, namely `Spring Spartans`. This group project is assigned under `Information Processing for Web` in 5th semester of BTech (IT), `University of Calcutta`
 
-## Project Status 🚩
-![Status](https://img.shields.io/badge/Status-Awaiting%20deployment-purple)
-
-![Version](https://img.shields.io/badge/Version%20no.-v2.0-blue)  ![Type](https://img.shields.io/badge/Version%20type-Stable-005f00)  ![Commit No.](https://img.shields.io/badge/Released%20on-Commit%20no.%20125-orange) 
+## Version History 🚩
+![Version](https://img.shields.io/badge/Version%20no.-v2.0-blue)  ![Type](https://img.shields.io/badge/Version%20type-Stable-005f00)  ![Commit No.](https://img.shields.io/badge/Released%20on-Commit%20no.%20128-orange) 
 
 ![Version](https://img.shields.io/badge/Version%20no.-v1.0-blue)  ![Type](https://img.shields.io/badge/Version%20type-Beta-ffc107)  ![Commit No.](https://img.shields.io/badge/Released%20on-Commit%20no.%2075-orange) 
 
@@ -29,7 +27,7 @@ This is a simple e-commerce website implemented using the `Spring Boot` framewor
 4. `Order Management*` - Place orders from cart, Buy again, Cancel orders, Detailed order list & summary
 5. `Admin Dashboard` - Login (with a security key), Sales insight through analytics, Add or update products, View customers, Update orders
 
-> \* This project is purely made for educational purpose and not meant to be deployed for production. It assumes that payments are made instantly on placing orders as this project is not integrated with a payment gateway.
+> \* This project is purely made for educational purpose and not meant to be deployed for commercial production. It assumes that payments are made instantly on placing orders as this project is not integrated with a payment gateway.
 ---
 
 ## Summary of Endpoints 📝
@@ -74,33 +72,27 @@ To clone the repository, follow these steps:
    ```bash
    cd ShopKart-E-commerce-Website
    ```
-   
-5. **Setup your Database**: Open MySQL Command Line Client or Workbench and create a new database for the project.
-   
-    ```sql
-    DROP DATABASE IF EXISTS shopkart;
-    CREATE DATABASE shopkart;
-    ```
-    >**Note**: You may follow this step anytime to reset your database
     
-6. **Configure Database Connection Settings**: Open the [`application.properties`](src/main/resources/application.properties) file & update the database connection settings.
+5. **Configure Database Connection Settings**: Open the [`application.properties`](src/main/resources/application.properties) file & update the database connection settings.
    
     ```properties
     # Database connection settings
-    spring.datasource.url=jdbc:mysql://localhost:3306/shopkart
-    spring.datasource.username=<your_mysql_username>
-    spring.datasource.password=<your_mysql_password>
+    spring.datasource.url=jdbc:mysql://${DATASOURCE_HOST}:${DATASOURCE_PORT}/${DATASOURCE_DB_NAME}
+    spring.datasource.username=${DATASOURCE_USER}
+    spring.datasource.password=${DATASOURCE_PASSWORD}
     ```
-    Replace your_mysql_username and your_mysql_password with your MySQL credentials.
+    Replace the environment variables with the corresponding credentials of your MySQL connection*.
     
-7. **Setup your Project Path**: Open the [`application.properties`](src/main/resources/application.properties) file & update the project path.
+6. **Setup your Project Path**: Open the [`application.properties`](src/main/resources/application.properties) file & update the project path.
    
    ```properties
-   # Settings for uploading files
+   # Settings for uploading files  
    spring.servlet.multipart.enabled=true
-   file.project-path=<your_project_path>
-   file.image-path=src\\main\\resources\\static\\images
+   file.project-path=${PROJECT_PATH}
+   file.image-path=uploads
    ```
+   Replace the environment variable with the our own path to the project folder*.
+   > \* You may create a `.env` file to store the values of these environment variables, which should be updated to `Run configurations` before executing the project.
 ---
 
 ## Executing the Project 💻
