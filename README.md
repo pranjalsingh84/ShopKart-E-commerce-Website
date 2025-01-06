@@ -3,11 +3,12 @@
 ## About 💬
 This is a simple e-commerce website implemented using the `Spring Boot` framework in Java, by a group of five members, namely `Spring Spartans`. This group project is assigned under `Information Processing for Web` in 5th semester of BTech (IT), `University of Calcutta`
 
+Link to the website - [https://shopkart-e-commerce-website.onrender.com](https://shopkart-e-commerce-website.onrender.com)
+
 ## Version History 🚩
 ![Version](https://img.shields.io/badge/Version%20no.-v2.0-blue)  ![Type](https://img.shields.io/badge/Version%20type-Stable-005f00)  ![Commit No.](https://img.shields.io/badge/Released%20on-Commit%20no.%20128-orange) 
 
 ![Version](https://img.shields.io/badge/Version%20no.-v1.0-blue)  ![Type](https://img.shields.io/badge/Version%20type-Beta-ffc107)  ![Commit No.](https://img.shields.io/badge/Released%20on-Commit%20no.%2075-orange) 
-
 
 
 ## Tech Stack 👨‍💻
