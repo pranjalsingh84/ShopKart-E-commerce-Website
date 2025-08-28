@@ -1,7 +1,7 @@
 # ShopKart : E-commerce Website
 
 ## About 💬
-This is a simple e-commerce website implemented using the `Spring Boot` framework in Java, by a group of five members, namely `Spring Spartans`. This group project is assigned under `Information Processing for Web` in 5th semester of BTech (IT), `University of Calcutta`
+This is a project  e-commerce website implemented using the `Spring Boot` framework in Java, govern with ny team member  namely `Spring Spartans`. This group project is assigned under `Information Processing for Web` 
 
 Link to the website - [https://shopkart-e-commerce-website.onrender.com](https://shopkart-e-commerce-website.onrender.com)
 
